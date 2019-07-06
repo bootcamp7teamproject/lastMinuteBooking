@@ -89,7 +89,6 @@ public class Customer implements Serializable {
     @Column(name = "Email")
     private String email;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "Bankroll")
     private float bankroll;
     @Basic(optional = false)

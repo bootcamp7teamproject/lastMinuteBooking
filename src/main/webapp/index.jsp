@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -24,13 +25,13 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin">
+      <form:form class="form-signin" action = "/login" method = "POST" modelAttribute = "login">
       <img class="mb-4" src="resources/template.jpg" alt="" width="300" height="150">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <form:label class="sr-only">Username</form:label>
+      <form:input class = "form-control" placeholder = "Username" required autofocus path = "username"/>
+      <form:label class="sr-only">Password</form:label>
+      <form:input type = "password" class = "form-control" placeholder = "Password" required path = "password"/>
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
@@ -38,6 +39,6 @@
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       <p class="mt-5 mb-3 text-muted">&copy; Bootcamp 7 Team Project</p>
-    </form>
+    </form:form>
   </body>
 </html>

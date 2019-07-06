@@ -5,7 +5,9 @@
  */
 package bootcamp.project.dao;
 
+import bootcamp.project.model.Login;
 import bootcamp.project.repos.LoginRepo;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +21,9 @@ public class LoginDao {
     
     @Autowired
     LoginRepo lr;
+    
+    public ArrayList <Login> getUsers() {
+    ArrayList <Login> users = (ArrayList <Login>) lr.findAll();
+    return users;
+    }
 }
