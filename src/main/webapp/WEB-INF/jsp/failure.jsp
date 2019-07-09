@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Failure</h1>
+        <h1>User not found jsp</h1>
     </body>
 </html>
