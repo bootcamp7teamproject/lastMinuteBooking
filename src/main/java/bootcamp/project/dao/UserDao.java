@@ -5,9 +5,11 @@
  */
 package bootcamp.project.dao;
 
-import bootcamp.project.repos.ReservationRepo;
+import bootcamp.project.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import bootcamp.project.repos.UserRepo;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,9 +17,14 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class ReservationDao {
+public class UserDao {
     
     @Autowired
-    ReservationRepo rr;
+    UserRepo ur;
+
+    public ArrayList <User> getUsers() {
+        ArrayList <User> users = (ArrayList <User>) ur.findAll();
+        return users;
+    }
     
 }

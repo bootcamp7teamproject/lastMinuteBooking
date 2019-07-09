@@ -5,13 +5,20 @@
  */
 package bootcamp.project.controllers;
 
-import bootcamp.project.dao.LoginDao;
-import bootcamp.project.model.Login;
+
+import bootcamp.project.dao.UserDao;
+import bootcamp.project.model.User;
 import java.util.ArrayList;
+import java.util.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -19,18 +26,36 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 
 @Controller
+@RequestMapping(value = "user")
 public class LoginController {
     
     @Autowired
-    LoginDao ld;
+    UserDao ud;
     
-    @PostMapping("/login")
-    public String login(@ModelAttribute("login")Login userInput) {
-        ArrayList <Login> users = ld.getUsers();
-        for (Login user : users) {
-            if(!(user.getUsername().equals(userInput.getUsername()) && user.getPassword().equals(userInput.getPassword())))
-                return "failure";   
-        }
-        return "success";
+    public static Base64.Decoder decoder = Base64.getDecoder();
+    
+    @GetMapping("prelogin")
+    public String login(ModelMap model) {
+       User u = new User();
+       model.addAttribute("user", u);
+       return "login";
     }
+    
+    @PostMapping("login")
+    public String doLogin(@ModelAttribute("user")User loginUser, ModelMap model) {
+        ArrayList <User> users = ud.getUsers();
+        for (User user : users) {
+//            String decodedPassword = new String(decoder.decode(user.getPassword().getBytes()));
+            if(user.getUsername().equals(loginUser.getUsername()) && user.getPassword().equals(loginUser.getPassword())) {
+                switch (user.getRole().getId()) {
+                        case 1:
+                            return "entry";
+                        case 2:
+                            return "success";
+                }
+            }
+        }
+        return "failure";
+    }
+    
 }

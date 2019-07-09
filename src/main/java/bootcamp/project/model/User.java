@@ -6,43 +6,41 @@
 package bootcamp.project.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Panos
  */
 @Entity
-@Table(name = "hotel_owner")
+@Table(name = "user")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "HotelOwner.findAll", query = "SELECT h FROM HotelOwner h")
-    , @NamedQuery(name = "HotelOwner.findById", query = "SELECT h FROM HotelOwner h WHERE h.id = :id")
-    , @NamedQuery(name = "HotelOwner.findByName", query = "SELECT h FROM HotelOwner h WHERE h.name = :name")
-    , @NamedQuery(name = "HotelOwner.findBySurname", query = "SELECT h FROM HotelOwner h WHERE h.surname = :surname")
-    , @NamedQuery(name = "HotelOwner.findByAddress", query = "SELECT h FROM HotelOwner h WHERE h.address = :address")
-    , @NamedQuery(name = "HotelOwner.findByCity", query = "SELECT h FROM HotelOwner h WHERE h.city = :city")
-    , @NamedQuery(name = "HotelOwner.findByPostcode", query = "SELECT h FROM HotelOwner h WHERE h.postcode = :postcode")
-    , @NamedQuery(name = "HotelOwner.findByPhone", query = "SELECT h FROM HotelOwner h WHERE h.phone = :phone")
-    , @NamedQuery(name = "HotelOwner.findByEmail", query = "SELECT h FROM HotelOwner h WHERE h.email = :email")
-    , @NamedQuery(name = "HotelOwner.findByUsername", query = "SELECT h FROM HotelOwner h WHERE h.username = :username")
-    , @NamedQuery(name = "HotelOwner.findByPassword", query = "SELECT h FROM HotelOwner h WHERE h.password = :password")})
-public class HotelOwner implements Serializable {
+    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+    , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
+    , @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")
+    , @NamedQuery(name = "User.findBySurname", query = "SELECT u FROM User u WHERE u.surname = :surname")
+    , @NamedQuery(name = "User.findByAddress", query = "SELECT u FROM User u WHERE u.address = :address")
+    , @NamedQuery(name = "User.findByCity", query = "SELECT u FROM User u WHERE u.city = :city")
+    , @NamedQuery(name = "User.findByPostcode", query = "SELECT u FROM User u WHERE u.postcode = :postcode")
+    , @NamedQuery(name = "User.findByPhone", query = "SELECT u FROM User u WHERE u.phone = :phone")
+    , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
+    , @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
+    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -97,17 +95,18 @@ public class HotelOwner implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "Password")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerid")
-    private Collection<Hotel> hotelCollection;
+    @JoinColumn(name = "Role", referencedColumnName = "Id")
+    @ManyToOne(optional = false)
+    private Role role;
 
-    public HotelOwner() {
+    public User() {
     }
 
-    public HotelOwner(Integer id) {
+    public User(Integer id) {
         this.id = id;
     }
 
-    public HotelOwner(Integer id, String name, String surname, String address, String city, String postcode, String phone, String email, String username, String password) {
+    public User(Integer id, String name, String surname, String address, String city, String postcode, String phone, String email, String username, String password) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -200,13 +199,12 @@ public class HotelOwner implements Serializable {
         this.password = password;
     }
 
-    @XmlTransient
-    public Collection<Hotel> getHotelCollection() {
-        return hotelCollection;
+    public Role getRole() {
+        return role;
     }
 
-    public void setHotelCollection(Collection<Hotel> hotelCollection) {
-        this.hotelCollection = hotelCollection;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
@@ -219,10 +217,10 @@ public class HotelOwner implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof HotelOwner)) {
+        if (!(object instanceof User)) {
             return false;
         }
-        HotelOwner other = (HotelOwner) object;
+        User other = (User) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -231,7 +229,7 @@ public class HotelOwner implements Serializable {
 
     @Override
     public String toString() {
-        return "bootcamp.project.model.HotelOwner[ id=" + id + " ]";
+        return "bootcamp.project.model.User[ id=" + id + " ]";
     }
     
 }

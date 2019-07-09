@@ -11,8 +11,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,38 +26,38 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Panos
  */
 @Entity
-@Table(name = "equipment")
+@Table(name = "Role")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Equipment.findAll", query = "SELECT e FROM Equipment e")
-    , @NamedQuery(name = "Equipment.findById", query = "SELECT e FROM Equipment e WHERE e.id = :id")
-    , @NamedQuery(name = "Equipment.findByName", query = "SELECT e FROM Equipment e WHERE e.name = :name")})
-public class Equipment implements Serializable {
+    @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r")
+    , @NamedQuery(name = "Role.findById", query = "SELECT r FROM Role r WHERE r.id = :id")
+    , @NamedQuery(name = "Role.findByDescription", query = "SELECT r FROM Role r WHERE r.description = :description")})
+public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Id")
     private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "Name")
-    private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "equipment")
-    private Collection<RoomEquipment> roomEquipmentCollection;
+    @Column(name = "Description")
+    private String description;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
+    private Collection<User> userCollection;
 
-    public Equipment() {
+    public Role() {
     }
 
-    public Equipment(Integer id) {
+    public Role(Integer id) {
         this.id = id;
     }
 
-    public Equipment(Integer id, String name) {
+    public Role(Integer id, String description) {
         this.id = id;
-        this.name = name;
+        this.description = description;
     }
 
     public Integer getId() {
@@ -70,21 +68,21 @@ public class Equipment implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @XmlTransient
-    public Collection<RoomEquipment> getRoomEquipmentCollection() {
-        return roomEquipmentCollection;
+    public Collection<User> getUserCollection() {
+        return userCollection;
     }
 
-    public void setRoomEquipmentCollection(Collection<RoomEquipment> roomEquipmentCollection) {
-        this.roomEquipmentCollection = roomEquipmentCollection;
+    public void setUserCollection(Collection<User> userCollection) {
+        this.userCollection = userCollection;
     }
 
     @Override
@@ -97,10 +95,10 @@ public class Equipment implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Equipment)) {
+        if (!(object instanceof Role)) {
             return false;
         }
-        Equipment other = (Equipment) object;
+        Role other = (Role) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -109,7 +107,7 @@ public class Equipment implements Serializable {
 
     @Override
     public String toString() {
-        return "bootcamp.project.model.Equipment[ id=" + id + " ]";
+        return "bootcamp.project.model.Role[ id=" + id + " ]";
     }
     
 }
