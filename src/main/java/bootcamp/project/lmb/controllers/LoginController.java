@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bootcamp.project.controllers;
+package bootcamp.project.lmb.controllers;
 
 
-import bootcamp.project.dao.UserDao;
-import bootcamp.project.model.User;
+import bootcamp.project.lmb.dao.UserDao;
+import bootcamp.project.lmb.model.User;
 import java.util.ArrayList;
 import java.util.Base64;
 import javax.servlet.http.HttpSession;

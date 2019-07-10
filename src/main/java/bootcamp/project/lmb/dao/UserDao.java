@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bootcamp.project.dao;
+package bootcamp.project.lmb.dao;
 
-import bootcamp.project.model.User;
+import bootcamp.project.lmb.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import bootcamp.project.repos.UserRepo;
+import bootcamp.project.lmb.repos.UserRepo;
 import java.util.ArrayList;
 
 /**

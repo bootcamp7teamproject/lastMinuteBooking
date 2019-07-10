@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bootcamp.project.controllers;
+package bootcamp.project.lmb.controllers;
 
-import bootcamp.project.dao.UserDao;
-import bootcamp.project.model.User;
+import bootcamp.project.lmb.dao.UserDao;
+import bootcamp.project.lmb.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

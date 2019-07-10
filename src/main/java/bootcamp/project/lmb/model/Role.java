@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bootcamp.project.model;
+package bootcamp.project.lmb.model;
 
 import java.io.Serializable;
 import java.util.Collection;
