@@ -24,6 +24,7 @@
 
   <body class="text-center">
       <h1>Test 1-2</h1><br/>
-      <a href = "user/prelogin">Login</a>
+      <a href = "user/prelogin">Login</a><br/>
+      <a href = "user/preregister">Register</a>
   </body>
 </html>

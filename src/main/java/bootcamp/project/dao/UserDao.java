@@ -26,5 +26,9 @@ public class UserDao {
         ArrayList <User> users = (ArrayList <User>) ur.findAll();
         return users;
     }
+
+    public void insertUser(User newUser) {
+        ur.save(newUser);
+    }
     
 }
