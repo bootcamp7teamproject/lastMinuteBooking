@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Panos
  */
 @Entity
-@Table(name = "Role")
+@Table(name = "role")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r")
@@ -38,12 +38,12 @@ public class Role implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "Id")
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "Description")
+    @Column(name = "description")
     private String description;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
     private Collection<User> userCollection;
@@ -107,7 +107,7 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return "bootcamp.project.model.Role[ id=" + id + " ]";
+        return "bootcamp.project.lmb.model.Role[ id=" + id + " ]";
     }
     
 }

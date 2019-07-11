@@ -95,7 +95,7 @@ public class User implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "Password")
     private String password;
-    @JoinColumn(name = "Role", referencedColumnName = "Id")
+    @JoinColumn(name = "Role", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Role role;
 
@@ -229,7 +229,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "bootcamp.project.model.User[ id=" + id + " ]";
+        return "bootcamp.project.lmb.model.User[ id=" + id + " ]";
     }
     
 }
