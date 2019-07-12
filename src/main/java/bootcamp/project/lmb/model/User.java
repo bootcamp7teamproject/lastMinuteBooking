@@ -6,7 +6,9 @@
 package bootcamp.project.lmb.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +18,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -95,6 +100,12 @@ public class User implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "Password")
     private String password;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private RoomUnavailability roomUnavailability;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Collection<Rating> ratingCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Hotel hotel;
     @JoinColumn(name = "Role", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Role role;
@@ -197,6 +208,31 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public RoomUnavailability getRoomUnavailability() {
+        return roomUnavailability;
+    }
+
+    public void setRoomUnavailability(RoomUnavailability roomUnavailability) {
+        this.roomUnavailability = roomUnavailability;
+    }
+
+    @XmlTransient
+    public Collection<Rating> getRatingCollection() {
+        return ratingCollection;
+    }
+
+    public void setRatingCollection(Collection<Rating> ratingCollection) {
+        this.ratingCollection = ratingCollection;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 
     public Role getRole() {

@@ -11,11 +11,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="../resources/signin.css" rel="stylesheet">
         <title>User Registration</title>
     </head>
     <body class="text-center">
       <form:form class="form-signin" action = "${pageContext.request.contextPath}/user/register" method = "POST" modelAttribute = "user">
-      <img class="mb-4" src="../../resources/template.jpg" alt="" width="300" height="150">
+      <img class="mb-4" src="../resources/template.jpg" alt="" width="300" height="150">
       <h1 class="h3 mb-3 font-weight-normal">Please register your personal information</h1>
       <form:label class="sr-only" path="name">Type your first name</form:label>
       <form:input class = "form-control" placeholder = "First name" required = "true" autofocus = "true" path = "name"/>
@@ -35,11 +36,6 @@
       <form:input class = "form-control" placeholder = "Username" required = "true" path = "username"/>
       <form:label class="sr-only" path = "password">Type your password</form:label>
       <form:input type = "password" class = "form-control" placeholder = "Password" required = "true" path = "password"/>
-<!--      <div class="checkbox mb-3">
-        <label>
-            <%--<form:checkbox path = "role">--%>
-        </label>
-      </div>-->
       <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
       <p class="mt-5 mb-3 text-muted">&copy; Bootcamp 7 Team Project</p>
     </form:form>
