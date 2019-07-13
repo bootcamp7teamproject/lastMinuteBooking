@@ -44,8 +44,8 @@ public class LoginController {
     public String doLogin(@ModelAttribute("user")User loginUser, ModelMap model, HttpSession session) {
         ArrayList <User> users = ud.getUsers();
         for (User user : users) {
-//            String decryptedPassword = new String(decoder.decode(user.getPassword().getBytes()));
-            if(user.getUsername().equals(loginUser.getUsername()) && user.getPassword().equals(loginUser.getPassword())) {
+            String decryptedPassword = new String(decoder.decode(user.getPassword().getBytes()));
+            if(user.getUsername().equals(loginUser.getUsername()) && decryptedPassword.equals(loginUser.getPassword())) {
                 session.setAttribute("loggedUser", loginUser);
                 switch (user.getRole().getId()) {
                         case 1:                           
