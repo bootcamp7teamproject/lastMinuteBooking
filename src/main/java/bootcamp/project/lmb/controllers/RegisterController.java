@@ -26,24 +26,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value = "/user")
 public class RegisterController {
-    
+
     @Autowired
     UserDao ud;
-    
+
     @Autowired
     RoleDao rd;
-    
+
     public static Base64.Encoder encoder = Base64.getEncoder();
-    
+
     @RequestMapping(value = "/preregister", method = RequestMethod.GET)
     public String register(ModelMap model) {
         User u = new User();
-       model.addAttribute("user", u);
-       return "register";
+        model.addAttribute("user", u);
+        return "register";
     }
-    
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String doRegister(@ModelAttribute("user")User newUser, ModelMap model) {
+    public String doRegister(@ModelAttribute("user") User newUser, ModelMap model) {
         String encryptedPassword = new String(encoder.encode(newUser.getPassword().getBytes()));
         newUser.setPassword(encryptedPassword);
         ArrayList <Role> roles = rd.getRoles();

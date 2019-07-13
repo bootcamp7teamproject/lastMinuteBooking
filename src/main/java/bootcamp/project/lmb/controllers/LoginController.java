@@ -5,7 +5,6 @@
  */
 package bootcamp.project.lmb.controllers;
 
-
 import bootcamp.project.lmb.dao.UserDao;
 import bootcamp.project.lmb.model.User;
 import java.util.ArrayList;
@@ -27,36 +26,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value = "/user")
 public class LoginController {
-    
+
     @Autowired
     UserDao ud;
-    
+
     public static Base64.Decoder decoder = Base64.getDecoder();
-    
+
     @GetMapping("/prelogin")
     public String login(ModelMap model) {
-       User u = new User();
-       model.addAttribute("user", u);
-       return "login";
+        User u = new User();
+        model.addAttribute("user", u);
+        return "login";
     }
-    
+
     @PostMapping("/login")
-    public String doLogin(@ModelAttribute("user")User loginUser, ModelMap model, HttpSession session) {
-        ArrayList <User> users = ud.getUsers();
+    public String doLogin(@ModelAttribute("user") User loginUser, HttpSession session) {
+        ArrayList<User> users = ud.getUsers();
         for (User user : users) {
             String decryptedPassword = new String(decoder.decode(user.getPassword().getBytes()));
-            if(user.getUsername().equals(loginUser.getUsername()) && decryptedPassword.equals(loginUser.getPassword())) {
-                session.setAttribute("loggedUser", loginUser);
+            if (user.getUsername().equals(loginUser.getUsername()) && decryptedPassword.equals(loginUser.getPassword())) {
+                session.setAttribute("loggedUser", user);
                 switch (user.getRole().getId()) {
-                        case 1:                           
-                            return "entry";
-                        case 2:
-                            return "success";
+                    case 1:
+                        return "customer_central";
+                    case 2:
+                        return "owner_central";
                 }
             }
         }
         return "failure";
     }
-    
-    
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session, ModelMap model) {
+        session.removeAttribute("loggedUser");
+        User u = new User();
+        model.addAttribute("user", u);
+        return "login";
+    }
 }

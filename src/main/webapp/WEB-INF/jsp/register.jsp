@@ -16,7 +16,7 @@
     </head>
     <body class="text-center">
       <form:form class="form-signin" action = "${pageContext.request.contextPath}/user/register" method = "POST" modelAttribute = "user">
-      <img class="mb-4" src="../resources/template.jpg" alt="" width="300" height="150">
+      <a href="${pageContext.request.contextPath}"><img class="mb-4" src="../resources/template.jpg" alt="" width="300" height="150"></a>
       <h1 class="h3 mb-3 font-weight-normal">Please register your personal information</h1>
       <form:label class="sr-only" path="name">Type your first name</form:label>
       <form:input class = "form-control" placeholder = "First name" required = "true" autofocus = "true" path = "name"/>
