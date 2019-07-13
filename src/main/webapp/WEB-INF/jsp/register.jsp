@@ -11,12 +11,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link href="../resources/signin.css" rel="stylesheet">
+        <link href="../resources/css/signin.css" rel="stylesheet">
         <title>User Registration</title>
     </head>
     <body class="text-center">
       <form:form class="form-signin" action = "${pageContext.request.contextPath}/user/register" method = "POST" modelAttribute = "user">
-      <a href="${pageContext.request.contextPath}"><img class="mb-4" src="../resources/template.jpg" alt="" width="300" height="150"></a>
+      <a href="${pageContext.request.contextPath}"><img class="mb-4" src="../resources/media/template.jpg" alt="" width="300" height="150"></a>
       <h1 class="h3 mb-3 font-weight-normal">Please register your personal information</h1>
       <form:label class="sr-only" path="name">Type your first name</form:label>
       <form:input class = "form-control" placeholder = "First name" required = "true" autofocus = "true" path = "name"/>

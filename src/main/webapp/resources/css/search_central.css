@@ -1,0 +1,20 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13 Ιουλ 2019, 3:07:15 μμ
+    Author     : minas
+*/
+
+.bg-navy  { background-color: rgb(4,4,30)}
+
+.border-color-navy{
+    border-style: solid;
+    border-color:rgb(4,4,30);}
+
+    .text-navy{
+        color:rgb(4,4,30);
+        font-family: "Times New Roman", Times, serif;
+    }
