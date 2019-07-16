@@ -2,18 +2,15 @@
 <html lang="en">
 
     <head>
-
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Last Minute Booking</title>
         <link rel="stylesheet" type="text/css" href="resources/css/index.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -26,92 +23,52 @@
     </head>
 
     <body>
-
-        <!-- NAVBAR -->
-
-
-        <nav class="navbar navbar-expand-lg navbar-white bg-navy">
-
-            <a class="navbar-brand"><img src='resources/media/logo.jpg'></a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-white bg-navy">
+        <a class="navbar-brand"><img src='resources/media/logo.jpg'></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-
-                <span class="navbar-toggler-icon"></span>
-
-            </button>        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                <ul class="navbar-nav mr-auto">
-
-                    <!-- <li class="nav-item active">
-     
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-     
-                </li>
-     
-                <li class="nav-item">
-     
-                  <a class="nav-link" href="#">Link</a>
-     
-                </li>            <li class="nav-item">
-     
-                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-     
+            <span class="navbar-toggler-icon"></span>
+        </button>        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!-- <li class="nav-item active">     
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>     
+                </li>     
+                <li class="nav-item">     
+                  <a class="nav-link" href="#">Link</a>     
+                </li>            <li class="nav-item">     
+                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>     
                 </li> -->
-
-                </ul>
-
-                <form class="form-inline my-2 my-lg-0">
-
-                    <ul  class="nav-item dropdown">
-
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
-
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <ul  class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
                             Services
-
-                        </a>
-
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                            <header class="card-header bg-navy">
-
-                                <h6 class="title text-white">Traveller</h6>
-
-                            </header>
-
-                            <a class="dropdown-item" href="user/prelogin">Sign in</a>
-
-                            <a class="dropdown-item" href="user/preregister">Register</a>                        <header class="card-header bg-navy">
-
-                                <h6 class="title text-white">Hotel Owner</h6>
-
-                            </header>
-
-                            <a class="dropdown-item" href="#">Sign in</a>
-
-                            <a class="dropdown-item" href="#">Register</a>
-
-                        </div>
-
-                    </ul>
-
-                </form>
-
-            </div>
-
-        </nav>
-        <div class="fullscreen-bg">
-            <video loop muted autoplay class="fullscreen-bg_video">
-                <source src="resources/media/beach2.mp4" type="video/mp4">
-                <source src="resources/media/beach2.ogv" type="video/ogv">
-                <source src="resources/media/beach2.webm" type="video/webm">
-            </video>
-
-
-
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <header class="card-header bg-navy">
+                            <h6 class="title text-white">Traveler</h6>
+                        </header>
+                        <a class="dropdown-item" href="user/prelogin">Sign in</a>
+                        <a class="dropdown-item" href="user/preregister">Register</a>                        
+                        <header class="card-header bg-navy">
+                            <h6 class="title text-white">Hotel Owner</h6>
+                        </header>
+                        <a class="dropdown-item" href="#">Sign in</a>
+                        <a class="dropdown-item" href="#">Register</a>
+                    </div>
+                </ul>
+            </form>
+        </div>
+    </nav>
+    <div class="fullscreen-bg">
+        <video loop muted autoplay class="fullscreen-bg_video">
+            <source src="resources/media/beach2.mp4" type="video/mp4">
+            <source src="resources/media/beach2.ogv" type="video/ogv">
+            <source src="resources/media/beach2.webm" type="video/webm">
+        </video>
+    </div>
     </body>
-
 </html>

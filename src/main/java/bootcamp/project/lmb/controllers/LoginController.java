@@ -5,6 +5,7 @@
  */
 package bootcamp.project.lmb.controllers;
 
+import bootcamp.project.lmb.dao.HotelDao;
 import bootcamp.project.lmb.dao.UserDao;
 import bootcamp.project.lmb.model.User;
 import java.util.ArrayList;
@@ -29,6 +30,9 @@ public class LoginController {
 
     @Autowired
     UserDao ud;
+    
+    @Autowired
+    HotelDao hd;
 
     public static Base64.Decoder decoder = Base64.getDecoder();
 
@@ -50,6 +54,7 @@ public class LoginController {
                     case 1:
                         return "customer_central";
                     case 2:
+                        session.setAttribute("hotels", hd.getHotels());
                         return "owner_central";
                 }
             }
