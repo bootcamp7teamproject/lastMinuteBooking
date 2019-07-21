@@ -35,7 +35,6 @@
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             <p class="mt-5 mb-3 text-muted">&copy; Bootcamp 7 Team Project</p>
         </form:form><br/>
-        <h1 class="h3 mb-3 font-weight-normal">${success}</h1>
     </body>
 </html>
 

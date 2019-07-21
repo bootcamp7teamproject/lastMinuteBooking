@@ -48,16 +48,16 @@
                             Services
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <header class="card-header bg-navy">
+<!--                        <header class="card-header bg-navy">
                             <h6 class="title text-white">Traveler</h6>
-                        </header>
+                        </header>-->
                         <a class="dropdown-item" href="user/prelogin">Sign in</a>
                         <a class="dropdown-item" href="user/preregister">Register</a>                        
-                        <header class="card-header bg-navy">
+<!--                        <header class="card-header bg-navy">
                             <h6 class="title text-white">Hotel Owner</h6>
                         </header>
                         <a class="dropdown-item" href="#">Sign in</a>
-                        <a class="dropdown-item" href="#">Register</a>
+                        <a class="dropdown-item" href="#">Register</a>-->
                     </div>
                 </ul>
             </form>

@@ -7,6 +7,7 @@ package bootcamp.project.lmb.dao;
 
 import bootcamp.project.lmb.model.Hotel;
 import bootcamp.project.lmb.repos.HotelRepo;
+import java.util.Date;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,4 +28,7 @@ public class HotelDao {
         return hotels;
     }
     
+    public ArrayList <Hotel> getUserSearchHotels(Integer budget, Integer nights, Integer persons, Date checkin, Date checkout) {
+        return hr.findSearchHotels(budget, nights, persons, checkin, checkout);
+    }
 }

@@ -65,8 +65,6 @@ public class Room implements Serializable {
     @NotNull
     @Column(name = "Price_per_night")
     private float pricepernight;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roomid")
-    private Collection<RoomUnavailability> roomUnavailabilityCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "room")
     private Collection<RoomEquipment> roomEquipmentCollection;
     @JoinColumn(name = "Hotel_id", referencedColumnName = "Id")
@@ -74,6 +72,8 @@ public class Room implements Serializable {
     private Hotel hotelid;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "room")
     private Collection<RoomStatus> roomStatusCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roomid")
+    private Collection<RoomUnavailability> roomUnavailabilityCollection;
 
     public Room() {
     }
@@ -131,15 +131,6 @@ public class Room implements Serializable {
     }
 
     @XmlTransient
-    public Collection<RoomUnavailability> getRoomUnavailabilityCollection() {
-        return roomUnavailabilityCollection;
-    }
-
-    public void setRoomUnavailabilityCollection(Collection<RoomUnavailability> roomUnavailabilityCollection) {
-        this.roomUnavailabilityCollection = roomUnavailabilityCollection;
-    }
-
-    @XmlTransient
     public Collection<RoomEquipment> getRoomEquipmentCollection() {
         return roomEquipmentCollection;
     }
@@ -163,6 +154,15 @@ public class Room implements Serializable {
 
     public void setRoomStatusCollection(Collection<RoomStatus> roomStatusCollection) {
         this.roomStatusCollection = roomStatusCollection;
+    }
+
+    @XmlTransient
+    public Collection<RoomUnavailability> getRoomUnavailabilityCollection() {
+        return roomUnavailabilityCollection;
+    }
+
+    public void setRoomUnavailabilityCollection(Collection<RoomUnavailability> roomUnavailabilityCollection) {
+        this.roomUnavailabilityCollection = roomUnavailabilityCollection;
     }
 
     @Override

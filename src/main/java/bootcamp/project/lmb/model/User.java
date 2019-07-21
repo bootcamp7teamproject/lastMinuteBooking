@@ -44,7 +44,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByPhone", query = "SELECT u FROM User u WHERE u.phone = :phone")
     , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
     , @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
-    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
+    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
+    , @NamedQuery(name = "User.findBySerial", query = "SELECT u FROM User u WHERE u.serial = :serial")
+    , @NamedQuery(name = "User.findByActive", query = "SELECT u FROM User u WHERE u.active = :active")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -97,15 +99,22 @@ public class User implements Serializable {
     private String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 60)
     @Column(name = "Password")
     private String password;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-    private RoomUnavailability roomUnavailability;
+    @Size(max = 200)
+    @Column(name = "serial")
+    private String serial;
+    @Column(name = "active")
+    private Short active;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Rating> ratingCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private RoomUnavailability roomUnavailability;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Hotel hotel;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerid")
+    private Collection<Hotel> hotelCollection;
     @JoinColumn(name = "Role", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Role role;
@@ -210,12 +219,20 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public RoomUnavailability getRoomUnavailability() {
-        return roomUnavailability;
+    public String getSerial() {
+        return serial;
     }
 
-    public void setRoomUnavailability(RoomUnavailability roomUnavailability) {
-        this.roomUnavailability = roomUnavailability;
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
+
+    public Short getActive() {
+        return active;
+    }
+
+    public void setActive(Short active) {
+        this.active = active;
     }
 
     @XmlTransient
@@ -227,12 +244,29 @@ public class User implements Serializable {
         this.ratingCollection = ratingCollection;
     }
 
+    public RoomUnavailability getRoomUnavailability() {
+        return roomUnavailability;
+    }
+
+    public void setRoomUnavailability(RoomUnavailability roomUnavailability) {
+        this.roomUnavailability = roomUnavailability;
+    }
+
     public Hotel getHotel() {
         return hotel;
     }
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
+    }
+
+    @XmlTransient
+    public Collection<Hotel> getHotelCollection() {
+        return hotelCollection;
+    }
+
+    public void setHotelCollection(Collection<Hotel> hotelCollection) {
+        this.hotelCollection = hotelCollection;
     }
 
     public Role getRole() {

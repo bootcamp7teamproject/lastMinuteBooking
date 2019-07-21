@@ -30,11 +30,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "RoomStatus.findAll", query = "SELECT r FROM RoomStatus r")
-    , @NamedQuery(name = "RoomStatus.findByRoomid", query = "SELECT r FROM RoomStatus r WHERE r.roomStatusPK.roomid = :roomid")
-    , @NamedQuery(name = "RoomStatus.findByHotelid", query = "SELECT r FROM RoomStatus r WHERE r.roomStatusPK.hotelid = :hotelid")
-    , @NamedQuery(name = "RoomStatus.findByStartdate", query = "SELECT r FROM RoomStatus r WHERE r.startdate = :startdate")
-    , @NamedQuery(name = "RoomStatus.findByEnddate", query = "SELECT r FROM RoomStatus r WHERE r.enddate = :enddate")
-    , @NamedQuery(name = "RoomStatus.findByNotavailable", query = "SELECT r FROM RoomStatus r WHERE r.notavailable = :notavailable")})
+    , @NamedQuery(name = "RoomStatus.findByHotelId", query = "SELECT r FROM RoomStatus r WHERE r.roomStatusPK.hotelId = :hotelId")
+    , @NamedQuery(name = "RoomStatus.findByRoomId", query = "SELECT r FROM RoomStatus r WHERE r.roomStatusPK.roomId = :roomId")
+    , @NamedQuery(name = "RoomStatus.findByEndDate", query = "SELECT r FROM RoomStatus r WHERE r.endDate = :endDate")
+    , @NamedQuery(name = "RoomStatus.findByNotAvailable", query = "SELECT r FROM RoomStatus r WHERE r.notAvailable = :notAvailable")
+    , @NamedQuery(name = "RoomStatus.findByStartDate", query = "SELECT r FROM RoomStatus r WHERE r.startDate = :startDate")})
 public class RoomStatus implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,22 +42,22 @@ public class RoomStatus implements Serializable {
     protected RoomStatusPK roomStatusPK;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "Start_date")
+    @Column(name = "end_date")
     @Temporal(TemporalType.DATE)
-    private Date startdate;
+    private Date endDate;
+    @Column(name = "not_available")
+    private Short notAvailable;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "End_date")
+    @Column(name = "start_date")
     @Temporal(TemporalType.DATE)
-    private Date enddate;
-    @Column(name = "Not_available")
-    private Short notavailable;
-    @JoinColumn(name = "Hotel_id", referencedColumnName = "Id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Hotel hotel;
-    @JoinColumn(name = "Room_id", referencedColumnName = "Id", insertable = false, updatable = false)
+    private Date startDate;
+    @JoinColumn(name = "room_id", referencedColumnName = "Id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Room room;
+    @JoinColumn(name = "hotel_id", referencedColumnName = "Id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Hotel hotel;
 
     public RoomStatus() {
     }
@@ -66,14 +66,14 @@ public class RoomStatus implements Serializable {
         this.roomStatusPK = roomStatusPK;
     }
 
-    public RoomStatus(RoomStatusPK roomStatusPK, Date startdate, Date enddate) {
+    public RoomStatus(RoomStatusPK roomStatusPK, Date endDate, Date startDate) {
         this.roomStatusPK = roomStatusPK;
-        this.startdate = startdate;
-        this.enddate = enddate;
+        this.endDate = endDate;
+        this.startDate = startDate;
     }
 
-    public RoomStatus(int roomid, int hotelid) {
-        this.roomStatusPK = new RoomStatusPK(roomid, hotelid);
+    public RoomStatus(int hotelId, int roomId) {
+        this.roomStatusPK = new RoomStatusPK(hotelId, roomId);
     }
 
     public RoomStatusPK getRoomStatusPK() {
@@ -84,36 +84,28 @@ public class RoomStatus implements Serializable {
         this.roomStatusPK = roomStatusPK;
     }
 
-    public Date getStartdate() {
-        return startdate;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setStartdate(Date startdate) {
-        this.startdate = startdate;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public Date getEnddate() {
-        return enddate;
+    public Short getNotAvailable() {
+        return notAvailable;
     }
 
-    public void setEnddate(Date enddate) {
-        this.enddate = enddate;
+    public void setNotAvailable(Short notAvailable) {
+        this.notAvailable = notAvailable;
     }
 
-    public Short getNotavailable() {
-        return notavailable;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setNotavailable(Short notavailable) {
-        this.notavailable = notavailable;
-    }
-
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     public Room getRoom() {
@@ -122,6 +114,14 @@ public class RoomStatus implements Serializable {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 
     @Override

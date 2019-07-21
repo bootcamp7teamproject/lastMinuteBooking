@@ -61,18 +61,18 @@ public class RoomUnavailability implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "Total_cost")
     private Float totalcost;
-    @JoinColumn(name = "Hotel_id", referencedColumnName = "Id")
-    @ManyToOne(optional = false)
-    private Hotel hotelid;
-    @JoinColumn(name = "Room_id", referencedColumnName = "Id")
-    @ManyToOne(optional = false)
-    private Room roomid;
-    @JoinColumn(name = "Status", referencedColumnName = "Id")
-    @ManyToOne(optional = false)
-    private Status status;
     @JoinColumn(name = "Id", referencedColumnName = "Id", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private User user;
+    @JoinColumn(name = "Room_id", referencedColumnName = "Id")
+    @ManyToOne(optional = false)
+    private Room roomid;
+    @JoinColumn(name = "Hotel_id", referencedColumnName = "Id")
+    @ManyToOne(optional = false)
+    private Hotel hotelid;
+    @JoinColumn(name = "Status", referencedColumnName = "Id")
+    @ManyToOne(optional = false)
+    private Status status;
 
     public RoomUnavailability() {
     }
@@ -127,12 +127,12 @@ public class RoomUnavailability implements Serializable {
         this.totalcost = totalcost;
     }
 
-    public Hotel getHotelid() {
-        return hotelid;
+    public User getUser() {
+        return user;
     }
 
-    public void setHotelid(Hotel hotelid) {
-        this.hotelid = hotelid;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Room getRoomid() {
@@ -143,20 +143,20 @@ public class RoomUnavailability implements Serializable {
         this.roomid = roomid;
     }
 
+    public Hotel getHotelid() {
+        return hotelid;
+    }
+
+    public void setHotelid(Hotel hotelid) {
+        this.hotelid = hotelid;
+    }
+
     public Status getStatus() {
         return status;
     }
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     @Override

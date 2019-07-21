@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -47,7 +46,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Hotel.findByImagespath", query = "SELECT h FROM Hotel h WHERE h.imagespath = :imagespath")
     , @NamedQuery(name = "Hotel.findByLongtitude", query = "SELECT h FROM Hotel h WHERE h.longtitude = :longtitude")
     , @NamedQuery(name = "Hotel.findByLatitude", query = "SELECT h FROM Hotel h WHERE h.latitude = :latitude")
-    , @NamedQuery(name = "Hotel.findByOwnerid", query = "SELECT h FROM Hotel h WHERE h.ownerid = :ownerid")})
+    , @NamedQuery(name = "Hotel.findByDescription", query = "SELECT h FROM Hotel h WHERE h.description = :description")})
 public class Hotel implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -88,43 +87,39 @@ public class Hotel implements Serializable {
     @Size(max = 45)
     @Column(name = "Email")
     private String email;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "Images_path")
     private String imagespath;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "Longtitude")
     private String longtitude;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "Latitude")
     private String latitude;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "Owner_id")
-    private int ownerid;
-    @ManyToMany(mappedBy = "hotelCollection")
-    private Collection<Facilities> facilitiesCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotelid")
-    private Collection<RoomUnavailability> roomUnavailabilityCollection;
+    @Size(max = 500)
+    @Column(name = "Description")
+    private String description;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
     private Collection<Rating> ratingCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
     private Collection<RoomEquipment> roomEquipmentCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotelid")
+    private Collection<Room> roomCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
+    private Collection<HotelFacilities> hotelFacilitiesCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
+    private Collection<RoomStatus> roomStatusCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotelid")
+    private Collection<RoomUnavailability> roomUnavailabilityCollection;
     @JoinColumn(name = "Destination_id", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private Destination destinationid;
     @JoinColumn(name = "Id", referencedColumnName = "Id", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private User user;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotelid")
-    private Collection<Room> roomCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
-    private Collection<RoomStatus> roomStatusCollection;
+    @JoinColumn(name = "Owner_id", referencedColumnName = "Id")
+    @ManyToOne(optional = false)
+    private User ownerid;
 
     public Hotel() {
     }
@@ -133,17 +128,13 @@ public class Hotel implements Serializable {
         this.id = id;
     }
 
-    public Hotel(Integer id, String name, String address, String postcode, int starsnumber, String phone, String imagespath, String longtitude, String latitude, int ownerid) {
+    public Hotel(Integer id, String name, String address, String postcode, int starsnumber, String phone) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.postcode = postcode;
         this.starsnumber = starsnumber;
         this.phone = phone;
-        this.imagespath = imagespath;
-        this.longtitude = longtitude;
-        this.latitude = latitude;
-        this.ownerid = ownerid;
     }
 
     public Integer getId() {
@@ -234,30 +225,12 @@ public class Hotel implements Serializable {
         this.latitude = latitude;
     }
 
-    public int getOwnerid() {
-        return ownerid;
+    public String getDescription() {
+        return description;
     }
 
-    public void setOwnerid(int ownerid) {
-        this.ownerid = ownerid;
-    }
-
-    @XmlTransient
-    public Collection<Facilities> getFacilitiesCollection() {
-        return facilitiesCollection;
-    }
-
-    public void setFacilitiesCollection(Collection<Facilities> facilitiesCollection) {
-        this.facilitiesCollection = facilitiesCollection;
-    }
-
-    @XmlTransient
-    public Collection<RoomUnavailability> getRoomUnavailabilityCollection() {
-        return roomUnavailabilityCollection;
-    }
-
-    public void setRoomUnavailabilityCollection(Collection<RoomUnavailability> roomUnavailabilityCollection) {
-        this.roomUnavailabilityCollection = roomUnavailabilityCollection;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @XmlTransient
@@ -278,6 +251,42 @@ public class Hotel implements Serializable {
         this.roomEquipmentCollection = roomEquipmentCollection;
     }
 
+    @XmlTransient
+    public Collection<Room> getRoomCollection() {
+        return roomCollection;
+    }
+
+    public void setRoomCollection(Collection<Room> roomCollection) {
+        this.roomCollection = roomCollection;
+    }
+
+    @XmlTransient
+    public Collection<HotelFacilities> getHotelFacilitiesCollection() {
+        return hotelFacilitiesCollection;
+    }
+
+    public void setHotelFacilitiesCollection(Collection<HotelFacilities> hotelFacilitiesCollection) {
+        this.hotelFacilitiesCollection = hotelFacilitiesCollection;
+    }
+
+    @XmlTransient
+    public Collection<RoomStatus> getRoomStatusCollection() {
+        return roomStatusCollection;
+    }
+
+    public void setRoomStatusCollection(Collection<RoomStatus> roomStatusCollection) {
+        this.roomStatusCollection = roomStatusCollection;
+    }
+
+    @XmlTransient
+    public Collection<RoomUnavailability> getRoomUnavailabilityCollection() {
+        return roomUnavailabilityCollection;
+    }
+
+    public void setRoomUnavailabilityCollection(Collection<RoomUnavailability> roomUnavailabilityCollection) {
+        this.roomUnavailabilityCollection = roomUnavailabilityCollection;
+    }
+
     public Destination getDestinationid() {
         return destinationid;
     }
@@ -294,22 +303,12 @@ public class Hotel implements Serializable {
         this.user = user;
     }
 
-    @XmlTransient
-    public Collection<Room> getRoomCollection() {
-        return roomCollection;
+    public User getOwnerid() {
+        return ownerid;
     }
 
-    public void setRoomCollection(Collection<Room> roomCollection) {
-        this.roomCollection = roomCollection;
-    }
-
-    @XmlTransient
-    public Collection<RoomStatus> getRoomStatusCollection() {
-        return roomStatusCollection;
-    }
-
-    public void setRoomStatusCollection(Collection<RoomStatus> roomStatusCollection) {
-        this.roomStatusCollection = roomStatusCollection;
+    public void setOwnerid(User ownerid) {
+        this.ownerid = ownerid;
     }
 
     @Override

@@ -59,7 +59,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Welcome, ${sessionScope.loggedUser.name} ${sessionScope.loggedUser.surname}
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">View your profile</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/user/logout">Sign out</a>
@@ -71,52 +71,52 @@
 
 
     <div class="container " style="margin-top: 33px" >
-    <div class="jumbotron jumbotron-fluid bg-white rounded border border-primary  ">
+    <div class="jumbotron jumbotron-fluid bg-white rounded border border-primary">
            
             <label class="control-label  font-weight-bold" style="margin-left: 15px" >
-                   <h1>Lets find out where it's possible to go !</h1> 
+                   <h1>Let's find out where it's possible to go !</h1> 
                 </label>        
 
-    <div class="container ">
-        <form method="post">
+    <div class="container">
+        <form action = "${pageContext.request.contextPath}/user/search" method="post">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="row">
                         <div class="col-md-2 col-sm-2 col-xs-2">
-                            <div class="form-group ">
-                                <label class="control-label " for="budget">
-                                    Budget per person
+                            <div class="form-group">
+                                <label class="control-label" for="budget">
+                                    Total Budget
                                 </label>
                                 <input class="form-control" id="budget" name="budget" type="text" />
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-2 col-xs-2">
-                            <div class="form-group ">
-                                <label class="control-label " for="persons">
+                            <div class="form-group">
+                                <label class="control-label" for="persons">
                                     Number of persons
                                 </label>
                                 <input class="form-control" id="persons" name="persons" type="text" />
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-3">
-                            <div class="form-group ">
-                                <label class="control-label " for="checkin">
+                            <div class="form-group">
+                                <label class="control-label" for="checkin">
                                     Check in
                                 </label>
-                                <input class="form-control" id="date" name="date" type="date" />
+                                <input class="form-control" id="date" name="checkin" type="date" />
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-3">
-                            <div class="form-group ">
-                                <label class="control-label " for="checkout">
+                            <div class="form-group">
+                                <label class="control-label" for="checkout">
                                     Check out
                                 </label>
-                                <input class="form-control" id="date" name="date" type="date" />
+                                <input class="form-control" id="date" name="checkout" type="date" />
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-2 col-xs-2">
-                            <div class="form-group ">
-                                <button class="btn bg-navy text-white " id="Search" name="Search" type="submit" style="margin-top:33px">
+                            <div class="form-group">
+                                <button class="btn bg-navy text-white" id="Search" name="Search" type="submit" style="margin-top:33px">
                                     Search
                                 </button>
                             </div>

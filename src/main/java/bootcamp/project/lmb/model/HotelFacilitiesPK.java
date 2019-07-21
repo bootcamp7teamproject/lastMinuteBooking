@@ -16,60 +16,60 @@ import javax.validation.constraints.NotNull;
  * @author Panos
  */
 @Embeddable
-public class RoomStatusPK implements Serializable {
+public class HotelFacilitiesPK implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "hotel_id")
-    private int hotelId;
+    @Column(name = "Hotel_id")
+    private int hotelid;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "room_id")
-    private int roomId;
+    @Column(name = "Facility_id")
+    private int facilityid;
 
-    public RoomStatusPK() {
+    public HotelFacilitiesPK() {
     }
 
-    public RoomStatusPK(int hotelId, int roomId) {
-        this.hotelId = hotelId;
-        this.roomId = roomId;
+    public HotelFacilitiesPK(int hotelid, int facilityid) {
+        this.hotelid = hotelid;
+        this.facilityid = facilityid;
     }
 
-    public int getHotelId() {
-        return hotelId;
+    public int getHotelid() {
+        return hotelid;
     }
 
-    public void setHotelId(int hotelId) {
-        this.hotelId = hotelId;
+    public void setHotelid(int hotelid) {
+        this.hotelid = hotelid;
     }
 
-    public int getRoomId() {
-        return roomId;
+    public int getFacilityid() {
+        return facilityid;
     }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
+    public void setFacilityid(int facilityid) {
+        this.facilityid = facilityid;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) hotelId;
-        hash += (int) roomId;
+        hash += (int) hotelid;
+        hash += (int) facilityid;
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof RoomStatusPK)) {
+        if (!(object instanceof HotelFacilitiesPK)) {
             return false;
         }
-        RoomStatusPK other = (RoomStatusPK) object;
-        if (this.hotelId != other.hotelId) {
+        HotelFacilitiesPK other = (HotelFacilitiesPK) object;
+        if (this.hotelid != other.hotelid) {
             return false;
         }
-        if (this.roomId != other.roomId) {
+        if (this.facilityid != other.facilityid) {
             return false;
         }
         return true;
@@ -77,7 +77,7 @@ public class RoomStatusPK implements Serializable {
 
     @Override
     public String toString() {
-        return "bootcamp.project.lmb.model.RoomStatusPK[ hotelId=" + hotelId + ", roomId=" + roomId + " ]";
+        return "bootcamp.project.lmb.model.HotelFacilitiesPK[ hotelid=" + hotelid + ", facilityid=" + facilityid + " ]";
     }
     
 }

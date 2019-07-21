@@ -64,7 +64,7 @@ public class LoginController {
 
     @GetMapping("/logout")
     public String logout(HttpSession session, ModelMap model) {
-        session.removeAttribute("loggedUser");
+        session.invalidate();
         User u = new User();
         model.addAttribute("user", u);
         return "login";

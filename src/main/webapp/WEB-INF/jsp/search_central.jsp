@@ -3,6 +3,8 @@
     Created on : 13 ???? 2019, 3:06:04 ??
     Author     : minas
 --%>
+
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,11 +14,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="../resources/search_central.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/search_central.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Available Hotels</title>
     <link rel="stylecentral" href="styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -35,7 +37,7 @@
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-white bg-navy">
-        <a class="navbar-brand" href="#"><img src='logo.jpg'></a>
+        <a class="navbar-brand"><img src='../resources/media/logo.jpg'></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -55,18 +57,17 @@
             </li> -->
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <li class="nav-item dropdown">
+                <ul class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        CustomerName
+                        Welcome, ${sessionScope.loggedUser.name} ${sessionScope.loggedUser.surname}
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">View your profile</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/user/logout">Sign out</a>
                     </div>
-                </li>
+                </ul>
             </form>
         </div>
     </nav>
@@ -76,7 +77,7 @@
     <div class="container">
         <div class="row">
             <aside class="col-md-12 col-sm-12 col-xs-12">
-                <p>Space</p>
+<!--                <p>Space</p>-->
                 <div class="row">
                     <aside class="col-md-3 col-sm-3 col-xs-3">
                         <div class="card">
@@ -316,9 +317,10 @@
                                                 <img src="room.jpg" class="rounded" style="width:100%">
                                             </div>
                                         </div>
+                                        <c:forEach items = "${searchHotels}" var = "hotel">
                                         <div class="col-md-8 col-sm-8 col-xs-8">
                                             <p class="text-left">
-                                                <h1 class="title text-navy" style="font-weight: bold">Hotel Title</h1>
+                                            <h1 class="title text-navy" style="font-weight: bold">${hotel.name}</h1>
                                             </p>
                                             <p class="text-left">
                                                     <h2 class="title text-navy">Rating</h2>
@@ -332,21 +334,13 @@
                                                 </button>
                                             </div>
                                         </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>
                         </div>
                 </div>
         </div>
-
     </div>
-    </div>
-    </aside>
-
-    </div>
-
-    </div>
-
 </body>
-
 </html>

@@ -32,15 +32,15 @@ public class RoomEquipment implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected RoomEquipmentPK roomEquipmentPK;
-    @JoinColumn(name = "Equipment_id", referencedColumnName = "Id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Equipment equipment;
     @JoinColumn(name = "Hotel_id", referencedColumnName = "Id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Hotel hotel;
     @JoinColumn(name = "Room_id", referencedColumnName = "Id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Room room;
+    @JoinColumn(name = "Equipment_id", referencedColumnName = "Id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Equipment equipment;
 
     public RoomEquipment() {
     }
@@ -61,14 +61,6 @@ public class RoomEquipment implements Serializable {
         this.roomEquipmentPK = roomEquipmentPK;
     }
 
-    public Equipment getEquipment() {
-        return equipment;
-    }
-
-    public void setEquipment(Equipment equipment) {
-        this.equipment = equipment;
-    }
-
     public Hotel getHotel() {
         return hotel;
     }
@@ -83,6 +75,14 @@ public class RoomEquipment implements Serializable {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public Equipment getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
     }
 
     @Override
