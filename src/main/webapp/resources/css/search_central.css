@@ -12,9 +12,46 @@ and open the template in the editor.
 
 .border-color-navy{
     border-style: solid;
-    border-color:rgb(4,4,30);}
+    border-color:rgb(4,4,30);
+    border-width: 3px;}
 
-    .text-navy{
-        color:rgb(4,4,30);
-        font-family: "Times New Roman", Times, serif;
-    }
+.text-navy{
+    color:rgb(4,4,30);
+    font-family: "Times New Roman", Times, serif;
+}
+
+#Search_text{
+    margin-left: 15px;
+}
+
+#Search_box{
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-left: 0px;
+
+}
+
+#Search_box_inside{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#button_search{
+    margin-top:25px;
+    width: 200px;
+
+}
+
+#home_link{
+    font-size: 150%;
+    color: white;
+    border-style: solid;
+    border-color:white;
+    border-width: 3px;
+
+}
+
+#dropdown_customer{
+    margin-bottom: 0px;
+}
+

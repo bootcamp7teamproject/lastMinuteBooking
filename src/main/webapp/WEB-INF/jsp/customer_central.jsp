@@ -115,8 +115,8 @@
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-2 col-xs-2">
-                            <div class="form-group">
-                                <button class="btn bg-navy text-white" id="Search" name="Search" type="submit" style="margin-top:33px">
+                            <div id="button_search" class="form-group">
+                                <button class="btn btn-lg bg-navy text-white " id="Search"  name="Search" type="submit" >
                                     Search
                                 </button>
                             </div>

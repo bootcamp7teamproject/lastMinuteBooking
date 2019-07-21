@@ -73,18 +73,17 @@ public class OwnerController {
     public String ownerAddHotel(ModelMap model,
             @ModelAttribute("newhotel") Hotel hotel,
             @ModelAttribute("loggedUser") User user,
-            @RequestParam(value="FamilyRooms", required=false, defaultValue="false") boolean FamilyRooms,
-            @RequestParam(value="FreeWifi", required=false, defaultValue="false") boolean FreeWifi,
-            @RequestParam(value="Nonsmokingroom", required=false, defaultValue="false") boolean Nonsmokingroom,
-            @RequestParam(value="Parking", required=false, defaultValue="false") boolean Parking,
-            @RequestParam(value="Petsallowed", required=false, defaultValue="false") boolean Petsallowed,
-            @RequestParam(value="Swimmingpool", required=false, defaultValue="false") boolean Swimmingpool,
-            @RequestParam(value="Spaandwellnesscenter", required=false, defaultValue="false") boolean Spaandwellnesscenter,
-            @RequestParam(value="Bar", required=false, defaultValue="false") boolean Bar
+            @RequestParam(value = "FamilyRooms", required = false, defaultValue = "false") boolean FamilyRooms,
+            @RequestParam(value = "FreeWifi", required = false, defaultValue = "false") boolean FreeWifi,
+            @RequestParam(value = "Nonsmokingroom", required = false, defaultValue = "false") boolean Nonsmokingroom,
+            @RequestParam(value = "Parking", required = false, defaultValue = "false") boolean Parking,
+            @RequestParam(value = "Petsallowed", required = false, defaultValue = "false") boolean Petsallowed,
+            @RequestParam(value = "Swimmingpool", required = false, defaultValue = "false") boolean Swimmingpool,
+            @RequestParam(value = "Spaandwellnesscenter", required = false, defaultValue = "false") boolean Spaandwellnesscenter,
+            @RequestParam(value = "Bar", required = false, defaultValue = "false") boolean Bar
     ) {
 
 //        Insert hotel
-
         hotel.setOwnerid(user);
         Destination destination = dd.getDestinationById(2);
         hotel.setDestinationid(destination);
@@ -93,10 +92,8 @@ public class OwnerController {
 //        ------------
 
 //        Insert HotelFacilities
+        Hotel newhotel = hd.getHotelsByUserIdandName(user.getId(), hotel.getName());
 
-Hotel newhotel= hd.getHotelsByUserIdandName(user.getId(), hotel.getName());
-        System.out.println(newhotel.getId());
-        
         if (FreeWifi) {
             hfd.insertHotelFacilities(newhotel.getId(), 1);
         }
@@ -130,14 +127,14 @@ Hotel newhotel= hd.getHotelsByUserIdandName(user.getId(), hotel.getName());
     public String ownerUpdateHotel(ModelMap model,
             @ModelAttribute("updatehotel") Hotel hotel,
             @ModelAttribute("loggedUser") User user,
-            @RequestParam(value="FamilyRooms" , required=false, defaultValue="false") boolean FamilyRooms,
-            @RequestParam(value="FreeWifi", required=false, defaultValue="false") boolean FreeWifi,
-            @RequestParam(value="Nonsmokingroom", required=false, defaultValue="false") boolean Nonsmokingroom,
-            @RequestParam(value="Parking", required=false, defaultValue="false") boolean Parking,
-            @RequestParam(value="Petsallowed", required=false, defaultValue="false") boolean Petsallowed,
-            @RequestParam(value="Swimmingpool", required=false, defaultValue="false") boolean Swimmingpool,
-            @RequestParam(value="Spaandwellnesscenter", required=false, defaultValue="false") boolean Spaandwellnesscenter,
-            @RequestParam(value="Bar", required=false, defaultValue="false") boolean Bar
+            @RequestParam(value = "FamilyRooms", required = false, defaultValue = "false") boolean FamilyRooms,
+            @RequestParam(value = "FreeWifi", required = false, defaultValue = "false") boolean FreeWifi,
+            @RequestParam(value = "Nonsmokingroom", required = false, defaultValue = "false") boolean Nonsmokingroom,
+            @RequestParam(value = "Parking", required = false, defaultValue = "false") boolean Parking,
+            @RequestParam(value = "Petsallowed", required = false, defaultValue = "false") boolean Petsallowed,
+            @RequestParam(value = "Swimmingpool", required = false, defaultValue = "false") boolean Swimmingpool,
+            @RequestParam(value = "Spaandwellnesscenter", required = false, defaultValue = "false") boolean Spaandwellnesscenter,
+            @RequestParam(value = "Bar", required = false, defaultValue = "false") boolean Bar
     ) {
 
 //        Insert hotel
@@ -187,27 +184,25 @@ Hotel newhotel= hd.getHotelsByUserIdandName(user.getId(), hotel.getName());
             @ModelAttribute("newRoom") Room room,
             @ModelAttribute("loggedUser") User user,
             @RequestParam("Kitchen") boolean Kitchen,
-            @RequestParam(value="Privatebathroom", required=false, defaultValue="false") boolean Privatebathroom,
-            @RequestParam(value="AirConditioning", required=false, defaultValue="false") boolean AirConditioning,
-            @RequestParam(value="Bath", required=false, defaultValue="false") boolean Bath,
-            @RequestParam(value="FlatscreenTV", required=false, defaultValue="false") boolean FlatscreenTV,
-            @RequestParam(value="WashingMachine", required=false, defaultValue="false") boolean WashingMachine,
-            @RequestParam(value="View", required=false, defaultValue="false") boolean View,
-            @RequestParam(value="CoffeeteaMaker", required=false, defaultValue="false") boolean CoffeeteaMaker,
-            @RequestParam(value="CoffeeMachine", required=false, defaultValue="false") boolean CoffeeMachine,
-            @RequestParam(value="Electrickettle", required=false, defaultValue="false") boolean Electrickettle,
-            @RequestParam(value="DoubleBed", required=false, defaultValue="false") boolean DoubleBed,
-            @RequestParam(value="SingleBed", required=false, defaultValue="false") boolean SingleBed
+            @RequestParam(value = "Privatebathroom", required = false, defaultValue = "false") boolean Privatebathroom,
+            @RequestParam(value = "AirConditioning", required = false, defaultValue = "false") boolean AirConditioning,
+            @RequestParam(value = "Bath", required = false, defaultValue = "false") boolean Bath,
+            @RequestParam(value = "FlatscreenTV", required = false, defaultValue = "false") boolean FlatscreenTV,
+            @RequestParam(value = "WashingMachine", required = false, defaultValue = "false") boolean WashingMachine,
+            @RequestParam(value = "View", required = false, defaultValue = "false") boolean View,
+            @RequestParam(value = "CoffeeteaMaker", required = false, defaultValue = "false") boolean CoffeeteaMaker,
+            @RequestParam(value = "CoffeeMachine", required = false, defaultValue = "false") boolean CoffeeMachine,
+            @RequestParam(value = "Electrickettle", required = false, defaultValue = "false") boolean Electrickettle,
+            @RequestParam(value = "DoubleBed", required = false, defaultValue = "false") boolean DoubleBed,
+            @RequestParam(value = "SingleBed", required = false, defaultValue = "false") boolean SingleBed
     ) {
 
         //        Insert hotel
-        
 //        room.setHotelid();
         rd.insertRoom(room);
 //        ------------
 
         //        Insert RoomEquipment
-        
 //        if (Kitchen) {
 //            red.insertRoomEquipment(room.getId(),"hotelid", 1);
 //        }
@@ -245,42 +240,36 @@ Hotel newhotel= hd.getHotelsByUserIdandName(user.getId(), hotel.getName());
 //            red.insertRoomEquipment(room.getId(),"hotelid", 10);
 //        }
 //        ------------
-
         return "owner_central";
     }
-    
-    
+
     @PostMapping("/updateRoom")
     public String ownerUpdateRoom(ModelMap model,
             @ModelAttribute("updateRoom") Room room,
             @ModelAttribute("loggedUser") User user,
-            @RequestParam(value="Kitchen", required=false, defaultValue="false") boolean Kitchen,
-            @RequestParam(value="Privatebathroom", required=false, defaultValue="false") boolean Privatebathroom,
-            @RequestParam(value="AirConditioning", required=false, defaultValue="false") boolean AirConditioning,
-            @RequestParam(value="Bath", required=false, defaultValue="false") boolean Bath,
-            @RequestParam(value="FlatscreenTV", required=false, defaultValue="false") boolean FlatscreenTV,
-            @RequestParam(value="WashingMachine", required=false, defaultValue="false") boolean WashingMachine,
-            @RequestParam(value="View", required=false, defaultValue="false") boolean View,
-            @RequestParam(value="CoffeeteaMaker", required=false, defaultValue="false") boolean CoffeeteaMaker,
-            @RequestParam(value="CoffeeMachine", required=false, defaultValue="false") boolean CoffeeMachine,
-            @RequestParam(value="Electrickettle", required=false, defaultValue="false") boolean Electrickettle,
-            @RequestParam(value="DoubleBed", required=false, defaultValue="false") boolean DoubleBed,
-            @RequestParam(value="SingleBed", required=false, defaultValue="false") boolean SingleBed
+            @RequestParam(value = "Kitchen", required = false, defaultValue = "false") boolean Kitchen,
+            @RequestParam(value = "Privatebathroom", required = false, defaultValue = "false") boolean Privatebathroom,
+            @RequestParam(value = "AirConditioning", required = false, defaultValue = "false") boolean AirConditioning,
+            @RequestParam(value = "Bath", required = false, defaultValue = "false") boolean Bath,
+            @RequestParam(value = "FlatscreenTV", required = false, defaultValue = "false") boolean FlatscreenTV,
+            @RequestParam(value = "WashingMachine", required = false, defaultValue = "false") boolean WashingMachine,
+            @RequestParam(value = "View", required = false, defaultValue = "false") boolean View,
+            @RequestParam(value = "CoffeeteaMaker", required = false, defaultValue = "false") boolean CoffeeteaMaker,
+            @RequestParam(value = "CoffeeMachine", required = false, defaultValue = "false") boolean CoffeeMachine,
+            @RequestParam(value = "Electrickettle", required = false, defaultValue = "false") boolean Electrickettle,
+            @RequestParam(value = "DoubleBed", required = false, defaultValue = "false") boolean DoubleBed,
+            @RequestParam(value = "SingleBed", required = false, defaultValue = "false") boolean SingleBed
     ) {
 
         //        Insert hotel
-        
 //        room.setHotelid();
         rd.insertRoom(room);
 //        ------------
 
         //        Delete RoomEquipment
-
         red.deleteRoomEquipment(room.getId());
 
-
         //        Insert RoomEquipment
-        
 //        if (Kitchen) {
 //            red.insertRoomEquipment(room.getId(),"hotelid", 1);
 //        }
@@ -318,20 +307,18 @@ Hotel newhotel= hd.getHotelsByUserIdandName(user.getId(), hotel.getName());
 //            red.insertRoomEquipment(room.getId(),"hotelid", 10);
 //        }
 //        ------------
-
         return "owner_central";
     }
-    
-    
+
     @PostMapping("/settings")
     public String ownerUpdateRoom(ModelMap model,
             @ModelAttribute("updateUser") User updateUser,
             @ModelAttribute("loggedUser") User user
-            ){
-    
+    ) {
+
         ud.insertUser(updateUser);
-        
-         return "owner_central";
+
+        return "owner_central";
     }
-    
+
 }

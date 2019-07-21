@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Panos
+ * @author minas
  */
 @Entity
 @Table(name = "hotel_facilities")

@@ -107,11 +107,11 @@
                                 id="btn" class="btn btn-primary custom" type="button" data-toggle="collapse"
                                 data-target="#multiCollapseExample1" aria-expanded="false"
                                 aria-controls="multiCollapseExample1">
-                                <h2><strong>Servises</strong></h2>
+                                <h2><strong>Services</strong></h2>
                             </button></li><li class="list-group-item-secondary text-center py-2 list-unstyled bg-navy"> <button id="btnmap"
                                                                                                                             class="btn btn-primary custom" type="button" data-toggle="collapse"
                                                                                                                             data-target="#multiCollapseExamplemap" aria-expanded="false"
-                                                                                                                            aria-controls="multiCollapseExamplemap">Show on Map</button></li>
+                                                                                                                            aria-controls="multiCollapseExamplemap" onclick="showMap()">Show on Map</button></li>
                         <li class="list-group-item-secondary text-center py-2 list-unstyled bg-navy"> <button id="btn0"
                                                                                                               class="btn btn-primary custom" type="button" data-toggle="collapse"
                                                                                                               data-target="#multiCollapseExample0" aria-expanded="false"
@@ -143,7 +143,7 @@
                         <li class="list-group-item-secondary text-center py-2 list-unstyled bg-navy"> <button
                                 class="btn btn-warning custom" type="button" data-toggle="collapse"
                                 data-target="#multiCollapseExample2" aria-expanded="false"
-                                aria-controls="multiCollapseExample2">Sign out</button></li>
+                                aria-controls="multiCollapseExample2" href="${pageContext.request.contextPath}/user/logout">Sign out</button></li>
                     </ul>
 
 
@@ -888,160 +888,163 @@
 
 
 
-                    $('#Starslist li a').on('click', function () {
-                        $('#StarsAH').val($(this).html());
-                    });
-                    $('#StarslistUp li a').on('click', function () {
-                        $('#StarsUp').val($(this).html());
-                    });
-                    $('#Hotellist li a').on('click', function () {
-                        $('#HotelNameUD').val($(this).html());
-                    });
-                    $('#HotellistRoom li a').on('click', function () {
-                        $('#HotelNameRoom').val($(this).html());
-                    });
-                    $('#HotellistUn li a').on('click', function ()
-                    {
-                        $('#HotelNameUn').val($(this).html());
-                    });
-                    $('#RoomlistUn li a').on('click', function () {
-                        $('#RoomNameUn').val($(this).html());
-                    });
-
-                    $('#btnmap').click(function () {
-                        $('#Map_context').show();
-
-                        var mymap = L.map('hotelsmap').setView([38.632353, 22.851563], 7);
-
-                            <c:forEach items = "${hotels}" var = "hotel">
-                        var currenthotel = L.marker([${hotel.longtitude}, ${hotel.latitude}]).addTo(mymap);
-                        currenthotel.bindPopup("${hotel.name}");
-                            </c:forEach>
-
-                        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-                            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                            maxZoom: 18,
-                            id: 'mapbox.streets',
-                            accessToken: 'pk.eyJ1IjoiYW5kcm84OSIsImEiOiJjanhkZjRubHIwYWF4M3puemh1bzlmazd5In0.EFiEAz-JFSR5bw4cE2HE5w'
-                        }).addTo(mymap);
-
-                        $('#HotelList_context').hide();
-                        $('#UpdateHotel_context').hide();
-                        $('#AddRoom_context').hide();
-                        $('#UpdateRoom_context').hide();
-                        $('#DeclareUnavailability_context').hide();
-                        $('#Settings_context').hide();
-                        $('#AddHotel_context').hide();
-                    });
-
-                    $('#btn0').click(function () {
-                        $('#Map_context').hide();
-                        $('#HotelList_context').show();
-                        $('#UpdateHotel_context').hide();
-                        $('#AddRoom_context').hide();
-                        $('#UpdateRoom_context').hide();
-                        $('#DeclareUnavailability_context').hide();
-                        $('#Settings_context').hide();
-                        $('#AddHotel_context').hide();
-                    });
-
-                    $('#btn1').click(function () {
-                        $('#Map_context').hide();
-                        $('#HotelList_context').hide();
-                        $('#UpdateHotel_context').hide();
-                        $('#AddRoom_context').hide();
-                        $('#UpdateRoom_context').hide();
-                        $('#DeclareUnavailability_context').hide();
-                        $('#Settings_context').hide();
-                        $('#AddHotel_context').show();
-                    });
-                    $('#btn2').click(function () {
-                        $('#Map_context').hide();
-                        $('#HotelList_context').hide();
-                        $('#AddHotel_context').hide();
-                        $('#UpdateHotel_context').show();
-                        $('#AddRoom_context').hide();
-                        $('#UpdateRoom_context').hide();
-                        $('#DeclareUnavailability_context').hide();
-                        $('#Settings_context').hide();
-                    });
-
-                    $('#btn3').click(function () {
-                        $('#Map_context').hide();
-                        $('#HotelList_context').hide();
-                        $('#AddHotel_context').hide();
-                        $('#UpdateHotel_context').hide();
-                        $('#AddRoom_context').show();
-                        $('#UpdateRoom_context').hide();
-                        $('#DeclareUnavailability_context').hide();
-                        $('#Settings_context').hide();
-                    });
-
-                    $('#btn4').click(function () {
-                        $('#Map_context').hide();
-                        $('#HotelList_context').hide();
-                        $('#AddHotel_context').hide();
-                        $('#UpdateHotel_context').hide();
-                        $('#AddRoom_context').hide();
-                        $('#UpdateRoom_context').show();
-                        $('#DeclareUnavailability_context').hide();
-                        $('#Settings_context').hide();
-                    });
-
-                    $('#btn5').click(function () {
-                        $('#Map_context').hide();
-                        $('#HotelList_context').hide();
-                        $('#AddHotel_context').hide();
-                        $('#UpdateHotel_context').hide();
-                        $('#AddRoom_context').hide();
-                        $('#UpdateRoom_context').hide();
-                        $('#DeclareUnavailability_context').show();
-                        $('#Settings_context').hide();
-                    });
-
-                    $('#btn6').click(function () {
-                        $('#Map_context').hide();
-                        $('#HotelList_context').hide();
-                        $('#AddHotel_context').hide();
-                        $('#UpdateHotel_context').hide();
-                        $('#AddRoom_context').hide();
-                        $('#UpdateRoom_context').hide();
-                        $('#DeclareUnavailability_context').hide();
-                        $('#Settings_context').show();
-                    });
-                    4
-
-
-
-
-
+                            $('#Starslist li a').on('click', function () {
+                            $('#StarsAH').val($(this).html());
+                            });
+                            $('#StarslistUp li a').on('click', function () {
+                            $('#StarsUp').val($(this).html());
+                            });
+                            $('#Hotellist li a').on('click', function () {
+                            $('#HotelNameUD').val($(this).html());
+                            });
+                            $('#HotellistRoom li a').on('click', function () {
+                            $('#HotelNameRoom').val($(this).html());
+                            });
+                            $('#HotellistUn li a').on('click', function ()
+                            {
+                            $('#HotelNameUn').val($(this).html());
+                            });
+                            $('#RoomlistUn li a').on('click', function () {
+                            $('#RoomNameUn').val($(this).html());
+                            });
+                            
+                            $('#btnmap').click(function () {
+                            $('#Map_context').show();
+                           $('#HotelList_context').hide();
+                            $('#UpdateHotel_context').hide();
+                            $('#AddRoom_context').hide();
+                            $('#UpdateRoom_context').hide();
+                            $('#DeclareUnavailability_context').hide();
+                            $('#Settings_context').hide();
+                            $('#AddHotel_context').hide();
+                            });
+                            
+                            $('#btn0').click(function () {
+                            $('#Map_context').hide();
+                            $('#HotelList_context').show();
+                            $('#UpdateHotel_context').hide();
+                            $('#AddRoom_context').hide();
+                            $('#UpdateRoom_context').hide();
+                            $('#DeclareUnavailability_context').hide();
+                            $('#Settings_context').hide();
+                            $('#AddHotel_context').hide();
+                            });
+                            
+                            $('#btn1').click(function () {
+                            $('#Map_context').hide();
+                            $('#HotelList_context').hide();
+                            $('#UpdateHotel_context').hide();
+                            $('#AddRoom_context').hide();
+                            $('#UpdateRoom_context').hide();
+                            $('#DeclareUnavailability_context').hide();
+                            $('#Settings_context').hide();
+                            $('#AddHotel_context').show();
+                            });
+                            
+                            $('#btn2').click(function () {
+                            $('#Map_context').hide();
+                            $('#HotelList_context').hide();
+                            $('#AddHotel_context').hide();
+                            $('#UpdateHotel_context').show();
+                            $('#AddRoom_context').hide();
+                            $('#UpdateRoom_context').hide();
+                            $('#DeclareUnavailability_context').hide();
+                            $('#Settings_context').hide();
+                            });
+                            
+                            $('#btn3').click(function () {
+                            $('#Map_context').hide();
+                            $('#HotelList_context').hide();
+                            $('#AddHotel_context').hide();
+                            $('#UpdateHotel_context').hide();
+                            $('#AddRoom_context').show();
+                            $('#UpdateRoom_context').hide();
+                            $('#DeclareUnavailability_context').hide();
+                            $('#Settings_context').hide();
+                            });
+                            
+                            $('#btn4').click(function () {
+                            $('#Map_context').hide();
+                            $('#HotelList_context').hide();
+                            $('#AddHotel_context').hide();
+                            $('#UpdateHotel_context').hide();
+                            $('#AddRoom_context').hide();
+                            $('#UpdateRoom_context').show();
+                            $('#DeclareUnavailability_context').hide();
+                            $('#Settings_context').hide();
+                            });
+                            
+                            $('#btn5').click(function () {
+                            $('#Map_context').hide();
+                            $('#HotelList_context').hide();
+                            $('#AddHotel_context').hide();
+                            $('#UpdateHotel_context').hide();
+                            $('#AddRoom_context').hide();
+                            $('#UpdateRoom_context').hide();
+                            $('#DeclareUnavailability_context').show();
+                            $('#Settings_context').hide();
+                            });
+                            
+                            $('#btn6').click(function () {
+                            $('#Map_context').hide();
+                            $('#HotelList_context').hide();
+                            $('#AddHotel_context').hide();
+                            $('#UpdateHotel_context').hide();
+                            $('#AddRoom_context').hide();
+                            $('#UpdateRoom_context').hide();
+                            $('#DeclareUnavailability_context').hide();
+                            $('#Settings_context').show();
+                            });
+                            
+                            
+//                             $('#btnmap').onclick=showMap(){
+//                            var mymap = L.map('hotelsmap').setView([38.632353, 22.851563], 7);
+//                            <c:forEach items = "${hotels}" var = "hotel">
+//                            var currenthotel = L.marker([${hotel.longtitude}, ${hotel.latitude}]).addTo(mymap);
+//                            currenthotel.bindPopup("${hotel.name}");
+//                            </c:forEach>
+//
+//                            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+//                            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+//                                    maxZoom: 18,
+//                                    id: 'mapbox.streets',
+//                                    accessToken: 'pk.eyJ1IjoiYW5kcm84OSIsImEiOiJjanhkZjRubHIwYWF4M3puemh1bzlmazd5In0.EFiEAz-JFSR5bw4cE2HE5w'
+//                            }).addTo(mymap);
+//                            };
+                            
+                            
 
 
 
 
 
-                    //                            $('#HotelNameUD').change(function () {
-                    //   
-                    //    $.ajax({
-                    //                    url: "http://localhost:8080/lmb/owner/restControllerHotels",
-                    //                            success: handleResponse
-                    //});
-                    //                            function handleResponse(listhotels) {
-                    //                            for (var i = 0; i < listhotels.length; i++) {
-                    //                    if ((listhotels[i].name).localeCompare($('#HotelNameUD').val())) {
-                    //                    $('#nameUD').val(listhotels[i].name);
-                    //}
-                    //            }
-                    //            }
-                    //                }).change();
-                    //                
-                    //                fetch('http://localhost:8080/lmb/owner/restControllerHotels')
-                    // .then(function(response) {
-                    //                    return response.json();
-                    //})
-                    // .then(function(myJson) {
-                    //                    console.log(JSON.stringify(myJson));
-                    //            }            );
+
+
+
+
+
+                                    //                            $('#HotelNameUD').change(function () {
+                                    //   
+                                    //    $.ajax({
+                                    //                    url: "http://localhost:8080/lmb/owner/restControllerHotels",
+                                    //                            success: handleResponse
+                                    //});
+                                    //                            function handleResponse(listhotels) {
+                                    //                            for (var i = 0; i < listhotels.length; i++) {
+                                    //                    if ((listhotels[i].name).localeCompare($('#HotelNameUD').val())) {
+                                    //                    $('#nameUD').val(listhotels[i].name);
+                                    //}
+                                    //            }
+                                    //            }
+                                    //                }).change();
+                                    //                
+                                    //                fetch('http://localhost:8080/lmb/owner/restControllerHotels')
+                                    // .then(function(response) {
+                                    //                    return response.json();
+                                    //})
+                                    // .then(function(myJson) {
+                                    //                    console.log(JSON.stringify(myJson));
+                                    //            }            );
 
                         </script>
 
