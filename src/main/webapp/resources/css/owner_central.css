@@ -8,13 +8,84 @@ and open the template in the editor.
     Author     : minas
 */
 
-body {
-    background-color: #f5f5f5;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+.bg-navy  { background-color: rgb(4,4,30)}
+.border-color-navy{
+    border-style: solid;
+    border-color:rgb(4,4,30);
+    border-width: 3px;}
+    .text-navy{
+        color:rgb(4,4,30);
+        font-family: "Times New Roman", Times, serif;
+    }
+    #Search_text{
+        margin-left: 15px;
+    }
+    #Search_box{
+        margin-top: 10px;
+        padding-top: 10px;
+        padding-left: 0px;
+        
+    }
+    #Search_box_inside{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    #button_search{
+        margin-top:25px;
+        width: 200px;
+        
+    }
+    #home_link{
+        font-size: 150%;
+        color: white;
+        border-style: solid;
+        border-color:white;
+    border-width: 3px;
+}
+    
+    #dropdown_customer{
+        margin-bottom: 0px;
+    }
+.custom{
+    width: 150px ;
+}   
+.disabled{
+    pointer-events: none;
   }
-
-  .bg-navy  { background-color: rgb(4,4,30)}
-
+  .pad-top{
+      padding-top: 35px;
+  }
+  .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+/*.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}*/
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -4,30 +4,26 @@
  * and open the template in the editor.
  */
 package bootcamp.project.lmb.dao;
-
-import bootcamp.project.lmb.model.Room;
-import bootcamp.project.lmb.repos.RoomRepo;
-import java.util.ArrayList;
+import bootcamp.project.lmb.repos.HotelFacilitiesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 /**
  *
- * @author Panos
+ * @author minas
  */
-
 @Service
-public class RoomDao {
+public class HotelFacilitiesDao {
     
     @Autowired
-    RoomRepo rr;
-
-    public ArrayList <Room> getRooms() {
-        ArrayList <Room> rooms = (ArrayList <Room>) rr.findAll();
-        return rooms;
+    HotelFacilitiesRepo hfr;
+    
+    public void insertHotelFacilities(int hotelid,int facilityid) {
+        hfr.insertHotelFacilities(hotelid,facilityid);
+        
     }
-
-    public void insertRoom(Room room) {
-        rr.save(room);
+    
+    public void deleteHotelFacilities(int hotelid) {
+        hfr.deleteHotelFacilities(hotelid);
+        
     }
 }

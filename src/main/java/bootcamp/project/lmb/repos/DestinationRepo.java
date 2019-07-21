@@ -7,6 +7,7 @@ package bootcamp.project.lmb.repos;
 
 import bootcamp.project.lmb.model.Destination;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,4 +18,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DestinationRepo extends JpaRepository <Destination, Integer> {
     
+    @Query(value="select * from destination where Id=?1 ;", nativeQuery=true)
+    Destination getDestinationById(Integer id);
 }

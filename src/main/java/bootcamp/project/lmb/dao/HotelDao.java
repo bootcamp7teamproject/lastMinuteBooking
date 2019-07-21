@@ -31,4 +31,19 @@ public class HotelDao {
     public ArrayList <Hotel> getUserSearchHotels(Integer budget, Integer nights, Integer persons, Date checkin, Date checkout) {
         return hr.findSearchHotels(budget, nights, persons, checkin, checkout);
     }
+    
+     public ArrayList <Hotel> getHotelsByUserId(int id) {
+        ArrayList <Hotel> hotels = (ArrayList <Hotel>) hr.getHotelsByUserId(id);
+        return hotels;
+    }
+    
+    public Hotel getHotelsByUserIdandName(int id, String name) {
+       Hotel hotel = hr.getHotelsByUserIdandName(id,name);
+        return hotel;
+    }
+    
+    public void insertHotel(Hotel hotel) {
+        hr.save(hotel);
+        
+    }
 }

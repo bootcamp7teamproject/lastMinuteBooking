@@ -8,6 +8,7 @@ package bootcamp.project.lmb.repos;
 import bootcamp.project.lmb.model.Hotel;
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -37,4 +38,10 @@ public interface HotelRepo extends JpaRepository <Hotel, Integer> {
     )
     ArrayList <Hotel> findSearchHotels(@Param("budget") Integer budget, @Param("nights") Integer nights, @Param("persons") Integer persons,
                                        @Param("checkin") Date checkin, @Param("checkout") Date checkout);
+    
+     @Query(value="select hotel.* from hotel inner join user on hotel.Owner_id=user.Id where user.Id=?1 ;", nativeQuery=true)
+    List<Hotel> getHotelsByUserId(Integer id);
+    
+    @Query(value="select hotel.* from hotel inner join user on hotel.Owner_id=user.Id where user.Id=?1 and hotel.name=?2 ;", nativeQuery=true)
+    Hotel getHotelsByUserIdandName(int id, String name);
 }

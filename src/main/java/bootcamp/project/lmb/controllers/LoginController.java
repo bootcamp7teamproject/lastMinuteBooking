@@ -55,7 +55,7 @@ public class LoginController {
                         return "customer_central";
                     case 2:
                         session.setAttribute("hotels", hd.getHotels());
-                        return "owner_central";
+                        return "redirect:/owner/owner_central";
                 }
             }
         }

@@ -27,4 +27,9 @@ public class DestinationDao {
         return destinations;
     }
     
+    public Destination getDestinationById(int id) {
+        Destination destination = (Destination) dr.getDestinationById(id);
+        return destination;
+    }
+    
 }
