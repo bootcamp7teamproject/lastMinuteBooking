@@ -5,6 +5,7 @@
  */
 package bootcamp.project.lmb.dao;
 
+import bootcamp.project.lmb.model.Hotel;
 import bootcamp.project.lmb.model.Room;
 import bootcamp.project.lmb.repos.RoomRepo;
 import java.util.ArrayList;
@@ -34,5 +35,10 @@ public class RoomDao {
 
     public void insertRoom(Room room) {
         rr.save(room);
+    }
+    
+    public Room getRoomByUserIdandName(int id, String name) {
+        Room room = rr.getRoomByUserIdandName(id,name);
+        return room;
     }
 }

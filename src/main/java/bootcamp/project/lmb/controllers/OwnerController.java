@@ -15,6 +15,7 @@ import bootcamp.project.lmb.model.Destination;
 import bootcamp.project.lmb.model.Hotel;
 import bootcamp.project.lmb.model.Room;
 import bootcamp.project.lmb.model.User;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -53,13 +54,14 @@ public class OwnerController {
     RoomEquipmentDao red;
 
     @GetMapping("/owner_central")
-    public String ownerServices(ModelMap model) {
+    public String ownerServices(ModelMap model, HttpSession session) {
         Hotel newhotel = new Hotel();
         Hotel updatehotel = new Hotel();
         Room newroom = new Room();
         Room updateroom = new Room();
         User updateUser = new User();
 
+        session.setAttribute("destinations", dd.getDestinations());
         model.addAttribute("newhotel", newhotel);
         model.addAttribute("updatehotel", updatehotel);
         model.addAttribute("newroom", newroom);
@@ -85,9 +87,7 @@ public class OwnerController {
 
 //        Insert hotel
         hotel.setOwnerid(user);
-        Destination destination = dd.getDestinationById(2);
-        hotel.setDestinationid(destination);
-
+       
         hd.insertHotel(hotel);
 //        ------------
 
@@ -198,48 +198,50 @@ public class OwnerController {
     ) {
 
         //        Insert hotel
-//        room.setHotelid();
+
         rd.insertRoom(room);
-//        ------------
+        //        ------------
 
         //        Insert RoomEquipment
-//        if (Kitchen) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 1);
-//        }
-//        if (Privatebathroom) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 2);
-//        }
-//        if (AirConditioning) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 3);
-//        }
-//        if (Bath) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 5);
-//        }
-//        if (FlatscreenTV) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 6);
-//        }
-//        if (WashingMachine) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 8);
-//        }
-//        if (View) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 9);
-//        }
-//        if (CoffeeteaMaker) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 10);
-//        }
-//        if (CoffeeMachine) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 10);
-//        }
-//        if (Electrickettle) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 10);
-//        }
-//        if (DoubleBed) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 10);
-//        }
-//        if (SingleBed) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 10);
-//        }
-//        ------------
+         Room newroom = rd.getRoomByUserIdandName(user.getId(), room.getName());
+         
+        if (Kitchen) {
+            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 1);
+        }
+        if (Privatebathroom) {
+            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 2);
+        }
+        if (AirConditioning) {
+            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 3);
+        }
+        if (Bath) {
+            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 4);
+        }
+        if (FlatscreenTV) {
+            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 5);
+        }
+        if (WashingMachine) {
+            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 6);
+        }
+        if (View) {
+            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 7);
+        }
+        if (CoffeeteaMaker) {
+            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 8);
+        }
+        if (CoffeeMachine) {
+            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 9);
+        }
+        if (Electrickettle) {
+            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 10);
+        }
+        if (DoubleBed) {
+            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 11);
+        }
+        if (SingleBed) {
+            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 12);
+        }
+        
         return "owner_central";
     }
 
@@ -262,51 +264,51 @@ public class OwnerController {
     ) {
 
         //        Insert hotel
-//        room.setHotelid();
+
         rd.insertRoom(room);
-//        ------------
+        //        ------------
 
         //        Delete RoomEquipment
         red.deleteRoomEquipment(room.getId());
 
         //        Insert RoomEquipment
-//        if (Kitchen) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 1);
-//        }
-//        if (Privatebathroom) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 2);
-//        }
-//        if (AirConditioning) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 3);
-//        }
-//        if (Bath) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 5);
-//        }
-//        if (FlatscreenTV) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 6);
-//        }
-//        if (WashingMachine) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 8);
-//        }
-//        if (View) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 9);
-//        }
-//        if (CoffeeteaMaker) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 10);
-//        }
-//        if (CoffeeMachine) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 10);
-//        }
-//        if (Electrickettle) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 10);
-//        }
-//        if (DoubleBed) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 10);
-//        }
-//        if (SingleBed) {
-//            red.insertRoomEquipment(room.getId(),"hotelid", 10);
-//        }
-//        ------------
+       if (Kitchen) {
+            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 1);
+        }
+        if (Privatebathroom) {
+            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 2);
+        }
+        if (AirConditioning) {
+            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 3);
+        }
+        if (Bath) {
+            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 4);
+        }
+        if (FlatscreenTV) {
+            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 5);
+        }
+        if (WashingMachine) {
+            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 6);
+        }
+        if (View) {
+            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 7);
+        }
+        if (CoffeeteaMaker) {
+            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 8);
+        }
+        if (CoffeeMachine) {
+            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 9);
+        }
+        if (Electrickettle) {
+            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 10);
+        }
+        if (DoubleBed) {
+            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 11);
+        }
+        if (SingleBed) {
+            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 12);
+        }
+
         return "owner_central";
     }
 

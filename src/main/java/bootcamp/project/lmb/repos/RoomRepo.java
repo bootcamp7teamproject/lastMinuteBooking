@@ -39,4 +39,10 @@ public interface RoomRepo extends JpaRepository <Room, Integer> {
     )
     ArrayList <Room> findSearchRooms(@Param("budget") Integer budget, @Param("nights") Integer nights, @Param("persons") Integer persons,
                                        @Param("checkin") Date checkin, @Param("checkout") Date checkout, @Param("hotelid") Integer hotelId);
+
+    
+    
+    
+     @Query(value="select room.* from room inner join hotel on room.Hotel_id=hotel.Id inner join user on hotel.Owner_id=user.Id where user.Id=?1 and room.name=?2 ;", nativeQuery=true)
+    public Room getRoomByUserIdandName(int id, String name);
 }

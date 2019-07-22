@@ -223,6 +223,12 @@
                                                     </form:label>
                                                     <form:input class="form-control mb-2" placeholder="Brand Name" required="true"
                                                                 autofocus="true" path="name" />
+                                                    <form:select path="destinationid" class="browser-default custom-select mb-2">
+                                                        <option selected>Area</option>
+                                                        <c:forEach items = "${destinations}" var = "destinations"> 
+                                                            <option value="${destinations.id}">${destinations.name}</option>
+                                                        </c:forEach>                                                                                     
+                                                    </form:select>
                                                     <form:label class="sr-only" path="address">Address
                                                     </form:label>
                                                     <form:input class="form-control mb-2" placeholder="Address" required="true"
@@ -233,24 +239,15 @@
                                                                 path="postcode" />
                                                     <form:label class="sr-only" path="starsnumber">Stars</form:label>
 
-                                                        <div class="input-group">
-                                                        <form:input type="TextBox" id="StarsAH" Class="form-control mb-2"
-                                                                    placeholder="Stars" path="starsnumber"></form:input>
-                                                            <div class="input-group-btn">
-                                                                <button type="button" class="btn dropdown-toggle"
-                                                                        data-toggle="dropdown">
-                                                                    <span class="caret"></span>
-                                                                </button>
-                                                                <ul id="Starslist" class="dropdown-menu">
-                                                                    <li><a>1</a></li>
-                                                                    <li><a>2</a></li>
-                                                                    <li><a>3</a></li>
-                                                                    <li><a>4</a></li>
-                                                                    <li><a>5</a></li>
-                                                                    <li><a>0</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+                                                    <form:select path="starsnumber" class="browser-default custom-select mb-2">
+                                                        <option selected>Number of Stars</option>
+                                                        <option value="1">1 Star</option>
+                                                        <option value="2">2 Stars</option>
+                                                        <option value="3">3 Stars</option>
+                                                        <option value="4">4 Stars</option>
+                                                        <option value="5">5 Stars</option>
+                                                        <option value="6">Unrated</option>                                                        
+                                                    </form:select>
 
                                                     <form:label class="sr-only" path="siteurl">URL
                                                     </form:label>
@@ -265,76 +262,81 @@
                                                     <form:input class="form-control mb-2" placeholder="Email" required="true"
                                                                 path="email" />
 
-                                                    <!--ADD HOTEL - CHECHBOXES -->
+                                                    <div class="form-group">
+                                                        <form:label for="exampleFormControlTextarea1" path="description">Hotel Description</form:label>
+                                                        <form:textarea path="description" class="form-control rounded-0" id="description" rows="10"></form:textarea>
+                                                        </div>
 
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="col-md-3 col-sm-3 col-xs-3">
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Free Wifi" name="FreeWifi" />
-                                                                    <label class="custom-control-label" for="Free Wifi" name="FreeWifi">Free Wifi</label>
-                                                                </div>
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Non-smoking room" name="Nonsmokingroom" />
-                                                                    <label class="custom-control-label"
-                                                                           for="Non-smoking room" name="Nonsmokingroom">Non-smoking room</label>
-                                                                </div>
+                                                        <!--ADD HOTEL - CHECHBOXES -->
 
-                                                            </div>
-                                                            <div class="col-md-3 col-sm-3 col-xs-3">
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Family Rooms" name="FamilyRooms" />
-                                                                    <label class="custom-control-label"
-                                                                           for="Family Rooms" name="FamilyRooms">Family Rooms</label>
-                                                                </div>
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Parking" name="Parking" />
-                                                                    <label class="custom-control-label"
-                                                                           for="Parking" name="Parking">Parking</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3 col-sm-3 col-xs-3">
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Pets allowed" name="Petsallowed" />
-                                                                    <label class="custom-control-label" for="Pets allowed" name="Petsallowed">Pets
-                                                                        allowed</label>
-                                                                </div>
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Swimming pool" name="Swimmingpool" />
-                                                                    <label class="custom-control-label"
-                                                                           for="Swimming pool" name="Swimmingpool">Swimming pool</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Free Wifi" name="FreeWifi" />
+                                                                        <label class="custom-control-label" for="Free Wifi" name="FreeWifi">Free Wifi</label>
+                                                                    </div>
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Non-smoking room" name="Nonsmokingroom" />
+                                                                        <label class="custom-control-label"
+                                                                               for="Non-smoking room" name="Nonsmokingroom">Non-smoking room</label>
+                                                                    </div>
 
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Spa and wellness center" name="Spaandwellnesscenter" />
-                                                                    <label class="custom-control-label"
-                                                                           for="Spa and wellness center" name="Spaandwellnesscenter">Spa and wellness
-                                                                        center</label>
                                                                 </div>
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Bar" name="Bar" />
-                                                                    <label class="custom-control-label" for="Bar" name="Bar">Bar</label>
+                                                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Family Rooms" name="FamilyRooms" />
+                                                                        <label class="custom-control-label"
+                                                                               for="Family Rooms" name="FamilyRooms">Family Rooms</label>
+                                                                    </div>
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Parking" name="Parking" />
+                                                                        <label class="custom-control-label"
+                                                                               for="Parking" name="Parking">Parking</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Pets allowed" name="Petsallowed" />
+                                                                        <label class="custom-control-label" for="Pets allowed" name="Petsallowed">Pets
+                                                                            allowed</label>
+                                                                    </div>
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Swimming pool" name="Swimmingpool" />
+                                                                        <label class="custom-control-label"
+                                                                               for="Swimming pool" name="Swimmingpool">Swimming pool</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-sm-3 col-xs-3">
+
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Spa and wellness center" name="Spaandwellnesscenter" />
+                                                                        <label class="custom-control-label"
+                                                                               for="Spa and wellness center" name="Spaandwellnesscenter">Spa and wellness
+                                                                            center</label>
+                                                                    </div>
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Bar" name="Bar" />
+                                                                        <label class="custom-control-label" for="Bar" name="Bar">Bar</label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
 
 
 
 
-                                                    <button class="btn btn-lg btn-primary btn-block mt-2"
-                                                            type="submit">Submit</button>
+                                                        <button class="btn btn-lg btn-primary btn-block mt-2"
+                                                                type="submit">Submit</button>
                                                 </form:form> 
 
                                             </div>
@@ -355,26 +357,23 @@
 
                                                     <label class="sr-only" name="HotelName">Choose hotel</label>
 
-                                                    <div class="input-group">
-                                                        <input type="TextBox" id="HotelNameUD" Class="form-control  mb-2"
-                                                               placeholder="Choose hotel" name="HotelName" ></input>
-                                                        <div class="input-group-btn">
-                                                            <button type="button" class="btn dropdown-toggle"
-                                                                    data-toggle="dropdown">
-                                                                <span class="caret"></span>
-                                                            </button>
-                                                            <ul id="Hotellist" class="dropdown-menu dropdown-position">
-                                                                <c:forEach items = "${hotels}" var = "hotel"> 
-                                                                    <li><a href="#">${hotel.name}</a></li>
-                                                                    </c:forEach> 
-                                                            </ul>
-                                                        </div>
-                                                    </div>
+                                                    <select class="browser-default custom-select mb-2">
+                                                        <option selected>Select Hotel</option>
+                                                        <c:forEach items = "${hotels}" var = "hotel"> 
+                                                            <option value="">${hotel.name}</option>
+                                                        </c:forEach> 
+                                                    </select>
 
                                                     <form:label class="sr-only" path="name">Brand Name
                                                     </form:label>
                                                     <form:input class="form-control mb-2" id="nameUD" placeholder="Brand Name" required="true"
                                                                 autofocus="true" path="name" />
+                                                    <form:select path="destinationid" class="browser-default custom-select mb-2">
+                                                        <option selected>Area</option>
+                                                        <c:forEach items = "${destinations}" var = "destinations"> 
+                                                            <option value="${destinations.id}">${destinations.name}</option>
+                                                        </c:forEach>                                                                                     
+                                                    </form:select>
                                                     <form:label class="sr-only" path="address">Address
                                                     </form:label>
                                                     <form:input class="form-control mb-2" placeholder="Address" required="true"
@@ -385,25 +384,15 @@
                                                                 path="postcode" />
 
 
-                                                    <form:label class="sr-only" path="starsnumber">Stars</form:label>
-                                                        <div class="input-group">
-                                                        <form:input type="TextBox" id="StarsUp" Class="form-control mb-2"
-                                                                    placeholder="StarsUp" path="starsnumber"></form:input>
-                                                            <div class="input-group-btn">
-                                                                <button type="button" class="btn dropdown-toggle"
-                                                                        data-toggle="dropdown">
-                                                                    <span class="caret"></span>
-                                                                </button>
-                                                                <ul id="StarslistUp" class="dropdown-menu">
-                                                                    <li><a href="#">1</a></li>
-                                                                    <li><a href="#">2</a></li>
-                                                                    <li><a href="#">3</a></li>
-                                                                    <li><a href="#">4</a></li>
-                                                                    <li><a href="#">5</a></li>
-                                                                    <li><a href="#">0</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+                                                    <form:select path="starsnumber" class="browser-default custom-select mb-2">
+                                                        <option selected>Number of Stars</option>
+                                                        <option value="1">1 Star</option>
+                                                        <option value="2">2 Stars</option>
+                                                        <option value="3">3 Stars</option>
+                                                        <option value="4">4 Stars</option>
+                                                        <option value="5">5 Stars</option>
+                                                        <option value="6">Unrated</option>                                                        
+                                                    </form:select>
 
                                                     <form:label class="sr-only" path="siteurl">URL
                                                     </form:label>
@@ -417,75 +406,79 @@
                                                     </form:label>
                                                     <form:input class="form-control mb-2" placeholder="Email" required="true"
                                                                 path="email" />
+                                                    <div class="form-group">
+                                                        <form:label for="exampleFormControlTextarea1" path="description">Hotel Description</form:label>
+                                                        <form:textarea path="description" class="form-control rounded-0" id="description" rows="10"></form:textarea>
+                                                        </div>
 
-                                                    <!--UPDATE HOTEL - CHECHBOXES -->
+                                                        <!--UPDATE HOTEL - CHECHBOXES -->
 
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="col-md-3 col-sm-3 col-xs-3">
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Free Wifi" name="FreeWifi" />
-                                                                    <label class="custom-control-label" for="Free Wifi" name="FreeWifi">Free Wifi</label>
-                                                                </div>
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Non-smoking room" name="Nonsmokingroom" />
-                                                                    <label class="custom-control-label"
-                                                                           for="Non-smoking room" name="Nonsmokingroom">Non-smoking room</label>
-                                                                </div>
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Free Wifi" name="FreeWifi" />
+                                                                        <label class="custom-control-label" for="Free Wifi" name="FreeWifi">Free Wifi</label>
+                                                                    </div>
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Non-smoking room" name="Nonsmokingroom" />
+                                                                        <label class="custom-control-label"
+                                                                               for="Non-smoking room" name="Nonsmokingroom">Non-smoking room</label>
+                                                                    </div>
 
-                                                            </div>
-                                                            <div class="col-md-3 col-sm-3 col-xs-3">
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Family Rooms" name="FamilyRooms" />
-                                                                    <label class="custom-control-label"
-                                                                           for="Family Rooms" name="FamilyRooms">Family Rooms</label>
                                                                 </div>
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Parking" name="Parking" />
-                                                                    <label class="custom-control-label"
-                                                                           for="Parking" name="Parking">Parking</label>
+                                                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Family Rooms" name="FamilyRooms" />
+                                                                        <label class="custom-control-label"
+                                                                               for="Family Rooms" name="FamilyRooms">Family Rooms</label>
+                                                                    </div>
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Parking" name="Parking" />
+                                                                        <label class="custom-control-label"
+                                                                               for="Parking" name="Parking">Parking</label>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-3 col-sm-3 col-xs-3">
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Pets allowed" name="Petsallowed" />
-                                                                    <label class="custom-control-label" for="Pets allowed" name="Petsallowed">Pets
-                                                                        allowed</label>
+                                                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Pets allowed" name="Petsallowed" />
+                                                                        <label class="custom-control-label" for="Pets allowed" name="Petsallowed">Pets
+                                                                            allowed</label>
+                                                                    </div>
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Swimming pool" name="Swimmingpool" />
+                                                                        <label class="custom-control-label"
+                                                                               for="Swimming pool" name="Swimmingpool">Swimming pool</label>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Swimming pool" name="Swimmingpool" />
-                                                                    <label class="custom-control-label"
-                                                                           for="Swimming pool" name="Swimmingpool">Swimming pool</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                                                <div class="col-md-3 col-sm-3 col-xs-3">
 
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Spa and wellness center" name="Spaandwellnesscenter" />
-                                                                    <label class="custom-control-label"
-                                                                           for="Spa and wellness center" name="Spaandwellnesscenter">Spa and wellness
-                                                                        center</label>
-                                                                </div>
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                           id="Bar" name="Bar" />
-                                                                    <label class="custom-control-label" for="Bar" name="Bar">Bar</label>
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Spa and wellness center" name="Spaandwellnesscenter" />
+                                                                        <label class="custom-control-label"
+                                                                               for="Spa and wellness center" name="Spaandwellnesscenter">Spa and wellness
+                                                                            center</label>
+                                                                    </div>
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input"
+                                                                               id="Bar" name="Bar" />
+                                                                        <label class="custom-control-label" for="Bar" name="Bar">Bar</label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <button class="btn btn-lg btn-primary btn-block mt-2"
-                                                            type="submit">Update</button>
-                                                    <button class="btn btn-lg btn-warning btn-block" href=""
-                                                            type="submit">Delete</button>
+                                                        <button class="btn btn-lg btn-primary btn-block mt-2"
+                                                                type="submit">Update</button>
+                                                        <button class="btn btn-lg btn-warning btn-block" href=""
+                                                                type="submit">Delete</button>
 
                                                 </form:form> 
                                             </div>
@@ -504,21 +497,12 @@
                                                     <h1 class="h3 mb-3 font-weight-normal">Add your Room
                                                     </h1>
 
-                                                    <div class="input-group">
-                                                        <input type="TextBox" id="HotelNameUD" Class="form-control  mb-2"
-                                                               placeholder="Choose hotel" name="HotelNameRoom" ></input>
-                                                        <div class="input-group-btn">
-                                                            <button type="button" class="btn dropdown-toggle"
-                                                                    data-toggle="dropdown">
-                                                                <span class="caret"></span>
-                                                            </button>
-                                                            <ul id="HotellistRoom" class="dropdown-menu dropdown-position">
-                                                                <c:forEach items = "${hotels}" var = "hotel"> 
-                                                                    <li><a>${hotel.name}</a></li>
-                                                                        </c:forEach> 
-                                                            </ul>
-                                                        </div>
-                                                    </div>
+                                                    <form:select path="hotelid" class="browser-default custom-select mb-2">
+                                                        <option selected>Select Hotel</option>
+                                                        <c:forEach items = "${hotels}" var = "hotel"> 
+                                                            <option value="${hotel.id}">${hotel.name}</option>
+                                                        </c:forEach> 
+                                                    </form:select>
 
                                                     <form:label class="sr-only" path="name">Room Name
                                                     </form:label>
@@ -638,23 +622,23 @@
                                                     <h1 class="h3 mb-3 font-weight-normal">Update your Room
                                                     </h1>
 
-                                                    <label class="sr-only" path="RoomName">Choose Room</label>
+                                                    <form:select path="hotelid" class="browser-default custom-select mb-2">
+                                                        <option selected>Select Hotel</option>
+                                                        <c:forEach items = "${hotels}" var = "hotel"> 
+                                                            <option value="${hotel.id}">${hotel.name}</option>
+                                                        </c:forEach> 
+                                                    </form:select>
+                                                    <form:select path="Id" class="browser-default custom-select mb-2">
+                                                        <option selected>Select Room</option>
+                                                        <c:forEach items = "${rooms}" var = "rooms"> 
+                                                            <option value="${rooms.id}">${rooms.name}</option>
+                                                        </c:forEach> 
+                                                    </form:select>
 
-                                                    <div class="input-group">
-                                                        <input type="TextBox" id="RoomName" Class="form-control  mb-2"
-                                                               placeholder="Choose room" path="RoomName"></input>
-                                                        <div class="input-group-btn">
-                                                            <button type="button" class="btn dropdown-toggle"
-                                                                    data-toggle="dropdown">
-                                                                <span class="caret"></span>
-                                                            </button>
-                                                            <ul id="Roomlist" class="dropdown-menu">
-                                                                <c:forEach items = "${rooms}" var = "rooms"> 
-                                                                    <li><a>rooms.name</a></li>
-                                                                    </c:forEach> 
-                                                            </ul>
-                                                        </div>
-                                                    </div>
+                                                    <form:label class="sr-only" path="name">Capacity
+                                                    </form:label>
+                                                    <form:input class="form-control mb-2" placeholder="Room Name" required="true"
+                                                                autofocus="true" path="name" />
 
                                                     <form:label class="sr-only" path="capacity">Capacity
                                                     </form:label>
@@ -785,9 +769,9 @@
                                                             <span class="caret"></span>
                                                         </button>
                                                         <ul id="HotellistUn" class="dropdown-menu">
-                                                            <!-- <c:forEach items = "${hotels}" var = "hotel"> -->
+                                                            <c:forEach items = "${hotels}" var = "hotel">
                                                                 <li><a href="#">Hotel Name</a></li>
-                                                                <!-- </c:forEach> -->
+                                                                 </c:forEach> 
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -804,9 +788,9 @@
                                                             </button>
 
                                                             <ul id="RoomlistUn" class="dropdown-menu">
-                                                                <!-- <c:forEach items = "${hotels}" var = "hotel"> -->
+                                                                 <c:forEach items = "${hotels}" var = "hotel"> 
                                                                 <li><a href="#">Room Name</a></li>
-                                                                <!-- </c:forEach> -->
+                                                                 </c:forEach> 
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -889,114 +873,114 @@
 
 
                             $('#Starslist li a').on('click', function () {
-                            $('#StarsAH').val($(this).html());
+                                $('#StarsAH').val($(this).html());
                             });
                             $('#StarslistUp li a').on('click', function () {
-                            $('#StarsUp').val($(this).html());
+                                $('#StarsUp').val($(this).html());
                             });
                             $('#Hotellist li a').on('click', function () {
-                            $('#HotelNameUD').val($(this).html());
+                                $('#HotelNameUD').val($(this).html());
                             });
                             $('#HotellistRoom li a').on('click', function () {
-                            $('#HotelNameRoom').val($(this).html());
+                                $('#HotelNameRoom').val($(this).html());
                             });
                             $('#HotellistUn li a').on('click', function ()
                             {
-                            $('#HotelNameUn').val($(this).html());
+                                $('#HotelNameUn').val($(this).html());
                             });
                             $('#RoomlistUn li a').on('click', function () {
-                            $('#RoomNameUn').val($(this).html());
+                                $('#RoomNameUn').val($(this).html());
                             });
-                            
+
                             $('#btnmap').click(function () {
-                            $('#Map_context').show();
-                           $('#HotelList_context').hide();
-                            $('#UpdateHotel_context').hide();
-                            $('#AddRoom_context').hide();
-                            $('#UpdateRoom_context').hide();
-                            $('#DeclareUnavailability_context').hide();
-                            $('#Settings_context').hide();
-                            $('#AddHotel_context').hide();
+                                $('#Map_context').show();
+                                $('#HotelList_context').hide();
+                                $('#UpdateHotel_context').hide();
+                                $('#AddRoom_context').hide();
+                                $('#UpdateRoom_context').hide();
+                                $('#DeclareUnavailability_context').hide();
+                                $('#Settings_context').hide();
+                                $('#AddHotel_context').hide();
                             });
-                            
+
                             $('#btn0').click(function () {
-                            $('#Map_context').hide();
-                            $('#HotelList_context').show();
-                            $('#UpdateHotel_context').hide();
-                            $('#AddRoom_context').hide();
-                            $('#UpdateRoom_context').hide();
-                            $('#DeclareUnavailability_context').hide();
-                            $('#Settings_context').hide();
-                            $('#AddHotel_context').hide();
+                                $('#Map_context').hide();
+                                $('#HotelList_context').show();
+                                $('#UpdateHotel_context').hide();
+                                $('#AddRoom_context').hide();
+                                $('#UpdateRoom_context').hide();
+                                $('#DeclareUnavailability_context').hide();
+                                $('#Settings_context').hide();
+                                $('#AddHotel_context').hide();
                             });
-                            
+
                             $('#btn1').click(function () {
-                            $('#Map_context').hide();
-                            $('#HotelList_context').hide();
-                            $('#UpdateHotel_context').hide();
-                            $('#AddRoom_context').hide();
-                            $('#UpdateRoom_context').hide();
-                            $('#DeclareUnavailability_context').hide();
-                            $('#Settings_context').hide();
-                            $('#AddHotel_context').show();
+                                $('#Map_context').hide();
+                                $('#HotelList_context').hide();
+                                $('#UpdateHotel_context').hide();
+                                $('#AddRoom_context').hide();
+                                $('#UpdateRoom_context').hide();
+                                $('#DeclareUnavailability_context').hide();
+                                $('#Settings_context').hide();
+                                $('#AddHotel_context').show();
                             });
-                            
+
                             $('#btn2').click(function () {
-                            $('#Map_context').hide();
-                            $('#HotelList_context').hide();
-                            $('#AddHotel_context').hide();
-                            $('#UpdateHotel_context').show();
-                            $('#AddRoom_context').hide();
-                            $('#UpdateRoom_context').hide();
-                            $('#DeclareUnavailability_context').hide();
-                            $('#Settings_context').hide();
+                                $('#Map_context').hide();
+                                $('#HotelList_context').hide();
+                                $('#AddHotel_context').hide();
+                                $('#UpdateHotel_context').show();
+                                $('#AddRoom_context').hide();
+                                $('#UpdateRoom_context').hide();
+                                $('#DeclareUnavailability_context').hide();
+                                $('#Settings_context').hide();
                             });
-                            
+
                             $('#btn3').click(function () {
-                            $('#Map_context').hide();
-                            $('#HotelList_context').hide();
-                            $('#AddHotel_context').hide();
-                            $('#UpdateHotel_context').hide();
-                            $('#AddRoom_context').show();
-                            $('#UpdateRoom_context').hide();
-                            $('#DeclareUnavailability_context').hide();
-                            $('#Settings_context').hide();
+                                $('#Map_context').hide();
+                                $('#HotelList_context').hide();
+                                $('#AddHotel_context').hide();
+                                $('#UpdateHotel_context').hide();
+                                $('#AddRoom_context').show();
+                                $('#UpdateRoom_context').hide();
+                                $('#DeclareUnavailability_context').hide();
+                                $('#Settings_context').hide();
                             });
-                            
+
                             $('#btn4').click(function () {
-                            $('#Map_context').hide();
-                            $('#HotelList_context').hide();
-                            $('#AddHotel_context').hide();
-                            $('#UpdateHotel_context').hide();
-                            $('#AddRoom_context').hide();
-                            $('#UpdateRoom_context').show();
-                            $('#DeclareUnavailability_context').hide();
-                            $('#Settings_context').hide();
+                                $('#Map_context').hide();
+                                $('#HotelList_context').hide();
+                                $('#AddHotel_context').hide();
+                                $('#UpdateHotel_context').hide();
+                                $('#AddRoom_context').hide();
+                                $('#UpdateRoom_context').show();
+                                $('#DeclareUnavailability_context').hide();
+                                $('#Settings_context').hide();
                             });
-                            
+
                             $('#btn5').click(function () {
-                            $('#Map_context').hide();
-                            $('#HotelList_context').hide();
-                            $('#AddHotel_context').hide();
-                            $('#UpdateHotel_context').hide();
-                            $('#AddRoom_context').hide();
-                            $('#UpdateRoom_context').hide();
-                            $('#DeclareUnavailability_context').show();
-                            $('#Settings_context').hide();
+                                $('#Map_context').hide();
+                                $('#HotelList_context').hide();
+                                $('#AddHotel_context').hide();
+                                $('#UpdateHotel_context').hide();
+                                $('#AddRoom_context').hide();
+                                $('#UpdateRoom_context').hide();
+                                $('#DeclareUnavailability_context').show();
+                                $('#Settings_context').hide();
                             });
-                            
+
                             $('#btn6').click(function () {
-                            $('#Map_context').hide();
-                            $('#HotelList_context').hide();
-                            $('#AddHotel_context').hide();
-                            $('#UpdateHotel_context').hide();
-                            $('#AddRoom_context').hide();
-                            $('#UpdateRoom_context').hide();
-                            $('#DeclareUnavailability_context').hide();
-                            $('#Settings_context').show();
+                                $('#Map_context').hide();
+                                $('#HotelList_context').hide();
+                                $('#AddHotel_context').hide();
+                                $('#UpdateHotel_context').hide();
+                                $('#AddRoom_context').hide();
+                                $('#UpdateRoom_context').hide();
+                                $('#DeclareUnavailability_context').hide();
+                                $('#Settings_context').show();
                             });
-                            
-                            
+
+
 //                             $('#btnmap').onclick=showMap(){
 //                            var mymap = L.map('hotelsmap').setView([38.632353, 22.851563], 7);
 //                            <c:forEach items = "${hotels}" var = "hotel">
@@ -1011,8 +995,6 @@
 //                                    accessToken: 'pk.eyJ1IjoiYW5kcm84OSIsImEiOiJjanhkZjRubHIwYWF4M3puemh1bzlmazd5In0.EFiEAz-JFSR5bw4cE2HE5w'
 //                            }).addTo(mymap);
 //                            };
-                            
-                            
 
 
 
@@ -1023,28 +1005,30 @@
 
 
 
-                                    //                            $('#HotelNameUD').change(function () {
-                                    //   
-                                    //    $.ajax({
-                                    //                    url: "http://localhost:8080/lmb/owner/restControllerHotels",
-                                    //                            success: handleResponse
-                                    //});
-                                    //                            function handleResponse(listhotels) {
-                                    //                            for (var i = 0; i < listhotels.length; i++) {
-                                    //                    if ((listhotels[i].name).localeCompare($('#HotelNameUD').val())) {
-                                    //                    $('#nameUD').val(listhotels[i].name);
-                                    //}
-                                    //            }
-                                    //            }
-                                    //                }).change();
-                                    //                
-                                    //                fetch('http://localhost:8080/lmb/owner/restControllerHotels')
-                                    // .then(function(response) {
-                                    //                    return response.json();
-                                    //})
-                                    // .then(function(myJson) {
-                                    //                    console.log(JSON.stringify(myJson));
-                                    //            }            );
+
+
+                            //                            $('#HotelNameUD').change(function () {
+                            //   
+                            //    $.ajax({
+                            //                    url: "http://localhost:8080/lmb/owner/restControllerHotels",
+                            //                            success: handleResponse
+                            //});
+                            //                            function handleResponse(listhotels) {
+                            //                            for (var i = 0; i < listhotels.length; i++) {
+                            //                    if ((listhotels[i].name).localeCompare($('#HotelNameUD').val())) {
+                            //                    $('#nameUD').val(listhotels[i].name);
+                            //}
+                            //            }
+                            //            }
+                            //                }).change();
+                            //                
+                            //                fetch('http://localhost:8080/lmb/owner/restControllerHotels')
+                            // .then(function(response) {
+                            //                    return response.json();
+                            //})
+                            // .then(function(myJson) {
+                            //                    console.log(JSON.stringify(myJson));
+                            //            }            );
 
                         </script>
 
