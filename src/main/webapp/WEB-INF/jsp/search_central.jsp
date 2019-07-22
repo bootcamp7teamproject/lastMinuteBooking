@@ -384,9 +384,9 @@
                                                     <h2 class="title text-navy">Cost per night</h2>
                                                     </p>
                                                     <div class="btn" style="padding-left:300px">
-                                                        <button class="btn bg-navy text-white " id="Search" name="Search">
+                                                        <a href="${pageContext.request.contextPath}/user/search/${hotel.id}"><button class="btn bg-navy text-white " id="Search" name="Search">
                                                             Choose your room >
-                                                        </button>
+                                                            </button></a>
                                                     </div>
                                                 </div>
                                             </c:forEach>

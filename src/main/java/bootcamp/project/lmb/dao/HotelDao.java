@@ -38,12 +38,12 @@ public class HotelDao {
     }
     
     public Hotel getHotelsByUserIdandName(int id, String name) {
-       Hotel hotel = hr.getHotelsByUserIdandName(id,name);
+        Hotel hotel = hr.getHotelsByUserIdandName(id,name);
         return hotel;
     }
     
     public void insertHotel(Hotel hotel) {
-        hr.save(hotel);
-        
+        hr.save(hotel); 
     }
+    
 }
