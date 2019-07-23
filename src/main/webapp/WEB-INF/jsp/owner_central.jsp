@@ -263,6 +263,18 @@
                                                     </form:label>
                                                     <form:input class="form-control mb-2" placeholder="Email" required="true"
                                                                 path="email" />
+                                                    <form:label class="sr-only" path="longtitude">Longtitude
+                                                    </form:label>
+                                                    <form:input class="form-control mb-2" placeholder="Longtitude" required="true"
+                                                                path="longtitude" />
+                                                    <form:label class="sr-only" path="latitude">Latitude
+                                                    </form:label>
+                                                    <form:input class="form-control mb-2" placeholder="latitude" required="true"
+                                                                path="latitude" />
+                                                    <form:label class="sr-only" path="imagespath">imagespath
+                                                    </form:label>
+                                                    <form:input class="form-control mb-2" placeholder="imagespath" required="true"
+                                                                path="imagespath" />
 
                                                     <div class="form-group">
                                                         <form:label for="exampleFormControlTextarea1" path="description">Hotel Description</form:label>
