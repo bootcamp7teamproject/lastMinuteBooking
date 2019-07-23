@@ -120,7 +120,7 @@ public class OwnerController {
         }
 //        ------------
 
-        return "owner_central";
+        return "redirect:/owner/owner_central";
     }
 
     @PostMapping("/updateHotel")
@@ -176,7 +176,7 @@ public class OwnerController {
         }
 //        ------------
 
-        return "owner_central";
+        return "redirect:/owner/owner_central";
     }
 
     @PostMapping("/addRoom")
@@ -242,7 +242,7 @@ public class OwnerController {
             red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 12);
         }
         
-        return "owner_central";
+        return "redirect:/owner/owner_central";
     }
 
     @PostMapping("/updateRoom")
@@ -309,7 +309,7 @@ public class OwnerController {
             red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 12);
         }
 
-        return "owner_central";
+        return "redirect:/owner/owner_central";
     }
 
     @PostMapping("/settings")
@@ -320,7 +320,7 @@ public class OwnerController {
 
         ud.insertUser(updateUser);
 
-        return "owner_central";
+        return "redirect:/owner/owner_central";
     }
 
 }

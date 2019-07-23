@@ -57,7 +57,6 @@ public class Room implements Serializable {
     @Column(name = "Capacity")
     private int capacity;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "Description")
     private String description;
