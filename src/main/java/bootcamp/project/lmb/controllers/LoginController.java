@@ -58,8 +58,7 @@ public class LoginController {
                             case 1:
                                 return "customer_central";
                             case 2:
-                                session.setAttribute("hotels", hd.getHotelsByUserId(user.getId()));
-                                return "redirect:/owner";
+                                return "redirect:/owner/owner_central";
                         }
                 }
             }

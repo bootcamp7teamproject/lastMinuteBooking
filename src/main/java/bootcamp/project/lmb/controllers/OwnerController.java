@@ -22,7 +22,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
@@ -30,7 +32,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  * @author minas
  */
 @Controller
-@SessionAttributes({"loggedUser", "hotels"})
+@SessionAttributes({"loggedUser"})
+@RequestMapping(value = "/owner")
 public class OwnerController {
 
     @Autowired
@@ -51,14 +54,16 @@ public class OwnerController {
     @Autowired
     RoomEquipmentDao red;
 
-    @GetMapping("/owner")
-    public String ownerServices(ModelMap model, HttpSession session) {
+    @GetMapping("/owner_central")
+    public String ownerServices(ModelMap model,@SessionAttribute("loggedUser") User user, HttpSession session) {
         Hotel newhotel = new Hotel();
         Hotel updatehotel = new Hotel();
         Room newroom = new Room();
         Room updateroom = new Room();
         User updateUser = new User();
 
+        session.setAttribute("hotelFacilities", hfd.getHotelFacilitiesByUserId(user.getId()));
+        session.setAttribute("hotels", hd.getHotelsByUserId(user.getId()));
         session.setAttribute("destinations", dd.getDestinations());
         model.addAttribute("newhotel", newhotel);
         model.addAttribute("updatehotel", updatehotel);
@@ -69,10 +74,10 @@ public class OwnerController {
         return "owner_central";
     }
 
-    @PostMapping("/owner/addHotel")
+    @PostMapping("/addHotel")
     public String ownerAddHotel(ModelMap model,
             @ModelAttribute("newhotel") Hotel hotel,
-            @ModelAttribute("loggedUser") User user,
+            @SessionAttribute("loggedUser") User user,
             @RequestParam(value = "FamilyRooms", required = false, defaultValue = "false") boolean FamilyRooms,
             @RequestParam(value = "FreeWifi", required = false, defaultValue = "false") boolean FreeWifi,
             @RequestParam(value = "Nonsmokingroom", required = false, defaultValue = "false") boolean Nonsmokingroom,
@@ -85,7 +90,7 @@ public class OwnerController {
 
 //        Insert hotel
         hotel.setOwnerid(user);
-       
+
         hd.insertHotel(hotel);
 //        ------------
 
@@ -118,13 +123,13 @@ public class OwnerController {
         }
 //        ------------
 
-        return "owner_central";
+        return "redirect:/owner/owner_central";
     }
 
-    @PostMapping("/owner/updateHotel")
+    @PostMapping("/updateHotel")
     public String ownerUpdateHotel(ModelMap model,
             @ModelAttribute("updatehotel") Hotel hotel,
-            @ModelAttribute("loggedUser") User user,
+            @SessionAttribute("loggedUser") User user,
             @RequestParam(value = "FamilyRooms", required = false, defaultValue = "false") boolean FamilyRooms,
             @RequestParam(value = "FreeWifi", required = false, defaultValue = "false") boolean FreeWifi,
             @RequestParam(value = "Nonsmokingroom", required = false, defaultValue = "false") boolean Nonsmokingroom,
@@ -136,10 +141,7 @@ public class OwnerController {
     ) {
 
 //        Insert hotel
-//        hotel.setOwnerid(user.getId());
-        Destination destination = dd.getDestinationById(2);
-        hotel.setDestinationid(destination);
-
+         hotel.setOwnerid(user);
         hd.insertHotel(hotel);
 //        ------------
 
@@ -174,14 +176,14 @@ public class OwnerController {
         }
 //        ------------
 
-        return "owner_central";
+        return "redirect:/owner/owner_central";
     }
 
-    @PostMapping("/owner/addRoom")
+    @PostMapping("/addRoom")
     public String ownerAddRoom(ModelMap model,
             @ModelAttribute("newRoom") Room room,
-            @ModelAttribute("loggedUser") User user,
-            @RequestParam("Kitchen") boolean Kitchen,
+            @SessionAttribute("loggedUser") User user,
+            @SessionAttribute("Kitchen") boolean Kitchen,
             @RequestParam(value = "Privatebathroom", required = false, defaultValue = "false") boolean Privatebathroom,
             @RequestParam(value = "AirConditioning", required = false, defaultValue = "false") boolean AirConditioning,
             @RequestParam(value = "Bath", required = false, defaultValue = "false") boolean Bath,
@@ -196,57 +198,56 @@ public class OwnerController {
     ) {
 
         //        Insert hotel
-
         rd.insertRoom(room);
         //        ------------
 
         //        Insert RoomEquipment
-         Room newroom = rd.getRoomByUserIdandName(user.getId(), room.getName());
-         
+        Room newroom = rd.getRoomByUserIdandName(user.getId(), room.getName());
+
         if (Kitchen) {
-            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 1);
+            red.insertRoomEquipment(newroom.getId(), room.getHotelid().getId(), 1);
         }
         if (Privatebathroom) {
-            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 2);
+            red.insertRoomEquipment(newroom.getId(), room.getHotelid().getId(), 2);
         }
         if (AirConditioning) {
-            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 3);
+            red.insertRoomEquipment(newroom.getId(), room.getHotelid().getId(), 3);
         }
         if (Bath) {
-            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 4);
+            red.insertRoomEquipment(newroom.getId(), room.getHotelid().getId(), 4);
         }
         if (FlatscreenTV) {
-            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 5);
+            red.insertRoomEquipment(newroom.getId(), room.getHotelid().getId(), 5);
         }
         if (WashingMachine) {
-            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 6);
+            red.insertRoomEquipment(newroom.getId(), room.getHotelid().getId(), 6);
         }
         if (View) {
-            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 7);
+            red.insertRoomEquipment(newroom.getId(), room.getHotelid().getId(), 7);
         }
         if (CoffeeteaMaker) {
-            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 8);
+            red.insertRoomEquipment(newroom.getId(), room.getHotelid().getId(), 8);
         }
         if (CoffeeMachine) {
-            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 9);
+            red.insertRoomEquipment(newroom.getId(), room.getHotelid().getId(), 9);
         }
         if (Electrickettle) {
-            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 10);
+            red.insertRoomEquipment(newroom.getId(), room.getHotelid().getId(), 10);
         }
         if (DoubleBed) {
-            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 11);
+            red.insertRoomEquipment(newroom.getId(), room.getHotelid().getId(), 11);
         }
         if (SingleBed) {
-            red.insertRoomEquipment(newroom.getId(),room.getHotelid().getId(), 12);
+            red.insertRoomEquipment(newroom.getId(), room.getHotelid().getId(), 12);
         }
-        
-        return "owner_central";
+
+        return "redirect:/owner/owner_central";
     }
 
-    @PostMapping("/owner/updateRoom")
+    @PostMapping("/updateRoom")
     public String ownerUpdateRoom(ModelMap model,
             @ModelAttribute("updateRoom") Room room,
-            @ModelAttribute("loggedUser") User user,
+            @SessionAttribute("loggedUser") User user,
             @RequestParam(value = "Kitchen", required = false, defaultValue = "false") boolean Kitchen,
             @RequestParam(value = "Privatebathroom", required = false, defaultValue = "false") boolean Privatebathroom,
             @RequestParam(value = "AirConditioning", required = false, defaultValue = "false") boolean AirConditioning,
@@ -262,7 +263,6 @@ public class OwnerController {
     ) {
 
         //        Insert hotel
-
         rd.insertRoom(room);
         //        ------------
 
@@ -270,55 +270,55 @@ public class OwnerController {
         red.deleteRoomEquipment(room.getId());
 
         //        Insert RoomEquipment
-       if (Kitchen) {
-            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 1);
+        if (Kitchen) {
+            red.insertRoomEquipment(room.getId(), room.getHotelid().getId(), 1);
         }
         if (Privatebathroom) {
-            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 2);
+            red.insertRoomEquipment(room.getId(), room.getHotelid().getId(), 2);
         }
         if (AirConditioning) {
-            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 3);
+            red.insertRoomEquipment(room.getId(), room.getHotelid().getId(), 3);
         }
         if (Bath) {
-            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 4);
+            red.insertRoomEquipment(room.getId(), room.getHotelid().getId(), 4);
         }
         if (FlatscreenTV) {
-            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 5);
+            red.insertRoomEquipment(room.getId(), room.getHotelid().getId(), 5);
         }
         if (WashingMachine) {
-            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 6);
+            red.insertRoomEquipment(room.getId(), room.getHotelid().getId(), 6);
         }
         if (View) {
-            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 7);
+            red.insertRoomEquipment(room.getId(), room.getHotelid().getId(), 7);
         }
         if (CoffeeteaMaker) {
-            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 8);
+            red.insertRoomEquipment(room.getId(), room.getHotelid().getId(), 8);
         }
         if (CoffeeMachine) {
-            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 9);
+            red.insertRoomEquipment(room.getId(), room.getHotelid().getId(), 9);
         }
         if (Electrickettle) {
-            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 10);
+            red.insertRoomEquipment(room.getId(), room.getHotelid().getId(), 10);
         }
         if (DoubleBed) {
-            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 11);
+            red.insertRoomEquipment(room.getId(), room.getHotelid().getId(), 11);
         }
         if (SingleBed) {
-            red.insertRoomEquipment(room.getId(),room.getHotelid().getId(), 12);
+            red.insertRoomEquipment(room.getId(), room.getHotelid().getId(), 12);
         }
 
-        return "owner_central";
+        return "redirect:/owner/owner_central";
     }
 
-    @PostMapping("/owner/settings")
+    @PostMapping("/settings")
     public String ownerUpdateRoom(ModelMap model,
             @ModelAttribute("updateUser") User updateUser,
-            @ModelAttribute("loggedUser") User user
+            @SessionAttribute("loggedUser") User user
     ) {
 
         ud.insertUser(updateUser);
 
-        return "owner_central";
+        return "redirect:/owner/owner_central";
     }
 
 }
