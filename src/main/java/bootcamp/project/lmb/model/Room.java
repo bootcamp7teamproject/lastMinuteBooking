@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author minas
+ * @author Panos
  */
 @Entity
 @Table(name = "room")
@@ -56,9 +56,7 @@ public class Room implements Serializable {
     @NotNull
     @Column(name = "Capacity")
     private int capacity;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "Description")
     private String description;
     @Basic(optional = false)
@@ -82,11 +80,10 @@ public class Room implements Serializable {
         this.id = id;
     }
 
-    public Room(Integer id, String name, int capacity, String description, float pricepernight) {
+    public Room(Integer id, String name, int capacity, float pricepernight) {
         this.id = id;
         this.name = name;
         this.capacity = capacity;
-        this.description = description;
         this.pricepernight = pricepernight;
     }
 

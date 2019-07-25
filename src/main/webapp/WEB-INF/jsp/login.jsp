@@ -33,6 +33,8 @@
             <form:label class="sr-only" path = "password">Password</form:label>
             <form:input type = "password" class = "form-control" placeholder = "Password" required = "true" path = "password"/>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <h1 class="h3 mb-3 font-weight-normal">${pendingRegistration}</h1>
+            <h1 class="h3 mb-3 font-weight-normal">${registrationSuccess}</h1>
             <p class="mt-5 mb-3 text-muted">&copy; Bootcamp 7 Team Project</p>
         </form:form><br/>
     </body>

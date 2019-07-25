@@ -22,7 +22,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -32,7 +31,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  */
 @Controller
 @SessionAttributes({"loggedUser", "hotels"})
-@RequestMapping(value = "/owner")
 public class OwnerController {
 
     @Autowired
@@ -53,7 +51,7 @@ public class OwnerController {
     @Autowired
     RoomEquipmentDao red;
 
-    @GetMapping("/owner_central")
+    @GetMapping("/owner")
     public String ownerServices(ModelMap model, HttpSession session) {
         Hotel newhotel = new Hotel();
         Hotel updatehotel = new Hotel();
@@ -71,7 +69,7 @@ public class OwnerController {
         return "owner_central";
     }
 
-    @PostMapping("/addHotel")
+    @PostMapping("/owner/addHotel")
     public String ownerAddHotel(ModelMap model,
             @ModelAttribute("newhotel") Hotel hotel,
             @ModelAttribute("loggedUser") User user,
@@ -123,7 +121,7 @@ public class OwnerController {
         return "owner_central";
     }
 
-    @PostMapping("/updateHotel")
+    @PostMapping("/owner/updateHotel")
     public String ownerUpdateHotel(ModelMap model,
             @ModelAttribute("updatehotel") Hotel hotel,
             @ModelAttribute("loggedUser") User user,
@@ -179,7 +177,7 @@ public class OwnerController {
         return "owner_central";
     }
 
-    @PostMapping("/addRoom")
+    @PostMapping("/owner/addRoom")
     public String ownerAddRoom(ModelMap model,
             @ModelAttribute("newRoom") Room room,
             @ModelAttribute("loggedUser") User user,
@@ -245,7 +243,7 @@ public class OwnerController {
         return "owner_central";
     }
 
-    @PostMapping("/updateRoom")
+    @PostMapping("/owner/updateRoom")
     public String ownerUpdateRoom(ModelMap model,
             @ModelAttribute("updateRoom") Room room,
             @ModelAttribute("loggedUser") User user,
@@ -312,7 +310,7 @@ public class OwnerController {
         return "owner_central";
     }
 
-    @PostMapping("/settings")
+    @PostMapping("/owner/settings")
     public String ownerUpdateRoom(ModelMap model,
             @ModelAttribute("updateUser") User updateUser,
             @ModelAttribute("loggedUser") User user

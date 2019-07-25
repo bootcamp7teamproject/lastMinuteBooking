@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-        <link rel="stylesheet" type="text/css" href="../resources/css/owner_central.css">
+        <link rel="stylesheet" type="text/css" href="./owner_central/../resources/css/owner_central.css">
 
         <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
                 integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
@@ -44,7 +44,7 @@
 
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-lg navbar-light bg-navy">
-            <a class="navbar-brand"><img src='../resources/media/logo.jpg'></a>
+            <a class="navbar-brand"><img src='./owner_central/../resources/media/logo.jpg'></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

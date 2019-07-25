@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author minas
+ * @author Panos
  */
 @Entity
 @Table(name = "user")
@@ -106,13 +106,11 @@ public class User implements Serializable {
     @Column(name = "serial")
     private String serial;
     @Column(name = "active")
-    private Short active;
+    private Integer active;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Rating> ratingCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private RoomUnavailability roomUnavailability;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-    private Hotel hotel;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerid")
     private Collection<Hotel> hotelCollection;
     @JoinColumn(name = "Role", referencedColumnName = "id")
@@ -227,11 +225,11 @@ public class User implements Serializable {
         this.serial = serial;
     }
 
-    public Short getActive() {
+    public Integer getActive() {
         return active;
     }
 
-    public void setActive(Short active) {
+    public void setActive(Integer active) {
         this.active = active;
     }
 
@@ -250,14 +248,6 @@ public class User implements Serializable {
 
     public void setRoomUnavailability(RoomUnavailability roomUnavailability) {
         this.roomUnavailability = roomUnavailability;
-    }
-
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
     }
 
     @XmlTransient

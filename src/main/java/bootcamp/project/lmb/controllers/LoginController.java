@@ -23,14 +23,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  * @author Panos
  */
-
 @Controller
 @RequestMapping(value = "/user")
 public class LoginController {
 
     @Autowired
     UserDao ud;
-    
+
     @Autowired
     HotelDao hd;
 
@@ -44,18 +43,24 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String doLogin(@ModelAttribute("user") User loginUser, HttpSession session) {
+    public String doLogin(@ModelAttribute("user") User loginUser, HttpSession session, ModelMap model) {
         ArrayList<User> users = ud.getUsers();
         for (User user : users) {
             String decryptedPassword = new String(decoder.decode(user.getPassword().getBytes()));
             if (user.getUsername().equals(loginUser.getUsername()) && decryptedPassword.equals(loginUser.getPassword())) {
-                session.setAttribute("loggedUser", user);
-                switch (user.getRole().getId()) {
+                switch (user.getActive()) {
+                    case 0:
+                        model.addAttribute("pendingRegistration", "Confirmation of your registration is needed, please check your mail!");
+                        return "login";
                     case 1:
-                        return "customer_central";
-                    case 2:
-                        session.setAttribute("hotels", hd.getHotelsByUserId(user.getId()));
-                        return "redirect:/owner/owner_central";
+                        session.setAttribute("loggedUser", user);
+                        switch (user.getRole().getId()) {
+                            case 1:
+                                return "customer_central";
+                            case 2:
+                                session.setAttribute("hotels", hd.getHotelsByUserId(user.getId()));
+                                return "redirect:/owner";
+                        }
                 }
             }
         }

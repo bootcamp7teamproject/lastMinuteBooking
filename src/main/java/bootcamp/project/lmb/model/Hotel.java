@@ -19,7 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author minas
+ * @author Panos
  */
 @Entity
 @Table(name = "hotel")
@@ -114,9 +113,6 @@ public class Hotel implements Serializable {
     @JoinColumn(name = "Destination_id", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private Destination destinationid;
-    @JoinColumn(name = "Id", referencedColumnName = "Id", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private User user;
     @JoinColumn(name = "Owner_id", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private User ownerid;
@@ -293,14 +289,6 @@ public class Hotel implements Serializable {
 
     public void setDestinationid(Destination destinationid) {
         this.destinationid = destinationid;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public User getOwnerid() {

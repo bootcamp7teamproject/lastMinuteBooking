@@ -15,7 +15,7 @@
         <title>User Registration</title>
     </head>
     <body class="text-center">
-      <form:form class="form-signin" action = "${pageContext.request.contextPath}/user/register" method = "POST" modelAttribute = "user">
+    <form:form class="form-signin" action = "${pageContext.request.contextPath}/user/register" method = "POST" modelAttribute = "user">
       <a href="${pageContext.request.contextPath}"><img class="mb-4" src="../resources/media/template.jpg" alt="" width="300" height="150"></a>
       <h1 class="h3 mb-3 font-weight-normal">Please register your personal information</h1>
       <form:label class="sr-only" path="name">Type your first name</form:label>
@@ -36,8 +36,14 @@
       <form:input class = "form-control" placeholder = "Username" required = "true" path = "username"/>
       <form:label class="sr-only" path = "password">Type your password</form:label>
       <form:input type = "password" class = "form-control" placeholder = "Password" required = "true" path = "password"/>
+      <label class="sr-only">Retype your password</label>
+      <input type = "password" class = "form-control" placeholder = "Confirm Password" required = "true" name = "pass"/>
+      <label>If you are a hotel owner, check this: <input type = "checkbox" name = "roleCheck" value = "owner"></label>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+      <h3 class="h3 mb-3 font-weight-normal">${usernameExists}</h3>
+      <h3 class="h3 mb-3 font-weight-normal">${passwordMismatch}</h3>
       <p class="mt-5 mb-3 text-muted">&copy; Bootcamp 7 Team Project</p>
     </form:form>
+   
   </body>
 </html>
