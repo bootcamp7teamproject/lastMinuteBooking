@@ -23,4 +23,7 @@ public interface RoomEquipmentRepo extends JpaRepository<Room, Integer> {
     @Modifying
     @Query(value = "delete from room_equipment where Room_id=?1 ;", nativeQuery = true)
     void deleteRoomEquipment(Integer roomid);
+    
+    
+    
 }

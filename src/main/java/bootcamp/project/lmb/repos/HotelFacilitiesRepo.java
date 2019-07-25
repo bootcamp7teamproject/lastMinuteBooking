@@ -5,6 +5,7 @@
  */
 package bootcamp.project.lmb.repos;
 import bootcamp.project.lmb.model.HotelFacilities;
+import java.util.ArrayList;
 import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -25,5 +26,9 @@ public interface HotelFacilitiesRepo extends JpaRepository <HotelFacilities, Int
     @Modifying
     @Query(value="delete from hotel_facilities where Hotel_id=?1 ;", nativeQuery=true)
     void deleteHotelFacilities(Integer hotelid);
+    
+    @Modifying
+    @Query(value = "SELECT hf.Hotel_id , hf.Facility_id FROM hotel_facilities hf inner join hotel on hotel.Id=hf.Hotel_Id where hotel.Owner_id= ?1 ;", nativeQuery = true)
+    ArrayList<HotelFacilities> getHotelFacilitiesByUserId(Integer ownerid);
     
 }

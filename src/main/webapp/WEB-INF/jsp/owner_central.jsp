@@ -371,58 +371,72 @@
 
                                                     <label class="sr-only" name="HotelName">Choose hotel</label>
 
-                                                    <form:select class="browser-default custom-select mb-2" path="id">
+                                                    <form:select id="selectUH_hotel" class="browser-default custom-select mb-2" path="id">
                                                         <option selected>Select Hotel</option>
                                                         <c:forEach items = "${hotels}" var = "hotel"> 
-                                                            <option value="${hotel.id}">${hotel.name}</option>
+                                                            <form:option value="${hotel.id}">${hotel.name}</form:option>
                                                         </c:forEach> 
                                                     </form:select>
 
+                                                    <%--<form:input class="invisible form-control mb-2" style="display:none" required="true"--%>
+                                                    <%--path="ownerid" value="${loggedUser.id}" />--%>
                                                     <form:label class="sr-only" path="name">Brand Name
                                                     </form:label>
-                                                    <form:input class="form-control mb-2" id="nameUD" placeholder="Brand Name" required="true"
+                                                    <form:input class="form-control mb-2" id="nameUH" placeholder="Brand Name" required="true"
                                                                 autofocus="true" path="name" />
-                                                    <form:select path="destinationid" class="browser-default custom-select mb-2">
-                                                        <option selected>Area</option>
+                                                    <form:select id="destinationUH" path="destinationid" class="browser-default custom-select mb-2">
+                                                        <option>Area</option>
                                                         <c:forEach items = "${destinations}" var = "destinations"> 
-                                                            <option value="${destinations.id}">${destinations.name}</option>
+                                                            <option class="optdestinationUH" value="${destinations.id}">${destinations.name}</option>
                                                         </c:forEach>                                                                                     
                                                     </form:select>
-                                                    <form:label class="sr-only" path="address">Address
+                                                    <form:label class="sr-only"  path="address">Address
                                                     </form:label>
-                                                    <form:input class="form-control mb-2" placeholder="Address" required="true"
+                                                    <form:input class="form-control mb-2" id="addressUH" placeholder="Address" required="true"
                                                                 path="address" />
-                                                    <form:label class="sr-only" path="postcode">Postcode
+                                                    <form:label class="sr-only"  path="postcode">Postcode
                                                     </form:label>
-                                                    <form:input class="form-control mb-2" placeholder="Postcode" required="true"
+                                                    <form:input class="form-control mb-2" id="postcodeUH" placeholder="Postcode" required="true"
                                                                 path="postcode" />
 
 
-                                                    <form:select path="starsnumber" class="browser-default custom-select mb-2">
+                                                    <form:select path="starsnumber" id="starsnumberUH" class="browser-default custom-select mb-2">
                                                         <option selected>Number of Stars</option>
-                                                        <option value="1">1 Star</option>
-                                                        <option value="2">2 Stars</option>
-                                                        <option value="3">3 Stars</option>
-                                                        <option value="4">4 Stars</option>
-                                                        <option value="5">5 Stars</option>
-                                                        <option value="6">Unrated</option>                                                        
+                                                        <option id="UH1" value="1">1 Star</option>
+                                                        <option id="UH2" value="2">2 Stars</option>
+                                                        <option id="UH3" value="3">3 Stars</option>
+                                                        <option id="UH4" value="4">4 Stars</option>
+                                                        <option id="UH5" value="5">5 Stars</option>
+                                                        <option id="UH0" value="0">Unrated</option>                                                        
                                                     </form:select>
 
                                                     <form:label class="sr-only" path="siteurl">URL
                                                     </form:label>
-                                                    <form:input class="form-control mb-2" placeholder="URL" required="true"
+                                                    <form:input class="form-control mb-2" id="urlUH" placeholder="URL" required="true"
                                                                 path="siteurl" />
                                                     <form:label class="sr-only" path="phone">Phone
                                                     </form:label>
-                                                    <form:input class="form-control mb-2" placeholder="Phone number" required="true"
+                                                    <form:input class="form-control mb-2" id="phoneUH" placeholder="Phone number" required="true"
                                                                 path="phone" />
                                                     <form:label class="sr-only" path="email">Email
                                                     </form:label>
-                                                    <form:input class="form-control mb-2" placeholder="Email" required="true"
+                                                    <form:input class="form-control mb-2" id="emailUH" placeholder="Email" required="true"
                                                                 path="email" />
+                                                    <form:label class="sr-only" path="longtitude">Longtitude
+                                                    </form:label>
+                                                    <form:input class="form-control mb-2" id="longtitudeUH" placeholder="Longtitude" required="true"
+                                                                path="longtitude" />
+                                                    <form:label class="sr-only" path="latitude">Latitude
+                                                    </form:label>
+                                                    <form:input class="form-control mb-2" id="latitudeUH"  placeholder="latitude" required="true"
+                                                                path="latitude" />
+                                                    <form:label class="sr-only" path="imagespath">imagespath
+                                                    </form:label>
+                                                    <form:input class="form-control mb-2" id="imagespathUH" placeholder="imagespath" required="true"
+                                                                path="imagespath" />
                                                     <div class="form-group">
                                                         <form:label for="exampleFormControlTextarea1" path="description">Hotel Description</form:label>
-                                                        <form:textarea path="description" class="form-control rounded-0" id="description" rows="10"></form:textarea>
+                                                        <form:textarea id="descriptionUH" path="description" class="form-control rounded-0" rows="10"></form:textarea>
                                                         </div>
 
                                                         <!--UPDATE HOTEL - CHECHBOXES -->
@@ -432,58 +446,58 @@
                                                                 <div class="col-md-3 col-sm-3 col-xs-3">
                                                                     <div class="custom-control custom-checkbox">
                                                                         <input type="checkbox" class="custom-control-input"
-                                                                               id="Free Wifi" name="FreeWifi" />
+                                                                               id="FreeWifiUH" name="FreeWifi" />
                                                                         <label class="custom-control-label" for="Free Wifi" name="FreeWifi">Free Wifi</label>
                                                                     </div>
                                                                     <div class="custom-control custom-checkbox">
                                                                         <input type="checkbox" class="custom-control-input"
-                                                                               id="Non-smoking room" name="Nonsmokingroom" />
+                                                                               id="Non-smokingroomUH" name="Nonsmokingroom" />
                                                                         <label class="custom-control-label"
-                                                                               for="Non-smoking room" name="Nonsmokingroom">Non-smoking room</label>
+                                                                               for="Non-smokingroomUH" name="Nonsmokingroom">Non-smoking room</label>
                                                                     </div>
 
                                                                 </div>
                                                                 <div class="col-md-3 col-sm-3 col-xs-3">
                                                                     <div class="custom-control custom-checkbox">
                                                                         <input type="checkbox" class="custom-control-input"
-                                                                               id="Family Rooms" name="FamilyRooms" />
+                                                                               id="FamilyRoomsUH" name="FamilyRooms" />
                                                                         <label class="custom-control-label"
-                                                                               for="Family Rooms" name="FamilyRooms">Family Rooms</label>
+                                                                               for="FamilyRoomsUH" name="FamilyRooms">Family Rooms</label>
                                                                     </div>
                                                                     <div class="custom-control custom-checkbox">
                                                                         <input type="checkbox" class="custom-control-input"
-                                                                               id="Parking" name="Parking" />
+                                                                               id="ParkingUH" name="Parking" />
                                                                         <label class="custom-control-label"
-                                                                               for="Parking" name="Parking">Parking</label>
+                                                                               for="ParkingUH" name="Parking">Parking</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-3 col-sm-3 col-xs-3">
                                                                     <div class="custom-control custom-checkbox">
                                                                         <input type="checkbox" class="custom-control-input"
-                                                                               id="Pets allowed" name="Petsallowed" />
-                                                                        <label class="custom-control-label" for="Pets allowed" name="Petsallowed">Pets
+                                                                               id="PetsallowedUH" name="Petsallowed" />
+                                                                        <label class="custom-control-label" for="PetsallowedUH" name="Petsallowed">Pets
                                                                             allowed</label>
                                                                     </div>
                                                                     <div class="custom-control custom-checkbox">
                                                                         <input type="checkbox" class="custom-control-input"
-                                                                               id="Swimming pool" name="Swimmingpool" />
+                                                                               id="SwimmingpoolUH" name="Swimmingpool" />
                                                                         <label class="custom-control-label"
-                                                                               for="Swimming pool" name="Swimmingpool">Swimming pool</label>
+                                                                               for="SwimmingpoolUH" name="Swimmingpool">Swimming pool</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-3 col-sm-3 col-xs-3">
 
                                                                     <div class="custom-control custom-checkbox">
                                                                         <input type="checkbox" class="custom-control-input"
-                                                                               id="Spa and wellness center" name="Spaandwellnesscenter" />
+                                                                               id="SpaandwellnesscenterUH" name="Spaandwellnesscenter" />
                                                                         <label class="custom-control-label"
-                                                                               for="Spa and wellness center" name="Spaandwellnesscenter">Spa and wellness
+                                                                               for="SpaandwellnesscenterUH" name="Spaandwellnesscenter">Spa and wellness
                                                                             center</label>
                                                                     </div>
                                                                     <div class="custom-control custom-checkbox">
                                                                         <input type="checkbox" class="custom-control-input"
-                                                                               id="Bar" name="Bar" />
-                                                                        <label class="custom-control-label" for="Bar" name="Bar">Bar</label>
+                                                                               id="BarUH" name="Bar" />
+                                                                        <label class="custom-control-label" for="BarUH" name="Bar">Bar</label>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -996,6 +1010,91 @@
                         $('#Settings_context').show();
                     });
 
+
+                    var nameUH = document.getElementById("nameUH");
+                    var hotelnamesel = document.getElementById("selectUH_hotel");
+                    var destinationUH = document.getElementById("destinationUH");
+                    var addressUH = document.getElementById("addressUH");
+                    var postcodeUH = document.getElementById("postcodeUH");
+                    var urlUH = document.getElementById("urlUH");
+                    var phoneUH = document.getElementById("phoneUH");
+                    var emailUH = document.getElementById("emailUH");
+                    var longtitudeUH = document.getElementById("longtitudeUH");
+                    var latitudeUH = document.getElementById("latitudeUH");
+                    var imagespathUH = document.getElementById("imagespathUH");
+                    var descriptionUH = document.getElementById("descriptionUH");
+                    var starsnumberUH = document.getElementById("starsnumberUH");
+                    var selects = document.getElementsByClassName('optdestinationUH');
+                    var sel;
+
+                    document.querySelector("#selectUH_hotel").addEventListener("click", function () {
+                        addname();
+
+                    });
+
+                    function addname() {
+                            <c:forEach items = "${hotels}" var = "hotel">
+                        if (hotelnamesel.value == "${hotel.id}") {
+                            nameUH.value = "${hotel.name}";
+                            destinationUH.value = "${hotel.destinationid}";
+                            addressUH.value = "${hotel.address}";
+                            postcodeUH.value = "${hotel.postcode}";
+                            urlUH.value = "${hotel.siteurl}";
+                            phoneUH.value = "${hotel.phone}";
+                            emailUH.value = "${hotel.email}";
+                            longtitudeUH.value = "${hotel.longtitude}";
+                            latitudeUH.value = "${hotel.latitude}";
+                            imagespathUH.value = "${hotel.imagespath}";
+                            descriptionUH.value = "${hotel.description}";
+                            starsnumberUH.value = "${hotel.starsnumber}";
+
+//                            for (var z = 0; z < selects.length; z++) {
+//                                sel = selects[z];
+//                                if (sel.value == "${hotel.destinationid}") {
+//                                    sel.setAttribute("selected","selected")
+//                                }
+//                            }
+                            document.getElementById("FreeWifiUH").checked = false;
+                            document.getElementById("Non-smokingroomUH").checked = false;
+                            document.getElementById("FamilyRoomsUH").checked = false;
+                            document.getElementById("ParkingUH").checked = false;
+                            document.getElementById("PetsallowedUH").checked = false;
+                            document.getElementById("SwimmingpoolUH").checked = false;
+                            document.getElementById("SpaandwellnesscenterUH").checked = false;
+                            document.getElementById("BarUH").checked = false;
+
+                                <c:forEach items = "${hotelFacilities}" var = "hotelFacilities">
+                            if ("${hotelFacilities.hotel.id}" == hotelnamesel.value) {
+                                if ("${hotelFacilities.facilities.id}" == 1) {
+                                    document.getElementById("FreeWifiUH").checked = true;
+                                }
+                                if ("${hotelFacilities.facilities.id}" == 2) {
+                                    document.getElementById("Non-smokingroomUH").checked = true;
+                                }
+                                if ("${hotelFacilities.facilities.id}" == 3) {
+                                    document.getElementById("FamilyRoomsUH").checked = true;
+                                }
+                                if ("${hotelFacilities.facilities.id}" == 5) {
+                                    document.getElementById("ParkingUH").checked = true;
+                                }
+                                if ("${hotelFacilities.facilities.id}" == 6) {
+                                    document.getElementById("PetsallowedUH").checked = true;
+                                }
+                                if ("${hotelFacilities.facilities.id}" == 8) {
+                                    document.getElementById("SwimmingpoolUH").checked = true;
+                                }
+                                if ("${hotelFacilities.facilities.id}" == 9) {
+                                    document.getElementById("SpaandwellnesscenterUH").checked = true;
+                                }
+                                if ("${hotelFacilities.facilities.id}" == 10) {
+                                    document.getElementById("BarUH").checked = true;
+                                }
+                            }
+                                </c:forEach>
+                        }
+                            </c:forEach>
+                    }
+                    ;
 
 
                     document.querySelector("#btnmap").addEventListener("click", function () {
