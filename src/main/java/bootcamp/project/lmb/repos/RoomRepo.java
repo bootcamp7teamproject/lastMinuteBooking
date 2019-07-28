@@ -43,6 +43,12 @@ public interface RoomRepo extends JpaRepository <Room, Integer> {
     
     
     
-     @Query(value="select room.* from room inner join hotel on room.Hotel_id=hotel.Id inner join user on hotel.Owner_id=user.Id where user.Id=?1 and room.name=?2 ;", nativeQuery=true)
+    @Query(value="select room.* from room inner join hotel on room.Hotel_id=hotel.Id inner join user on hotel.Owner_id=user.Id where user.Id=?1 and room.name=?2 ;", nativeQuery=true)
     public Room getRoomByUserIdandName(int id, String name);
+    
+    @Query(value="select room.* from room inner join hotel on room.Hotel_id=hotel.Id inner join user on hotel.Owner_id=user.Id where user.Id=?1 ;", nativeQuery=true)
+    public ArrayList <Room> getRoomByUserId(int id);
+    
+    @Query(value="delete from room where room.id = ?1 ;", nativeQuery=true)
+    void deleteById(Integer id);
 }

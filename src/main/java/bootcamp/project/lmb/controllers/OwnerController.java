@@ -10,17 +10,26 @@ import bootcamp.project.lmb.dao.HotelDao;
 import bootcamp.project.lmb.dao.HotelFacilitiesDao;
 import bootcamp.project.lmb.dao.RoomDao;
 import bootcamp.project.lmb.dao.RoomEquipmentDao;
+import bootcamp.project.lmb.dao.RoomUnavailabilityDao;
 import bootcamp.project.lmb.dao.UserDao;
-import bootcamp.project.lmb.model.Destination;
 import bootcamp.project.lmb.model.Hotel;
 import bootcamp.project.lmb.model.Room;
+import bootcamp.project.lmb.model.RoomUnavailability;
 import bootcamp.project.lmb.model.User;
+import bootcamp.project.lmb.repos.HotelRepo;
+import bootcamp.project.lmb.repos.RoomRepo;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,6 +50,12 @@ public class OwnerController {
 
     @Autowired
     HotelDao hd;
+    
+    @Autowired
+    HotelRepo hr;
+    
+    @Autowired
+    RoomRepo rr;
 
     @Autowired
     DestinationDao dd;
@@ -53,23 +68,38 @@ public class OwnerController {
 
     @Autowired
     RoomEquipmentDao red;
+    
+    @Autowired
+    RoomUnavailabilityDao rur;
 
+    
+    @InitBinder
+    private void initBinder(WebDataBinder binder){
+          SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(
+                dateFormat, false));
+    }
+    
     @GetMapping("/owner_central")
-    public String ownerServices(ModelMap model,@SessionAttribute("loggedUser") User user, HttpSession session) {
+    public String ownerServices(ModelMap model, @SessionAttribute("loggedUser") User user, HttpSession session) {
         Hotel newhotel = new Hotel();
         Hotel updatehotel = new Hotel();
         Room newroom = new Room();
         Room updateroom = new Room();
         User updateUser = new User();
+        RoomUnavailability roomUnavailability = new RoomUnavailability();
 
         session.setAttribute("hotelFacilities", hfd.getHotelFacilitiesByUserId(user.getId()));
+        session.setAttribute("roomEquipments", red.getRoomEquipmentByUserId(user.getId()));
         session.setAttribute("hotels", hd.getHotelsByUserId(user.getId()));
         session.setAttribute("destinations", dd.getDestinations());
+        session.setAttribute("rooms", rd.getRoomByUserId(user.getId()));
         model.addAttribute("newhotel", newhotel);
         model.addAttribute("updatehotel", updatehotel);
         model.addAttribute("newroom", newroom);
         model.addAttribute("updateroom", updateroom);
         model.addAttribute("updateUser", updateUser);
+        model.addAttribute("roomUnavailability", roomUnavailability);
 
         return "owner_central";
     }
@@ -141,7 +171,7 @@ public class OwnerController {
     ) {
 
 //        Insert hotel
-         hotel.setOwnerid(user);
+        hotel.setOwnerid(user);
         hd.insertHotel(hotel);
 //        ------------
 
@@ -311,7 +341,7 @@ public class OwnerController {
     }
 
     @PostMapping("/settings")
-    public String ownerUpdateRoom(ModelMap model,
+    public String ownerSettings(ModelMap model,
             @ModelAttribute("updateUser") User updateUser,
             @SessionAttribute("loggedUser") User user
     ) {
@@ -321,4 +351,36 @@ public class OwnerController {
         return "redirect:/owner/owner_central";
     }
 
+     @GetMapping(value = "/deletehotel/{hotelid}")
+    public String deleteHotel(@PathVariable(name = "hotelid") Integer hotelid,
+            ModelMap model,
+            @SessionAttribute("loggedUser") User user) {
+        
+        hd.deleteHotel(hotelid);
+ 
+        return "redirect:/owner/owner_central";
+    }
+    
+     @GetMapping(value = "/deleteroom/{roomid}")
+    public String deleteRoom(@PathVariable(name = "roomid") Integer roomid,
+            ModelMap model,
+            @SessionAttribute("loggedUser") User user) {
+        
+        rd.deleteRoom(roomid);
+ 
+        return "redirect:/owner/owner_central";
+    }
+    
+
+           
+    @PostMapping("/unavailability")
+    public String ownerUnavailability(ModelMap model,
+            @ModelAttribute("roomUnavailability") RoomUnavailability roomUnavailability,
+            @SessionAttribute("loggedUser") User user
+    ) {
+
+        rur.insertRoomUnavailability(roomUnavailability);
+
+        return "redirect:/owner/owner_central";
+    }
 }

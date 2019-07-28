@@ -28,7 +28,7 @@ public class HotelDao {
         return hotels;
     }
     
-    public ArrayList <Hotel> getUserSearchHotels(Integer budget, Integer nights, Integer persons, Date checkin, Date checkout) {
+    public ArrayList <Hotel> getUserSearchHotels(Integer budget, Integer nights, Integer persons, String checkin, String checkout) {
         return hr.findSearchHotels(budget, nights, persons, checkin, checkout);
     }
     
@@ -44,6 +44,10 @@ public class HotelDao {
     
     public void insertHotel(Hotel hotel) {
         hr.save(hotel); 
+    }
+    
+    public void deleteHotel(Integer id) {
+        hr.deleteById(id); 
     }
     
 }

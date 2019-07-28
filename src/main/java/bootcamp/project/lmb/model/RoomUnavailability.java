@@ -23,6 +23,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -52,11 +53,13 @@ public class RoomUnavailability implements Serializable {
     @NotNull
     @Column(name = "Start_date")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern="YYYY-MM-dd")
     private Date startdate;
     @Basic(optional = false)
     @NotNull
     @Column(name = "End_date")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern="YYYY-MM-dd")
     private Date enddate;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "Total_cost")

@@ -26,4 +26,13 @@ public class RoomUnavailabilityDao {
         ArrayList <RoomUnavailability> RoomUnavailability = (ArrayList <RoomUnavailability>) rur.findAll();
         return RoomUnavailability;
     }
+    
+    public void insertRoomUnavailability(RoomUnavailability roomUnavailability) {
+        rur.save(roomUnavailability); 
+    }
+    
+    public ArrayList <RoomUnavailability> availableRatings(Integer userid) {
+        ArrayList <RoomUnavailability> availableRatings = rur.availableRatings(userid);
+        return availableRatings;
+    }
 }

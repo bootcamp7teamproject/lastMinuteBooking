@@ -37,8 +37,17 @@ public class RoomDao {
         rr.save(room);
     }
     
+    public void deleteRoom(Integer id) {
+        rr.deleteById(id);
+    }
+    
     public Room getRoomByUserIdandName(int id, String name) {
         Room room = rr.getRoomByUserIdandName(id,name);
         return room;
+    }
+    
+    public ArrayList <Room> getRoomByUserId(int id) {
+        ArrayList <Room> rooms = rr.getRoomByUserId(id);
+        return rooms;
     }
 }

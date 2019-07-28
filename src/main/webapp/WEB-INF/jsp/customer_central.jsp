@@ -60,7 +60,7 @@
                         Welcome, ${sessionScope.loggedUser.name} ${sessionScope.loggedUser.surname}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">View your profile</a>
+                        <a class="dropdown-item" href="#">Services</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/user/logout">Sign out</a>
                     </div>

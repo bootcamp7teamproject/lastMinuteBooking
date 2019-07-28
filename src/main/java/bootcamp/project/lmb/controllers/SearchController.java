@@ -47,12 +47,13 @@ public class SearchController {
         LocalDate checkIn = sdf.parse(checkin).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate checkOut = sdf.parse(checkout).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         Integer nights = checkOut.getDayOfYear() - checkIn.getDayOfYear();             
-        session.setAttribute("searchHotels", hd.getUserSearchHotels(budget, nights, persons, sdf.parse(checkin), sdf.parse(checkout)));
+        session.setAttribute("searchHotels", hd.getUserSearchHotels(budget, nights, persons, checkin, checkout));
         session.setAttribute("nights", nights);
         session.setAttribute("budget", budget);
         session.setAttribute("persons", persons);
         session.setAttribute("checkin", sdf.parse(checkin));
         session.setAttribute("checkout", sdf.parse(checkout));
+        System.out.println(nights);
         return "search_central";
     }
     
