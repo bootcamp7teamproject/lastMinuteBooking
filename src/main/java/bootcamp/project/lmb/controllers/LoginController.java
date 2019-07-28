@@ -45,6 +45,7 @@ public class LoginController {
     @PostMapping("/login")
     public String doLogin(@ModelAttribute("user") User loginUser, HttpSession session, ModelMap model) {
         ArrayList<User> users = ud.getUsers();
+        int counter = 0;
         for (User user : users) {
             String decryptedPassword = new String(decoder.decode(user.getPassword().getBytes()));
             if (user.getUsername().equals(loginUser.getUsername()) && decryptedPassword.equals(loginUser.getPassword())) {
@@ -61,6 +62,17 @@ public class LoginController {
                                 return "redirect:/owner/owner_central";
                         }
                 }
+            }
+            if (user.getUsername().equals(loginUser.getUsername()) && !decryptedPassword.equals(loginUser.getPassword())) {
+                model.addAttribute("wrongPassword", "Wrong Password");
+                return "login";
+            }
+            for (int i = 0; i < users.size(); i++) {
+                if (counter == i) {
+                    model.addAttribute("userDontExist", "This Username doesn't exist.");
+                    return "login";
+                }
+                counter++;
             }
         }
         return "failure";

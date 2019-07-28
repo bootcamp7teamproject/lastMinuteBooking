@@ -30,11 +30,15 @@
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
             <form:label class="sr-only" path="username">Username</form:label>
             <form:input class = "form-control" placeholder = "Username" required = "true" autofocus = "true" path = "username"/>
-            <form:label class="sr-only" path = "password">Password</form:label>
+            <h5 class="mb-3 bg-warning text-white rounded ">${userDontExist}</h5>
+            <form:label class="sr-only" path = "password">Password</form:label>         
             <form:input type = "password" class = "form-control" placeholder = "Password" required = "true" path = "password"/>
+            <h5 class="mb-3 bg-danger text-white rounded ">${wrongPassword}</h5>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            <h1 class="h3 mb-3 font-weight-normal">${pendingRegistration}</h1>
-            <h1 class="h3 mb-3 font-weight-normal">${registrationSuccess}</h1>
+            <h5 class="mb-3 bg-info text-white rounded ">${pendingRegistration}</h5>
+            <h5 class="mb-3 bg-danger text-white rounded ">${registrationSuccess}</h5>
+
+
             <p class="mt-5 mb-3 text-muted">&copy; Bootcamp 7 Team Project</p>
         </form:form><br/>
     </body>
