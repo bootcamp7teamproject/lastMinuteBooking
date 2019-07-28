@@ -68,7 +68,7 @@ public class LoginController {
                 return "login";
             }
             for (int i = 0; i < users.size(); i++) {
-                if (counter == i) {
+                if (counter == users.size()) {
                     model.addAttribute("userDontExist", "This Username doesn't exist.");
                     return "login";
                 }

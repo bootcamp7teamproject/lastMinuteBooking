@@ -20,6 +20,10 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Available Hotels</title>
         <link rel="stylecentral" href="styles.css">
+                <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt8otviU1hSrLQenHKOgpOVH8yUZl2LUI&callback=myMap"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&effect=brick-sign">
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -80,13 +84,13 @@
 
                     <!--SEARCH BOX-->
                     <div id="Search_box" class="container">
-                        <div id="Search_box_inside" class="jumbotron jumbotron-fluid bg-white rounded border-color-navy">
+                        <div id="Search_box_inside" class="jumbotron jumbotron-fluid bg-white rounded border-color-navy shadow">
 
-                            <label id="Search_text" class="control-label font-weight-bold">
+                            <label id="Search_text" class="control-label  w3-lobster w3-xxxlarge">
                                 <h1>Search</h1>
                             </label>
 
-                            <div class="container ">
+                            <div class="container w3-lobster w3-xlarge ">
                                 <form action = "${pageContext.request.contextPath}/user/search" method="post">
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -125,7 +129,7 @@
                                                 </div>
                                                 <div class="col-md-2 col-sm-2 col-xs-2">
                                                     <div id="button_search" class="form-group ">
-                                                        <button class="btn btn-lg bg-navy text-white " id="Search" name="Search" type="submit" >
+                                                        <button class="btn btn-lg bg-navy text-white w3-lobster w3-xlarge " id="Search" name="Search" type="submit" >
                                                             &nbsp;&nbsp;&nbsp;Search&nbsp;&nbsp;&nbsp;
                                                         </button>
                                                     </div>
@@ -140,6 +144,24 @@
 
                     <div class="row">
                         <aside class="col-md-3 col-sm-3 col-xs-3">
+
+                            <!-- Trigger/Open The Modal -->
+
+                                        <h6 class="title text-white"> <button class="btn btn-warning btn-lg btn-block" type="button" id="myBtn">Show hotels on Map</button></h6>
+
+                           
+
+                            <!-- The Modal -->
+                            <div id="myModal" class="modal">
+                                <!-- Modal content -->
+                                <div class="modal-content">
+                                        <span class="close" style="close">&times;</span>
+                                    <div id="map">
+                                        <div class ="container" id="hotelsmap" style="height: 100vh"></div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="card">
                                 <article class="card-group-item">
                                     <header class="card-header bg-navy">
@@ -363,7 +385,7 @@
 
                         <aside class="col-md-9 col-sm-9 col-xs-9">
                             <div class="container">
-                                <div class="jumbotron jumbotron-fluid bg-white rounded  border-color-navy"
+                                <div class="jumbotron jumbotron-fluid bg-white shadow rounded border-color-navy2 "
                                      style="padding-top:15px; padding-bottom:15px">
                                     <div class="container">
                                         <div class="row">
@@ -375,17 +397,17 @@
                                             <c:forEach items = "${searchHotels}" var = "hotel">
                                                 <div class="col-md-8 col-sm-8 col-xs-8">
                                                     <p class="text-left">
-                                                    <h1 class="title text-navy" style="font-weight: bold">${hotel.name}</h1>
+                                                    <h1 class="w3-lobster  w3-xxlarge" >${hotel.name}</h1>
+                                                    </p>                         
+                                                    <p class="text-left">
+                                                    <h2 class="w3-lobster w3-xlarge">${hotel.address},${hotel.destinationid.name}</h2>
                                                     </p>
                                                     <p class="text-left">
                                                     <h2 class="title text-navy">Rating</h2>
                                                     </p>
-                                                    <p class="text-left">
-                                                    <h2 class="title text-navy">Cost per night</h2>
-                                                    </p>
                                                     <div class="btn" style="padding-left:300px">
-                                                        <a href="${pageContext.request.contextPath}/user/search/${hotel.id}"><button class="btn bg-navy text-white " id="Search" name="Search">
-                                                            Choose your room >
+                                                        <a href="${pageContext.request.contextPath}/user/search/${hotel.id}"><button class="btn bg-navy w3-lobster w3-xlarge text-white " id="Search" name="Search">
+                                                                Choose your room >
                                                             </button></a>
                                                     </div>
                                                 </div>
@@ -397,5 +419,67 @@
                     </div>
             </div>
         </div>
+
+        <script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+            btn.onclick = function () {
+                modal.style.display = "block";
+
+               
+                    var options = {
+                        zoom: 6,
+                        center: {lat: 37.9838, lng: 23.7275}
+                    }
+
+                    var map = new google.maps.Map(document.getElementById('map'), options);
+
+            <c:forEach items = "${searchHotels}" var = "hotel">
+                    addMarker({coords: {lat:${hotel.longtitude}, lng:${hotel.latitude}},
+                        content: '<h1>${hotel.name}</h1>'
+                    });
+            </c:forEach>
+
+                    function addMarker(props) {
+                        var marker = new google.maps.Marker({
+                            position: props.coords,
+                            map: map
+                        });
+
+                        if (props.content) {
+                            var infoWindow = new google.maps.InfoWindow({
+                                content: props.content
+
+                            });
+                            marker.addListener('click', function () {
+                                infoWindow.open(map, marker);
+                            });
+                        }
+                    }
+                
+            }
+
+// When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+// When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+
+        </script>
     </body>
 </html>

@@ -15,9 +15,18 @@ and open the template in the editor.
     border-color:rgb(4,4,30);
     border-width: 3px;}
 
+.border-color-navy2{
+    border-style: solid;
+    border-color:rgb(4,4,30);
+    border-width: 1px;}
+
 .text-navy{
     color:rgb(4,4,30);
     font-family: "Times New Roman", Times, serif;
+}
+
+.w3-lobster {
+  font-family: "Lobster", Sans-serif;
 }
 
 #Search_text{
@@ -55,3 +64,30 @@ and open the template in the editor.
     margin-bottom: 0px;
 }
 
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  text-align:right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;}
+
+#map {
+    height: 550px;
+    width: 100%
+}
