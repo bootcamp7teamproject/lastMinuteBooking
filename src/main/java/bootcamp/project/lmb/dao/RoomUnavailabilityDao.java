@@ -35,4 +35,9 @@ public class RoomUnavailabilityDao {
         RoomUnavailability availableRatings = rur.availableRatings(userid);
         return availableRatings;
     }
+    
+     public ArrayList <RoomUnavailability> reservations(Integer userid) {
+        ArrayList <RoomUnavailability> reservations = rur.reservetions(userid);
+        return reservations;
+    }
 }

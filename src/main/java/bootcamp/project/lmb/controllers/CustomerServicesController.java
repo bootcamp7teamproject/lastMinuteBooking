@@ -8,10 +8,12 @@ package bootcamp.project.lmb.controllers;
 import bootcamp.project.lmb.dao.HotelDao;
 import bootcamp.project.lmb.dao.RatingDao;
 import bootcamp.project.lmb.dao.RoomUnavailabilityDao;
+import bootcamp.project.lmb.dao.UserDao;
 import bootcamp.project.lmb.model.Hotel;
 import bootcamp.project.lmb.model.Rating;
 import bootcamp.project.lmb.model.RoomUnavailability;
 import bootcamp.project.lmb.model.User;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class CustomerServicesController {
 
     @Autowired
+    UserDao ud;
+    
+    @Autowired
     RoomUnavailabilityDao rur;
 
     @Autowired
@@ -49,14 +54,19 @@ public class CustomerServicesController {
 
         User updateUser = new User();
         RoomUnavailability availableRatings = rur.availableRatings(user.getId());
-        if(availableRatings!=null){
-                    session.setAttribute("availableRatings", availableRatings);
-                    session.setAttribute("hotelRating", hd.getHotelById(rur.availableRatings(user.getId()).getHotelid().getId()));
-        }
-        else{
+        ArrayList<RoomUnavailability> reservations = rur.reservations(user.getId());
+        if (availableRatings != null) {
+            session.setAttribute("availableRatings", availableRatings);
+            session.setAttribute("hotelRating", hd.getHotelById(rur.availableRatings(user.getId()).getHotelid().getId()));
+        } else {
             session.removeAttribute("availableRatings");
         }
         
+        if(reservations != null){
+            session.setAttribute("reservations", reservations);
+        }
+        
+
         model.addAttribute("updateUser", updateUser);
         return "customer_services";
     }
@@ -73,9 +83,22 @@ public class CustomerServicesController {
             @RequestParam(value = "Comments") String Comments
     ) {
 
-        float rating = (GeneralAssessment + Cleanliness + Staffing + HotelFacilities + RoomEquipment) / 5;
+        float rating = (float) ((GeneralAssessment + Cleanliness + Staffing + HotelFacilities + RoomEquipment) / 2.5);
 
         rd.insertRating(user.getId(), hotel.getId(), rating, Comments);
+
+        return "redirect:/user/customer_services";
+    }
+
+    @PostMapping("/updateOwnerSettings")
+    public String ownerupdateUserSettings(ModelMap model,
+            @SessionAttribute("loggedUser") User user,
+            @ModelAttribute("updateUser") User updateUser,
+            HttpSession session
+    ) {
+
+        ud.insertUser(updateUser);
+        session.setAttribute("loggedUser", updateUser);
 
         return "redirect:/user/customer_services";
     }

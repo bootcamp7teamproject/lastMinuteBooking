@@ -383,4 +383,18 @@ public class OwnerController {
 
         return "redirect:/owner/owner_central";
     }
+    
+    
+    @PostMapping("/updateOwnerSettings")
+    public String ownerupdateUserSettings(ModelMap model,          
+            @SessionAttribute("loggedUser") User user,
+            @ModelAttribute("updateUser") User updateUser,
+            HttpSession session
+    ) {
+
+        ud.insertUser(updateUser);
+        session.setAttribute("loggedUser", updateUser);
+
+        return "redirect:/owner/owner_central";
+    }
 }

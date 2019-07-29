@@ -28,4 +28,13 @@ public interface RoomUnavailabilityRepo extends JpaRepository<RoomUnavailability
             nativeQuery = true
     )
     RoomUnavailability availableRatings(Integer userid);
+
+    @Query(
+            value = "select ru.* from hotel h\n"
+            + "inner join room_unavailability ru\n"
+            + "on h.Id=ru.Hotel_id \n"
+            + "where ru.User_id=2 order by ru.End_date desc;",
+            nativeQuery = true
+    )
+    ArrayList<RoomUnavailability> reservetions(Integer userid);
 }

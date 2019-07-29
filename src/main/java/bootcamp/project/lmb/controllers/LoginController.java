@@ -67,13 +67,6 @@ public class LoginController {
                 model.addAttribute("wrongPassword", "Wrong Password");
                 return "login";
             }
-            for (int i = 0; i < users.size(); i++) {
-                if (counter == users.size()) {
-                    model.addAttribute("userDontExist", "This Username doesn't exist.");
-                    return "login";
-                }
-                counter++;
-            }
         }
         return "failure";
     }

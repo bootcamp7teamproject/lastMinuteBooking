@@ -114,7 +114,7 @@
 
                 </aside>
                 <aside class="col-md-10 col-sm-10 col-xs-10 ">
-                        <div class="jumbotron jumbotron-fluid  pad-top">
+                        <div class="jumbotron jumbotron-fluid bg-white pad-top">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -741,14 +741,14 @@
                                                             <div class="collapse multi-collapse" id="Settings_context">
                                                                 <div class="card card-body border-color-navy rounded">
                                                                     <form:form class="form-signin"
-                                                                               action="${pageContext.request.contextPath}/owner/settings" method="POST"
+                                                                               action="${pageContext.request.contextPath}/owner/updateOwnerSettings" method="POST"
                                                                                modelAttribute="updateUser"> 
                                                                         <h1 class="h3 mb-3 font-weight-normal">Please update your personal
                                                                             information</h1>
                                                                         <form:label path="name">Type your first name
                                                                         </form:label>
                                                                         <form:input class="form-control mb-2" style="display:none" placeholder="First name" required="true"
-                                                                                    autofocus="true" path="id" value="${loggedUser.id}" />
+                                                                                    autofocus="true" path="id" value="${sessionScope.loggedUser.id}" />
                                                                         <form:input class="form-control mb-2" id="nameUP" value="${sessionScope.loggedUser.name}" placeholder="First name" required="true"
                                                                                     autofocus="true" path="name" />
                                                                         <form:label path="surname">Type your last name

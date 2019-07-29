@@ -95,15 +95,46 @@
 
                 </aside>
                 <aside class="col-md-10 col-sm-10 col-xs-10 ">
-                    <div class="jumbotron jumbotron-fluid  pad-top">
-                        <div class="container">
+                    <div class="jumbotron jumbotron-fluid bg-white zeropadding pad-top">
+                        <div class="container zeropadding">
                             <div class="row">
 
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="collapse multi-collapse" id="Bookings_context">
                                         <div class="card card-body fluid">
+                                            <h3 display="none"><p id="reservationsText" class="text text-center"></p></h3>
+                                                <c:forEach items = "${reservations}" var = "reservations">
+                                                <div id="reservationsform" class="shadow rounded border-color-navy2">
+                                                    <div class="container zeropadding">
+                                                        <div class="row">
+                                                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                                                <p class="text-left">
+                                                                <h3 class="w3-lobster  w3-xxlarge" style="padding-left: 10px;">Residence Period:</h3>
+                                                                <h3 class="w3-lobster  w3-xxlarge" style="padding-left: 10px;">From ${reservations.startdate} to ${reservations.enddate} </h3>
+                                                                </p>
+                                                                <p class="text-left">
+                                                                <h3 class="w3-lobster  w3-xxlarge" style="padding-left: 10px;" >${reservations.hotelid.name}</h3>
+                                                                </p>                         
+                                                                <p class="text-left">
+                                                                <h3 class="w3-lobster w3-xlarge" style="padding-left: 10px;">${reservations.hotelid.address},${reservations.hotelid.destinationid.name}</h3>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                                                <!--                                                                <div class="btn" display="none" style="padding-top: 20px;padding-left: 80px;" >
+                                                                                                                                    <a href=""><button class="btn btn-success text-white " id="c${reservations.id}">Complete
+                                                                                                                                        </button></a>
+                                                                                                                                </div>-->
+                                                                <div class="btn" display="none" style="padding-top: 20px;padding-left: 80px;" >
+                                                                    <a href=""><button class="btn text-white " id="status${reservations.id}">
+                                                                            <h6> <p id="buttonText${reservations.id}" class="text text-center"></p></h6></button></a>
+                                                                </div>
+                                                            </div>
 
 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +142,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="collapse multi-collapse" id="Reviews_context">
                                         <div class="card card-body border-color-navy rounded">
-                                            <h3 display="none"><p id="insertTextHere" class="text text-center"></p></h3>
+                                            <h3 display="none"><p id="ratingText" class="text text-center"></p></h3>
                                             <div id="ratingform">
                                                 <form class="form-signin"
                                                       action="${pageContext.request.contextPath}/user/submitRating" method="POST">
@@ -214,8 +245,8 @@
                                                 <form:label path="name">Type your first name
                                                 </form:label>
                                                 <form:input class="form-control mb-2" style="display:none"
-                                                            placeholder="First name" required="true" autofocus="true" path="id"
-                                                            value="${loggedUser.id}" />
+                                                            required="true" autofocus="true" path="id"
+                                                            value="${sessionScope.loggedUser.id}" />
                                                 <form:input class="form-control mb-2" id="nameUP"
                                                             value="${sessionScope.loggedUser.name}" placeholder="First name"
                                                             required="true" autofocus="true" path="name" />
@@ -282,12 +313,12 @@
 
 
 
-//            $('#btn0').click(function () {
-//                $('#Bookings_context').show();
-//                $('#Reviews_context').hide();
-//                $('#Settings_context').hide();
-//
-//            });
+            $('#btn0').click(function () {
+                $('#Bookings_context').show();
+                $('#Reviews_context').hide();
+                $('#Settings_context').hide();
+
+            });
 
             $('#btn1').click(function () {
                 $('#Bookings_context').hide();
@@ -308,12 +339,56 @@
             });
             function displayblock() {
 
-            <c:if test="${availableRatings.userid== null}" >
+            <c:if test="${availableRatings.userid == null}" >
                 ratingform.style.display = "none";
-                $("#insertTextHere").text("You don't have to rate any hotel");
-                $("#insertTextHere").style.display = "block";
+                $("#ratingText").text("You don't have to rate any hotel");
+                $("#ratingText").style.display = "block";
             </c:if>
             }
+            ;
+
+            var reservationsform = document.getElementById("reservationsform");
+            document.querySelector("#btn0").addEventListener("click", function () {
+                displaybookingblock();
+
+            });
+            function displaybookingblock() {
+
+            <jsp:useBean id="now" class="java.util.Date"/>
+
+
+            <c:if test="${reservations[0].userid == null}" >
+                reservationsform.style.display = "none";
+                $("#reservationsText").text("You haven't done any reservation until now.");
+                $("#reservationsText").style.display = "block";
+            </c:if>
+
+            <c:forEach items = "${reservations}" var = "reservations">
+
+                var buttonstatus = document.getElementById("status${reservations.id}");
+                var buttonText = document.getElementById("buttonText${reservations.id}");
+
+
+                <c:if test="${reservations.enddate lt now}" >
+
+                buttonstatus.classList.add("btn-success");
+                $("#buttonText${reservations.id}").text("Complete");
+                </c:if>
+                <c:if test="${reservations.enddate gt now}" >
+
+                buttonstatus.classList.add("btn-warning");
+                $("#buttonText${reservations.id}").text("In progress");
+                </c:if>
+
+
+            </c:forEach>
+            }
+            ;
+
+
+
+
+
 
         </script>
 
