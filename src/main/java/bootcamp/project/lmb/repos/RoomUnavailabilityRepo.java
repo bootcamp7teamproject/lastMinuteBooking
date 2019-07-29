@@ -27,5 +27,5 @@ public interface RoomUnavailabilityRepo extends JpaRepository<RoomUnavailability
             + "where ru.End_date<CAST(CURRENT_TIMESTAMP AS DATE) and r.User_id is null and r.Hotel_id is null and ru.User_id= ?1 ;",
             nativeQuery = true
     )
-    ArrayList<RoomUnavailability> availableRatings(Integer userid);
+    RoomUnavailability availableRatings(Integer userid);
 }

@@ -27,4 +27,8 @@ public class RatingDao {
         return ratings;
     }
     
+    public void insertRating(int userid,int hotelid,float rating, String Comments ) {
+        rr.insertRating(userid, hotelid, rating, Comments);
+        
+    }
 }

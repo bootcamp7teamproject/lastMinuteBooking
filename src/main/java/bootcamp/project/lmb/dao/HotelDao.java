@@ -50,4 +50,10 @@ public class HotelDao {
         hr.deleteById(id); 
     }
     
+    public Hotel getHotelById(Integer id) {
+       Hotel hotel= hr.gethotelById(id);
+       
+       return hotel;
+    }
+    
 }

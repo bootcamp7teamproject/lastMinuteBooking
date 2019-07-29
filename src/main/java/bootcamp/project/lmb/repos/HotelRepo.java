@@ -48,4 +48,8 @@ public interface HotelRepo extends JpaRepository <Hotel, Integer> {
     
     @Query(value="delete from hotel where hotel.id = ?1 ;", nativeQuery=true)
     void deleteById(Integer id);
+    
+    @Query(value="select * from hotel where hotel.id = ?1 ;", nativeQuery=true)
+    Hotel gethotelById(Integer id);
+
 }

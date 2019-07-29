@@ -7,56 +7,91 @@ and open the template in the editor.
     Created on : 28 Ιουλ 2019, 9:38:59 μμ
     Author     : minas
 */
+.bg-navy  { background-color: rgb(4,4,30)}
 
-.bg-navy {
-    background-color: rgb(4, 4, 30)
-}
-
-.border-color-navy {
+.border-color-navy{
     border-style: solid;
-    border-color: rgb(4, 4, 30);
-    border-width: 3px;
-}
+    border-color:rgb(4,4,30);
+    border-width: 3px;}
 
-.text-navy {
-    color: rgb(4, 4, 30);
+.text-navy{
+    color:rgb(4,4,30);
     font-family: "Times New Roman", Times, serif;
 }
 
-.text-white{
-    color: white;
+#button_search{
+    margin-top:25px;
+    width: 200px;
+
 }
-
-
-#home_link {
+#home_link{
     font-size: 150%;
     color: white;
     border-style: solid;
-    border-color: white;
+    border-color:white;
     border-width: 3px;
 }
 
-#dropdown_customer {
+#dropdown_customer{
     margin-bottom: 0px;
 }
-
-#icon{
-    height: 2px;
-    width: 2px;
-    
+.custom{
+    width: 150px ;
+}   
+.disabled{
+    pointer-events: none;
+}
+.pad-top{
+    padding-top: 35px;
 }
 
-.list-group li:nth-child(1){
-    border-top: 0 none;
-  }
+.rating{
 
-  .list-group-item {
-    overflow: hidden;
-    display: table;
-  }
-  
- .vertical-align {
-    display: table-cell; 
-    vertical-align: middle; 
-    float:none;
-  }
+margin-left: 90px;
+    margin-top: 30px;
+    transform:translate(-50%,-50%) rotateY(180deg);
+    display:flex;
+
+}
+
+.rating input{
+    display:none;
+
+}
+
+.rating label{
+    display:block;
+    cursor:pointer;
+    width:50px;
+
+}
+
+.rating label:before{
+    content:'\f005';
+    font-family: fontAwesome;
+    position:relative;
+    display:block;
+    font-size:50px;
+    color:#101010;
+
+}
+
+.rating label:after{
+    content:'\f005';
+    font-family: fontAwesome;
+    position:absolute;
+    display:block;
+    font-size:50px;
+    color:#1f9cff;
+    top:0;
+    opacity: 0;
+    transition:.5s;
+    text-shadow: 0 2px 5px rgba(0,0,0,.5);
+}
+
+.rating label:hover:after,
+.rating label:hover~ label:after,
+.rating input:checked ~ label:after
+{
+    opacity: 1;
+}

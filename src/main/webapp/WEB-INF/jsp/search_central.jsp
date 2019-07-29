@@ -20,10 +20,10 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Available Hotels</title>
         <link rel="stylecentral" href="styles.css">
-                <script async defer
+        <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt8otviU1hSrLQenHKOgpOVH8yUZl2LUI&callback=myMap"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&effect=brick-sign">
-        
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -67,7 +67,7 @@
                             Welcome, ${sessionScope.loggedUser.name} ${sessionScope.loggedUser.surname}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="">Services</a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/user/customer_services">Services</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/user/logout">Sign out</a>
                         </div>
@@ -147,15 +147,15 @@
 
                             <!-- Trigger/Open The Modal -->
 
-                                        <h6 class="title text-white"> <button class="btn btn-warning btn-lg btn-block" type="button" id="myBtn">Show hotels on Map</button></h6>
+                            <h6 class="title text-white"> <button class="btn btn-warning btn-lg btn-block" type="button" id="myBtn">Show hotels on Map</button></h6>
 
-                           
+
 
                             <!-- The Modal -->
                             <div id="myModal" class="modal">
                                 <!-- Modal content -->
                                 <div class="modal-content">
-                                        <span class="close" style="close">&times;</span>
+                                    <span class="close" style="close">&times;</span>
                                     <div id="map">
                                         <div class ="container" id="hotelsmap" style="height: 100vh"></div>
                                     </div>
@@ -434,37 +434,37 @@
             btn.onclick = function () {
                 modal.style.display = "block";
 
-               
-                    var options = {
-                        zoom: 6,
-                        center: {lat: 37.9838, lng: 23.7275}
-                    }
 
-                    var map = new google.maps.Map(document.getElementById('map'), options);
+                var options = {
+                    zoom: 6,
+                    center: {lat: 37.9838, lng: 23.7275}
+                }
+
+                var map = new google.maps.Map(document.getElementById('map'), options);
 
             <c:forEach items = "${searchHotels}" var = "hotel">
-                    addMarker({coords: {lat:${hotel.longtitude}, lng:${hotel.latitude}},
-                        content: '<h1>${hotel.name}</h1>'
-                    });
+                addMarker({coords: {lat:${hotel.longtitude}, lng:${hotel.latitude}},
+                    content: '<h1>${hotel.name}</h1>'
+                });
             </c:forEach>
 
-                    function addMarker(props) {
-                        var marker = new google.maps.Marker({
-                            position: props.coords,
-                            map: map
+                function addMarker(props) {
+                    var marker = new google.maps.Marker({
+                        position: props.coords,
+                        map: map
+                    });
+
+                    if (props.content) {
+                        var infoWindow = new google.maps.InfoWindow({
+                            content: props.content
+
                         });
-
-                        if (props.content) {
-                            var infoWindow = new google.maps.InfoWindow({
-                                content: props.content
-
-                            });
-                            marker.addListener('click', function () {
-                                infoWindow.open(map, marker);
-                            });
-                        }
+                        marker.addListener('click', function () {
+                            infoWindow.open(map, marker);
+                        });
                     }
-                
+                }
+
             }
 
 // When the user clicks on <span> (x), close the modal
