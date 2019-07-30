@@ -63,4 +63,7 @@ public class SearchController {
         rd.getUserSearchRooms(budget, nights, persons, checkin, checkout, hotelId);
         return "room";
     }
+    
+
+    
 }

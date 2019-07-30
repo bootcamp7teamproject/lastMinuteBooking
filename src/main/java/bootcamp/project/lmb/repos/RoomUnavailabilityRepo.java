@@ -5,19 +5,22 @@
  */
 package bootcamp.project.lmb.repos;
 
+import bootcamp.project.lmb.model.Hotel;
 import bootcamp.project.lmb.model.Room;
 import bootcamp.project.lmb.model.RoomUnavailability;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Panos
  */
+@Transactional
 @Repository
 public interface RoomUnavailabilityRepo extends JpaRepository<RoomUnavailability, Integer> {
 
@@ -37,4 +40,8 @@ public interface RoomUnavailabilityRepo extends JpaRepository<RoomUnavailability
             nativeQuery = true
     )
     ArrayList<RoomUnavailability> reservetions(Integer userid);
+
+    @Modifying
+    @Query(value = "delete from room_unavailability where Id= ?1 ;", nativeQuery = true)
+    void deleteReservation(int id);
 }

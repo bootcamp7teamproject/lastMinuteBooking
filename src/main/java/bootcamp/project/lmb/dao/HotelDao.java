@@ -9,6 +9,7 @@ import bootcamp.project.lmb.model.Hotel;
 import bootcamp.project.lmb.repos.HotelRepo;
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,11 +48,11 @@ public class HotelDao {
     }
     
     public void deleteHotel(Integer id) {
-        hr.deleteById(id); 
+        hr.deleteHotel(id); 
     }
     
-    public Hotel getHotelById(Integer id) {
-       Hotel hotel= hr.gethotelById(id);
+    public  Hotel getHotelById(Integer id) {
+        Hotel hotel= hr.getHotelById(id);
        
        return hotel;
     }

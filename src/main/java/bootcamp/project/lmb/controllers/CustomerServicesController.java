@@ -10,11 +10,9 @@ import bootcamp.project.lmb.dao.RatingDao;
 import bootcamp.project.lmb.dao.RoomUnavailabilityDao;
 import bootcamp.project.lmb.dao.UserDao;
 import bootcamp.project.lmb.model.Hotel;
-import bootcamp.project.lmb.model.Rating;
 import bootcamp.project.lmb.model.RoomUnavailability;
 import bootcamp.project.lmb.model.User;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,9 +37,9 @@ public class CustomerServicesController {
 
     @Autowired
     UserDao ud;
-    
+
     @Autowired
-    RoomUnavailabilityDao rur;
+    RoomUnavailabilityDao rud;
 
     @Autowired
     HotelDao hd;
@@ -53,20 +51,20 @@ public class CustomerServicesController {
     public String getCustomerServices(ModelMap model, @SessionAttribute("loggedUser") User user, HttpSession session) {
 
         User updateUser = new User();
-        RoomUnavailability availableRatings = rur.availableRatings(user.getId());
-        ArrayList<RoomUnavailability> reservations = rur.reservations(user.getId());
+        RoomUnavailability availableRatings = rud.availableRatings(user.getId());
+        ArrayList<RoomUnavailability> reservations = rud.reservations(user.getId());
         if (availableRatings != null) {
             session.setAttribute("availableRatings", availableRatings);
-            session.setAttribute("hotelRating", hd.getHotelById(rur.availableRatings(user.getId()).getHotelid().getId()));
+            session.setAttribute("hotelRating", hd.getHotelById(rud.availableRatings(user.getId()).getHotelid().getId()));
         } else {
             session.removeAttribute("availableRatings");
         }
-        
-        if(reservations != null){
+
+        if (reservations != null) {
             session.setAttribute("reservations", reservations);
         }
-        
 
+        session.setAttribute("loggedUser", user);
         model.addAttribute("updateUser", updateUser);
         return "customer_services";
     }
@@ -90,15 +88,24 @@ public class CustomerServicesController {
         return "redirect:/user/customer_services";
     }
 
-    @PostMapping("/updateOwnerSettings")
-    public String ownerupdateUserSettings(ModelMap model,
+    @PostMapping("/updateUserSettings")
+    public String updateUserSettings(ModelMap model,
             @SessionAttribute("loggedUser") User user,
             @ModelAttribute("updateUser") User updateUser,
             HttpSession session
     ) {
 
         ud.insertUser(updateUser);
-        session.setAttribute("loggedUser", updateUser);
+
+        return "redirect:/user/customer_services";
+    }
+
+    @GetMapping("/deletereservation/{reservationid}")
+    public String deleteReservation(ModelMap model,
+            @PathVariable(name = "reservationid") Integer reservationid
+    ) {
+
+        rud.deleteReservation(reservationid);
 
         return "redirect:/user/customer_services";
     }

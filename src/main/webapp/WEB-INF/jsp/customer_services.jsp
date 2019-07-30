@@ -52,7 +52,7 @@
                     <ul class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Welcome, ${sessionScope.loggedUser.name} ${sessionScope.loggedUser.surname}
+                            ${sessionScope.loggedUser.name} ${sessionScope.loggedUser.surname}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">View your profile</a>
@@ -104,7 +104,7 @@
                                         <div class="card card-body fluid">
                                             <h3 display="none"><p id="reservationsText" class="text text-center"></p></h3>
                                                 <c:forEach items = "${reservations}" var = "reservations">
-                                                <div id="reservationsform" class="shadow rounded border-color-navy2">
+                                                <div id="reservationsform" class="shadow rounded border-color-navy2 mb-2">
                                                     <div class="container zeropadding">
                                                         <div class="row">
                                                             <div class="col-md-8 col-sm-8 col-xs-8">
@@ -120,13 +120,15 @@
                                                                 </p>
                                                             </div>
                                                             <div class="col-md-4 col-sm-4 col-xs-4">
-                                                                <!--                                                                <div class="btn" display="none" style="padding-top: 20px;padding-left: 80px;" >
-                                                                                                                                    <a href=""><button class="btn btn-success text-white " id="c${reservations.id}">Complete
-                                                                                                                                        </button></a>
-                                                                                                                                </div>-->
+
                                                                 <div class="btn" display="none" style="padding-top: 20px;padding-left: 80px;" >
-                                                                    <a href=""><button class="btn text-white " id="status${reservations.id}">
+                                                                    <a href=""><button class="text-white text-center btn block " id="status${reservations.id}">
                                                                             <h6> <p id="buttonText${reservations.id}" class="text text-center"></p></h6></button></a>
+                                                                </div>
+
+                                                                <div class="btn" display="none" id="delete${reservations.id}" style="padding-top: 20px;padding-left: 80px;" >
+                                                                    <a href="${pageContext.request.contextPath}/user/deletereservation/${reservations.id}"><button class="btn btn-danger block text-white " >
+                                                                            <h6> <p id="buttonText${reservations.id}" class="text text-center"></p>CANCEL YOUR RESERVATION</h6></button></a>
                                                                 </div>
                                                             </div>
 
@@ -238,7 +240,7 @@
                                     <div class="collapse multi-collapse" id="Settings_context">
                                         <div class="card card-body border-color-navy rounded">
                                             <form:form class="form-signin"
-                                                       action="${pageContext.request.contextPath}/owner/settings" method="POST"
+                                                       action="${pageContext.request.contextPath}/user/updateUserSettings" method="POST"
                                                        modelAttribute="updateUser">
                                                 <h1 class="h3 mb-3 font-weight-normal">Please update your personal
                                                     information</h1>
@@ -283,14 +285,16 @@
                                                 <form:label path="username">Type your username
                                                 </form:label>
                                                 <form:input class="form-control mb-2" id="usernameUP"
-                                                            value="${sessionScope.loggedUser.postcode}" placeholder="Username"
+                                                            value="${sessionScope.loggedUser.username}" placeholder="Username"
                                                             required="true" path="username" />
-                                                <form:label path="password">Type your password
-                                                </form:label>
-                                                <form:input type="password" class="form-control mb-2" required="true"
-                                                            path="password" />
-
-                                                <button class="btn btn-lg btn-primary btn-block mt-2"
+                                                
+                                                <form:label path="password" style="display:none">Type your password</form:label>
+                                                <form:input type="password" style="display:none" class="form-control mb-2" required="true" id="userpassword"
+                                                            value="${sessionScope.loggedUser.password}" path="password" />
+                                                <form:input type="role" style="display:none" class="form-control mb-2" required="true" id="role"
+                                                            value="${sessionScope.loggedUser.role.id}" path="role" />
+                                                <!--<p id="wrongpassword">The password is wrong</p>-->
+                                                <button id="submitbutton" class="btn btn-lg btn-primary btn-block mt-2"
                                                         type="submit">Submit</button>
 
                                             </form:form>
@@ -366,18 +370,22 @@
             <c:forEach items = "${reservations}" var = "reservations">
 
                 var buttonstatus = document.getElementById("status${reservations.id}");
+                var buttondelete = document.getElementById("delete${reservations.id}");
                 var buttonText = document.getElementById("buttonText${reservations.id}");
 
 
                 <c:if test="${reservations.enddate lt now}" >
-
+                buttondelete.style.display = "none";
                 buttonstatus.classList.add("btn-success");
-                $("#buttonText${reservations.id}").text("Complete");
+                buttonstatus.classList.add("block");
+                $("#buttonText${reservations.id}").text("COMPLETE");
                 </c:if>
                 <c:if test="${reservations.enddate gt now}" >
 
+                buttondelete.style.display = "block";
                 buttonstatus.classList.add("btn-warning");
-                $("#buttonText${reservations.id}").text("In progress");
+                buttonstatus.classList.add("block");
+                $("#buttonText${reservations.id}").text("IN PRGOGRESS");
                 </c:if>
 
 
@@ -385,9 +393,24 @@
             }
             ;
 
-
-
-
+//            document.querySelector("#userpassword").addEventListener("change", function () {
+//                checkpassword();
+//
+//            });
+//
+//            function checkpassword() {
+//
+//                var password = document.getElementById("userpassword").value;
+//            <c:if test="${loggedUser.password != password}" >
+//                $("#wrongpassword").style.display = "block";
+//                $("#buttonsubmit").disabled = true;
+//            </c:if>
+//                 <c:if test="${loggedUser.password == password}" >
+//                $("#wrongpassword").style.display = "none";
+//                $("#buttonsubmit").disabled = false;
+//            </c:if>
+//
+//            }
 
 
         </script>

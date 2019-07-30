@@ -31,6 +31,10 @@ public class RoomUnavailabilityDao {
         rur.save(roomUnavailability); 
     }
     
+    public void deleteReservation(Integer id) {
+        rur.deleteReservation(id); 
+    }
+    
     public RoomUnavailability availableRatings(Integer userid) {
         RoomUnavailability availableRatings = rur.availableRatings(userid);
         return availableRatings;
