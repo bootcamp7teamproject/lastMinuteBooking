@@ -400,7 +400,7 @@
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" class="custom-control-input"
                                                                            id="FreeWifiUH" name="FreeWifi" />
-                                                                    <label class="custom-control-label" for="Free Wifi" name="FreeWifi">Free Wifi</label>
+                                                                    <label class="custom-control-label" for="FreeWifiUH" name="FreeWifi">Free Wifi</label>
                                                                 </div>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" class="custom-control-input"
@@ -496,6 +496,10 @@
                                                 </form:label>
                                                 <form:input class="form-control mb-2" placeholder="Price per night"
                                                             required="true" path="pricepernight" />
+                                                <form:label path="description">Description
+                                                </form:label>
+                                                <form:input class="form-control mb-2" placeholder="Description"
+                                                            required="true" path="description" />
 
 
 

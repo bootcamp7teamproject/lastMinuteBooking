@@ -213,7 +213,7 @@ public class OwnerController {
     public String ownerAddRoom(ModelMap model,
             @ModelAttribute("newRoom") Room room,
             @SessionAttribute("loggedUser") User user,
-            @SessionAttribute("Kitchen") boolean Kitchen,
+            @RequestParam(value = "Kitchen", required = false, defaultValue = "false") boolean Kitchen,
             @RequestParam(value = "Privatebathroom", required = false, defaultValue = "false") boolean Privatebathroom,
             @RequestParam(value = "AirConditioning", required = false, defaultValue = "false") boolean AirConditioning,
             @RequestParam(value = "Bath", required = false, defaultValue = "false") boolean Bath,
