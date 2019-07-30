@@ -78,4 +78,10 @@ public class LoginController {
         model.addAttribute("user", u);
         return "login";
     }
+
+    @GetMapping("/customerCentral")
+    public String customerCentral(HttpSession session, ModelMap model) {
+
+        return "customer_central";
+    }
 }

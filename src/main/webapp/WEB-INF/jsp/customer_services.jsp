@@ -35,18 +35,21 @@
         crossorigin="anonymous"></script>
     </head>
 
-    <body>
+    <body onload="displayblock()">
 
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-lg navbar-light bg-navy">
-            <a class="navbar-brand"><img src='../resources/media/logo.jpg'></a>
+            <a class="navbar-brand"><img src='../resources/media/logo120x60.svg'></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav ml-auto">
+                     <li class="nav-item">
+                        <a id="home_link" class="nav-link rounded" href="${pageContext.request.contextPath}/user/customerCentral" tabindex="-1" aria-disabled="true">Home</a>
+                    </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <ul class="nav-item dropdown">
@@ -67,7 +70,7 @@
         <div class="container">
             <div class="row">
 
-                <aside class="col-md-2 col-sm-2 col-xs-2 bg-navy" style="padding-top: 35px;left:-100px;padding-bottom: 400px;">
+                <aside class="col-md-2 col-sm-2 col-xs-2 bg-navy" style="padding-top: 35px;left:-190px;padding-bottom: 400px;">
                     <ul class="list-group border-color-navy rounded">
                         <li class="list-group-item-secondary text-center py-2 list-unstyled bg-navy disabled"> <button
                                 id="btn" class="btn btn-primary custom" type="button" data-toggle="collapse"
@@ -96,48 +99,44 @@
                 </aside>
                 <aside class="col-md-10 col-sm-10 col-xs-10 ">
                     <div class="jumbotron jumbotron-fluid bg-white zeropadding pad-top">
-                        <div class="container zeropadding">
+                        <div class="container fluid">
                             <div class="row">
 
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="collapse multi-collapse" id="Bookings_context">
-                                        <div class="card card-body fluid">
-                                            <h3 display="none"><p id="reservationsText" class="text text-center"></p></h3>
-                                                <c:forEach items = "${reservations}" var = "reservations">
-                                                <div id="reservationsform" class="shadow rounded border-color-navy2 mb-2">
-                                                    <div class="container zeropadding">
-                                                        <div class="row">
-                                                            <div class="col-md-8 col-sm-8 col-xs-8">
-                                                                <p class="text-left">
-                                                                <h3 class="w3-lobster  w3-xxlarge" style="padding-left: 10px;">Residence Period:</h3>
-                                                                <h3 class="w3-lobster  w3-xxlarge" style="padding-left: 10px;">From ${reservations.startdate} to ${reservations.enddate} </h3>
-                                                                </p>
-                                                                <p class="text-left">
-                                                                <h3 class="w3-lobster  w3-xxlarge" style="padding-left: 10px;" >${reservations.hotelid.name}</h3>
-                                                                </p>                         
-                                                                <p class="text-left">
-                                                                <h3 class="w3-lobster w3-xlarge" style="padding-left: 10px;">${reservations.hotelid.address},${reservations.hotelid.destinationid.name}</h3>
-                                                                </p>
-                                                            </div>
-                                                            <div class="col-md-4 col-sm-4 col-xs-4">
 
-                                                                <div class="btn" display="none" style="padding-top: 20px;padding-left: 80px;" >
-                                                                    <a href=""><button class="text-white text-center btn block " id="status${reservations.id}">
-                                                                            <h6> <p id="buttonText${reservations.id}" class="text text-center"></p></h6></button></a>
-                                                                </div>
-
-                                                                <div class="btn" display="none" id="delete${reservations.id}" style="padding-top: 20px;padding-left: 80px;" >
-                                                                    <a href="${pageContext.request.contextPath}/user/deletereservation/${reservations.id}"><button class="btn btn-danger block text-white " >
-                                                                            <h6> <p id="buttonText${reservations.id}" class="text text-center"></p>CANCEL YOUR RESERVATION</h6></button></a>
-                                                                </div>
-                                                            </div>
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </c:forEach>
+                                        <h3 display="none"><p id="reservationsText" class="text text-center"></p></h3>
+                                        <div id="reservationsform" class="shadow rounded mb-2">
+                                            <table class="table table-bordered table-hover rounded ">
+                                                <thead class="text-center">
+                                                    <tr>
+                                                        <th>Start Date</th>
+                                                        <th>End Date</th>
+                                                        <th>Hotel</th>
+                                                        <th>Address</th>
+                                                        <th>Area</th>
+                                                        <th>Status</th>
+                                                        <th>Cancelation</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="text-center">
+                                                    <c:forEach items = "${reservations}" var = "reservations">
+                                                        <tr>
+                                                            <td >${reservations.startdate}</td>
+                                                            <td >${reservations.enddate}</td>
+                                                            <td >${reservations.hotelid.name}</td>
+                                                            <td >${reservations.hotelid.address}</td>
+                                                            <td >${reservations.hotelid.destinationid.name}</td>
+                                                            <td class="text-center" ><button class="text-white btn block " id="status${reservations.id}">
+                                                                    <p id="buttonText${reservations.id}" style="text-center: left;"></p></button></td>
+                                                            <td  id="delete${reservations.id}"><button class="btn btn-danger block text-white " >
+                                                                    <p id="buttonText${reservations.id}" class="text text-center"></p>CANCEL YOUR RESERVATION</button></td>
+                                                        </tr>
+                                                    </c:forEach> 
+                                                </tbody>    
+                                            </table>
                                         </div>
+
                                     </div>
                                 </div>
 
@@ -287,7 +286,7 @@
                                                 <form:input class="form-control mb-2" id="usernameUP"
                                                             value="${sessionScope.loggedUser.username}" placeholder="Username"
                                                             required="true" path="username" />
-                                                
+
                                                 <form:label path="password" style="display:none">Type your password</form:label>
                                                 <form:input type="password" style="display:none" class="form-control mb-2" required="true" id="userpassword"
                                                             value="${sessionScope.loggedUser.password}" path="password" />
@@ -315,7 +314,9 @@
 
         <script>
 
+document.body.addEventListener("onload", displayblock());
 
+            $('#Bookings_context').show();
 
             $('#btn0').click(function () {
                 $('#Bookings_context').show();

@@ -10,17 +10,17 @@ and open the template in the editor.
 
 
 .bg-navy {
-    background-color: rgb(4, 4, 30)
+    background-color:rgb(8,8,44)
 }
 
 .border-color-navy {
     border-style: solid;
-    border-color: rgb(4, 4, 30);
+    border-color: rgb(8,8,44);
     border-width: 3px;
 }
 
 .text-navy {
-    color: rgb(4, 4, 30);
+    color: rgb(8,8,44);
     font-family: "Times New Roman", Times, serif;
 }
 

@@ -38,7 +38,7 @@
 
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-lg navbar-light bg-navy">
-            <a class="navbar-brand"><img src='../resources/media/logo.jpg'></a>
+            <a class="navbar-brand"><img src='../resources/media/logo120x60.svg'></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -48,17 +48,12 @@
                 <ul class="navbar-nav mr-auto">
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <ul class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                   
+                        <a class="nav-link  text-white" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Welcome, ${sessionScope.loggedUser.name} ${sessionScope.loggedUser.surname}
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">View your profile</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/user/logout">Sign out</a>
-                        </div>
-                    </ul>
+
                 </form>
             </div>
         </nav>
@@ -66,7 +61,7 @@
         <div class="container">
             <div class="row">
 
-                <aside class="col-md-2 col-sm-2 col-xs-2 bg-navy" style="padding-top: 35px;left:-100px;">
+                <aside class="col-md-2 col-sm-2 col-xs-2 bg-navy" style="padding-top: 35px;left:-200px;">
                     <!-- <h1><span class="badge badge-primary bg-navy custom">&nbspServices&nbsp&nbsp</span></h1> -->
                     <ul class="list-group border-color-navy rounded">
                         <li class="list-group-item-secondary text-center py-2 list-unstyled bg-navy disabled"> <button
@@ -128,35 +123,35 @@
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="collapse multi-collapse" id="HotelList_context">
-                                        <div class="card card-body fluid">
-                                            <!--HOTEL LIST-->
-                                            <table class="table-primary table-responsive-sm table-sm table-bordered border-primary rounded table-hover">
-                                                <thead class="text-center bg-primary">
+
+                                        <!--HOTEL LIST-->
+                                        <table class="table table-responsive-lg table-lg table-bordered border-primary rounded table-hover">
+                                            <thead class="text-center bg-primary">
+                                                <tr>
+                                                    <th>Brand Name</th>
+                                                    <th>Address</th>
+                                                    <th>Postcode</th>
+                                                    <th>Stars</th>
+                                                    <th>Phone</th>
+                                                    <th>Email</th>
+                                                    <th>Website</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-center">
+                                                <c:forEach items = "${hotels}" var = "hotel"> 
                                                     <tr>
-                                                        <th>Brand Name</th>
-                                                        <th>Address</th>
-                                                        <th>Postcode</th>
-                                                        <th>Stars</th>
-                                                        <th>Phone</th>
-                                                        <th>Email</th>
-                                                        <th>Website</th>
+                                                        <td>${hotel.name}</td>
+                                                        <td>${hotel.address}</td>
+                                                        <td>${hotel.postcode}</td>
+                                                        <td>${hotel.starsnumber}</td>
+                                                        <td>${hotel.phone}</td>
+                                                        <td>${hotel.email}</td>
+                                                        <td>${hotel.siteurl}</td>
                                                     </tr>
-                                                </thead>
-                                                <tbody class="text-center">
-                                                    <c:forEach items = "${hotels}" var = "hotel"> 
-                                                        <tr>
-                                                            <td>${hotel.name}</td>
-                                                            <td>${hotel.address}</td>
-                                                            <td>${hotel.postcode}</td>
-                                                            <td>${hotel.starsnumber}</td>
-                                                            <td>${hotel.phone}</td>
-                                                            <td>${hotel.email}</td>
-                                                            <td>${hotel.siteurl}</td>
-                                                        </tr>
-                                                    </c:forEach> 
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                </c:forEach> 
+                                            </tbody>
+                                        </table>
+
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -464,7 +459,7 @@
                                                     <button class="btn btn-lg btn-primary btn-block mt-2"
                                                             type="submit">Update</button>
                                                     <a id="deleteHotelUH"  > <button class="btn btn-lg btn-warning btn-block">Delete</button></a>
-<!---->
+                                                    <!---->
                                             </form:form> 
                                         </div>
                                     </div>
@@ -854,7 +849,7 @@
 
                                                     <script>
 
-
+                                                        $('#HotelList_context').show();
                                                         $('#btnmap').click(function () {
                                                             $('#Map_context').show();
                                                             $('#HotelList_context').hide();
@@ -997,10 +992,10 @@
                                                                 descriptionUH.value = "${hotel.description}";
                                                                 starsnumberUH.value = "${hotel.starsnumber}";
                                                                 deleteHotelUH.href = "${pageContext.request.contextPath}/owner/deletehotel/" + hotelnamesel.value;
-                                                         
+
                                                                 document.getElementById("FreeWifiUH").checked = false;
                                                                 document.getElementById("Non-smokingroomUH").checked = false;
-                                                               document.getElementById("FamilyRoomsUH").checked = false;
+                                                                document.getElementById("FamilyRoomsUH").checked = false;
                                                                 document.getElementById("ParkingUH").checked = false;
                                                                 document.getElementById("PetsallowedUH").checked = false;
                                                                 document.getElementById("SwimmingpoolUH").checked = false;

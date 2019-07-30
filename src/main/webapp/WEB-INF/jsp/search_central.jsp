@@ -41,7 +41,7 @@
 
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-lg navbar-white bg-navy">
-            <a class="navbar-brand"><img src='../resources/media/logo.jpg'></a>
+            <a class="navbar-brand"><img src='../resources/media/logo120x60.svg'></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -57,7 +57,7 @@
                 </li> -->
 
                     <li class="nav-item">
-                        <a id="home_link" class="nav-link rounded" href="" tabindex="-1" aria-disabled="true">Home</a>
+                        <a id="home_link" class="nav-link rounded" href="${pageContext.request.contextPath}/user/customerCentral" tabindex="-1" aria-disabled="true">Home</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">

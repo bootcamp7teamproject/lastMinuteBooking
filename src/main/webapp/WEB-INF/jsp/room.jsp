@@ -37,7 +37,7 @@
 
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-lg navbar-white bg-navy">
-            <a class="navbar-brand" href="#"><img src='../../resources/media/logo.jpg'></a>
+            <a class="navbar-brand" href="#"><img src='../../resources/media/logo120x60.svg'></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -53,7 +53,7 @@
                 </li> -->
 
                     <li class="nav-item">
-                        <a id="home_link" class="nav-link rounded" href="" tabindex="-1" aria-disabled="true">Home</a>
+                        <a id="home_link" class="nav-link rounded" href="${pageContext.request.contextPath}/user/customerCentral" tabindex="-1" aria-disabled="true">Home</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
@@ -149,13 +149,13 @@
                                                                         <!-- Wrapper for carousel items -->
                                                                         <div class="carousel-inner">
                                                                             <div class="carousel-item active">
-                                                                                <img src="../resources/media/room.jpg" alt="First Slide">
+                                                                                <img src="../../resources/media/room.jpg" alt="First Slide">
                                                                             </div>
                                                                             <div class="carousel-item">
-                                                                                <img src="../resources/media/room.jpg" alt="Second Slide">
+                                                                                <img src="../../resources/media/room.jpg" alt="Second Slide">
                                                                             </div>
                                                                             <div class="carousel-item">
-                                                                                <img src="../resources/media/room.jpg" alt="Third Slide">
+                                                                                <img src="../../resources/media/room.jpg" alt="Third Slide">
                                                                             </div>
                                                                         </div>
                                                                         <!-- Carousel controls -->
@@ -193,23 +193,23 @@
                                                                 </p>
                                                                 <div class="d-flex justify-content-start">
                                                                     <div class="important_facility" id="Non_Smoking_Room">
-                                                                        <img style="width:20px;height:20px" src="no-smoking.svg">
+                                                                        <img style="width:20px;height:20px" src="../../resources/media/no-smoking.svg">
                                                                         Non Smoking Room&nbsp;&nbsp;&nbsp;&nbsp;
                                                                     </div>
                                                                     <div class="important_facility" id="Pool">
-                                                                        <img style="width:20px;height:20px" src="swimming-silhouette.svg">
+                                                                        <img style="width:20px;height:20px" src="../../resources/media/swimming-silhouette.svg">
                                                                         Pool&nbsp;&nbsp;&nbsp;&nbsp;
                                                                     </div>
                                                                     <div class="important_facility" id="Bar">
-                                                                        <img style="width:20px;height:20px" src="cocktail.svg">
+                                                                        <img style="width:20px;height:20px" src="../../resources/media/cocktail.svg">
                                                                         Bar&nbsp;&nbsp;&nbsp;&nbsp;
                                                                     </div>
                                                                     <div class="important_facility" id="Free_Wi-fi">
-                                                                        <img style="width:20px;height:20px" src="wifi.svg">
+                                                                        <img style="width:20px;height:20px" src="../../resources/media/wifi.svg">
                                                                         Free Wi-fi&nbsp;&nbsp;&nbsp;&nbsp;
                                                                     </div>
                                                                     <div class="important_facility" id="Parking">
-                                                                        <img style="width:20px;height:20px" src="swimming-silhouette.svg">
+                                                                        <img style="width:20px;height:20px" src="../../resources/media/parking.svg">
                                                                         Parking
                                                                     </div>
                                                                 </div>

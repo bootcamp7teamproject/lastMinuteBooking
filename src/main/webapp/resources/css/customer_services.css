@@ -7,7 +7,7 @@ and open the template in the editor.
     Created on : 28 Ιουλ 2019, 9:38:59 μμ
     Author     : minas
 */
-.bg-navy  { background-color: rgb(4,4,30)}
+.bg-navy  { background-color: rgb(8,8,44)}
 
 .zeropadding{
     padding-bottom: 0px;
@@ -17,15 +17,15 @@ and open the template in the editor.
 }
 .border-color-navy{
     border-style: solid;
-    border-color:rgb(4,4,30);
+    border-color:rgb(8,8,44);
     border-width: 3px;}
 
 .border-color-navy2{
     border-style: solid;
-    border-color:rgb(4,4,30);
+    border-color:rgb(8,8,44);
     border-width: 1px;}
 .text-navy{
-    color:rgb(4,4,30);
+    color:rgb(8,8,44);
     font-family: "Times New Roman", Times, serif;
 }
 
