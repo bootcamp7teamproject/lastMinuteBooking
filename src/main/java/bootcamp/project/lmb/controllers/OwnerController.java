@@ -20,6 +20,7 @@ import bootcamp.project.lmb.repos.HotelRepo;
 import bootcamp.project.lmb.repos.RoomRepo;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -50,10 +51,10 @@ public class OwnerController {
 
     @Autowired
     HotelDao hd;
-    
+
     @Autowired
     HotelRepo hr;
-    
+
     @Autowired
     RoomRepo rr;
 
@@ -68,18 +69,19 @@ public class OwnerController {
 
     @Autowired
     RoomEquipmentDao red;
-    
+
     @Autowired
     RoomUnavailabilityDao rur;
 
-    
+    public static Base64.Encoder encoder = Base64.getEncoder();
+
     @InitBinder
-    private void initBinder(WebDataBinder binder){
-          SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
+    private void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(
                 dateFormat, false));
     }
-    
+
     @GetMapping("/owner_central")
     public String ownerServices(ModelMap model, @SessionAttribute("loggedUser") User user, HttpSession session) {
         Hotel newhotel = new Hotel();
@@ -340,39 +342,26 @@ public class OwnerController {
         return "redirect:/owner/owner_central";
     }
 
-    @PostMapping("/settings")
-    public String ownerSettings(ModelMap model,
-            @ModelAttribute("updateUser") User updateUser,
-            @SessionAttribute("loggedUser") User user
-    ) {
-
-        ud.insertUser(updateUser);
-
-        return "redirect:/owner/owner_central";
-    }
-
-     @GetMapping(value = "/deletehotel/{hotelid}")
+    @GetMapping(value = "/deletehotel/{hotelid}")
     public String deleteHotel(@PathVariable(name = "hotelid") Integer hotelid,
             ModelMap model,
             @SessionAttribute("loggedUser") User user) {
-        
+
         hd.deleteHotel(hotelid);
- 
+
         return "redirect:/owner/owner_central";
     }
-    
-     @GetMapping(value = "/deleteroom/{roomid}")
+
+    @GetMapping(value = "/deleteroom/{roomid}")
     public String deleteRoom(@PathVariable(name = "roomid") Integer roomid,
             ModelMap model,
             @SessionAttribute("loggedUser") User user) {
-        
+
         rd.deleteRoom(roomid);
- 
+
         return "redirect:/owner/owner_central";
     }
-    
 
-           
     @PostMapping("/unavailability")
     public String ownerUnavailability(ModelMap model,
             @ModelAttribute("roomUnavailability") RoomUnavailability roomUnavailability,
@@ -383,14 +372,16 @@ public class OwnerController {
 
         return "redirect:/owner/owner_central";
     }
-    
-    
+
     @PostMapping("/updateOwnerSettings")
-    public String ownerupdateUserSettings(ModelMap model,          
+    public String ownerupdateUserSettings(ModelMap model,
             @SessionAttribute("loggedUser") User user,
             @ModelAttribute("updateUser") User updateUser,
             HttpSession session
     ) {
+
+        String decryptedPassword = new String(encoder.encode(updateUser.getPassword().getBytes()));
+        updateUser.setPassword(decryptedPassword);
 
         ud.insertUser(updateUser);
         session.setAttribute("loggedUser", updateUser);

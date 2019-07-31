@@ -7,10 +7,12 @@ package bootcamp.project.lmb.controllers;
 
 import bootcamp.project.lmb.dao.HotelDao;
 import bootcamp.project.lmb.dao.RoomDao;
+import bootcamp.project.lmb.model.Hotel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -28,42 +32,56 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  *
  * @author Panos
  */
-
 @Controller
-@SessionAttributes({"nights","checkin","checkout"})
+@SessionAttributes({"nights", "checkin", "checkout"})
 @RequestMapping(value = "/user")
 public class SearchController {
-    
+
     @Autowired
     HotelDao hd;
-    
+
     @Autowired
     RoomDao rd;
-    
+
     @PostMapping("/search")
-    public String fetchHotels(HttpSession session,@RequestParam("budget") Integer budget, @RequestParam("persons") Integer persons,
-                                @RequestParam("checkin") String checkin, @RequestParam("checkout") String checkout) throws ParseException {
+    public String fetchHotels(HttpSession session, @RequestParam("budget") Integer budget, @RequestParam("persons") Integer persons,
+            @RequestParam("checkin") String checkin, @RequestParam("checkout") String checkout) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         LocalDate checkIn = sdf.parse(checkin).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate checkOut = sdf.parse(checkout).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        Integer nights = checkOut.getDayOfYear() - checkIn.getDayOfYear();             
+        Integer nights = checkOut.getDayOfYear() - checkIn.getDayOfYear();
         session.setAttribute("searchHotels", hd.getUserSearchHotels(budget, nights, persons, checkin, checkout));
         session.setAttribute("nights", nights);
         session.setAttribute("budget", budget);
         session.setAttribute("persons", persons);
-        session.setAttribute("checkin", sdf.parse(checkin));
-        session.setAttribute("checkout", sdf.parse(checkout));
+        session.setAttribute("checkin", checkin);
+        session.setAttribute("checkout", checkout);
         System.out.println(nights);
         return "search_central";
     }
-    
+
     @GetMapping("/search/{hotelId}")
-    public String fetchHotelRooms(@PathVariable(name="hotelId") Integer hotelId, @SessionAttribute("budget") Integer budget, @SessionAttribute("persons") Integer persons,
-                                @SessionAttribute("checkin") Date checkin, @SessionAttribute("checkout") Date checkout, @SessionAttribute("nights") Integer nights) {
+    public String fetchHotelRooms(@PathVariable(name = "hotelId") Integer hotelId, @SessionAttribute("budget") Integer budget, @SessionAttribute("persons") Integer persons,
+            @SessionAttribute("checkin") Date checkin, @SessionAttribute("checkout") Date checkout, @SessionAttribute("nights") Integer nights) {
         rd.getUserSearchRooms(budget, nights, persons, checkin, checkout, hotelId);
         return "room";
     }
-    
 
-    
+
+    @RequestMapping(value = "/search/ajax", method = RequestMethod.GET)
+    @ResponseBody
+    public ArrayList<Hotel> getUserSearchHotels(
+            HttpSession session,
+            @SessionAttribute("budget") Integer budget,
+            @SessionAttribute("persons") Integer persons,
+            @SessionAttribute("checkin") String checkin,
+            @SessionAttribute("checkout") String checkout,
+            @SessionAttribute("nights") Integer nights
+    ) {
+
+        ArrayList<Hotel> searchHotels = hd.getUserSearchHotels(budget, nights, persons, checkin, checkout);
+
+        return searchHotels;
+    }
+
 }

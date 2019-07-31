@@ -6,7 +6,7 @@
 
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 
     <head>
 
@@ -379,6 +379,15 @@
                                                 </form>
                                             </div>
                                     </article> 
+
+
+                                    <button class="btn bg-danger text-white " id="reset">
+
+                                        Reset filters
+
+                                    </button>
+
+
                                 </div> 
                         </aside>
 
@@ -388,29 +397,30 @@
                                 <div class="jumbotron jumbotron-fluid bg-white shadow rounded border-color-navy2 "
                                      style="padding-top:15px; padding-bottom:15px">
                                     <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                                <div class="text-center">
-                                                    <img src="../resources/media/room.jpg" class="rounded" style="width:100%">
-                                                </div>
-                                            </div>
+                                        <div class="row" id="myrow">
                                             <c:forEach items = "${searchHotels}" var = "hotel">
-                                                <div class="col-md-8 col-sm-8 col-xs-8">
-                                                    <p class="text-left">
-                                                    <h1 class="w3-lobster  w3-xxlarge" >${hotel.name}</h1>
-                                                    </p>                         
-                                                    <p class="text-left">
-                                                    <h2 class="w3-lobster w3-xlarge">${hotel.address},${hotel.destinationid.name}</h2>
-                                                    </p>
-                                                    <p class="text-left">
-                                                    <h2 class="title text-navy">Rating</h2>
-                                                    </p>
-                                                    <div class="btn" style="padding-left:300px">
-                                                        <a href="${pageContext.request.contextPath}/user/search/${hotel.id}"><button class="btn bg-navy w3-lobster w3-xlarge text-white " id="Search" name="Search">
-                                                                Choose your room >
-                                                            </button></a>
-                                                    </div>
-                                                </div>
+                                                <!--                                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                                                                                <div class="text-center">
+                                                                                                    <img src="../resources/media/room.jpg" class="rounded" style="width:100%">
+                                                                                                </div>
+                                                                                            </div>-->
+
+                                                <!--                                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                                                                                    <p class="text-left">
+                                                                                                    <h1 class="w3-lobster  w3-xxlarge" >${hotel.name}</h1>
+                                                                                                    </p>                         
+                                                                                                    <p class="text-left">
+                                                                                                    <h2 class="w3-lobster w3-xlarge">${hotel.address},${hotel.destinationid.name}</h2>
+                                                                                                    </p>
+                                                                                                    <p class="text-left">
+                                                                                                    <h2 class="title text-navy">Rating</h2>
+                                                                                                    </p>
+                                                                                                    <div class="btn" style="padding-left:300px">
+                                                                                                        <a href="${pageContext.request.contextPath}/user/search/${hotel.id}"><button class="btn bg-navy w3-lobster w3-xlarge text-white " id="Search" name="Search">
+                                                                                                                Choose your room >
+                                                                                                            </button></a>
+                                                                                                    </div>
+                                                                                                </div>-->
                                             </c:forEach>
                                         </div>
                                     </div>
@@ -421,6 +431,129 @@
         </div>
 
         <script>
+
+
+            jQuery(init);
+
+            function init($) {
+
+                $(document).ready(getHotels);
+                let searchHotels;
+                let lastFilteredResult;
+                let myrow = $("#myrow");
+
+                function getHotels() {
+
+                    let URL = "http://localhost:8080/lmb/user/search/ajax";
+                    $.ajax({
+                        url: URL,
+                        success: getUserSearchHotels,
+                        error: handleEror
+                    });
+
+                    function handleError(jqXHR, testStatus, errorThrown) {
+                        console.log(testStatus, errorThrown);
+                    }
+
+                    function getUserSearchHotels(data) {
+
+                        searchHotels = data;
+                        lastFilteredResult = data;
+                        showResults(searchHotels);
+                    }
+                }
+
+                let reset = $("#reset");
+                reset.on("click", resetFilters);
+                function resetFilters() {
+                    $("input:checkbox").prop("checked", false);
+                    showResults(searchHotels);
+                }
+
+
+                let star1 = $("#1star");
+                star1.on("click", handleStar1);
+                function handleStar1() {
+                    handleStar(star1, 1);
+                }
+
+
+
+                let star2 = $("#2star");
+                star2.on("click", handleStar2);
+                function handleStar2() {
+                    handleStar(star2, 2);
+                }
+
+
+
+                let star3 = $("#3star");
+                star3.on("click", handleStar3);
+                function handleStar3() {
+                    handleStar(star3, 3);
+                }
+
+
+
+                let star4 = $("#4star");
+                star4.on("click", handleStar4);
+                function handleStar4() {
+                    handleStar(star4, 4);
+                }
+
+
+
+                let star5 = $("#5star");
+                star5.on("click", handleStar5);
+                function handleStar5() {
+                    handleStar(star5, 5);
+                }
+
+
+
+                function handleStar(starSelector, starNumber) {
+                    let temp = [{}];
+                    if (starSelector.is(":checked")) {
+                        lastFilteredResult.forEach(element => {
+                            if (element.starsnumber === starNumber) {
+                                console.log(element);
+                            }
+                        });
+
+                        lastFilteredResult = temp;
+                        showResults(lastFilteredResult);
+                    }
+                }
+
+
+
+                function showResults(data) {
+
+
+//myrow.html("<div class='col-md-4 col-sm-4 col-xs-4'><div class='text-center'><img src='../resources/media/room.jpg' class='rounded' style='width:100%'></div></div><div class='col-md-8 col-sm-8 col-xs-8'><p class='text-left'><h1 class='w3-lobster  w3-xxlarge' >"+element.name+"</h1></p><p class='text-left'><h2 class='w3-lobster w3-xlarge'>"+element.address+"</h2></p><p class='text-left'><h2 class='title text-navy'>Rating</h2></p><div class='btn' style='padding-left:300px'><a href='/user/search/"+element.id+"'><button class='btn bg-navy w3-lobster w3-xlarge text-white ' id='Search' name='Search'>Choose your room ></button></a></div></div>");
+
+                    myrow.empty();
+                    data.forEach(element => {
+                        let content = $("<div><p><h1></h1></p><p><h2></h2></p><p><h3></h3></p><div><a><button>Choose your room</button></a></div></div><div><div><img></div></div>")
+                                .appendTo(myrow);
+                        content.find("div:eq(0)").addClass("col-md-9 col-sm-9 col-xs-9");
+                        content.find("p").addClass("text-left");
+                        content.find("h1,h2,h3").addClass("title text-navy");
+                        content.find("h1").html(element.name);
+                        content.find("h2").html("Number of stars: " + element.starsnumber);
+                        content.find("h3").html(element.description);
+                        content.find("div:eq(1)").addClass("btn").css("padding-left", "300px");
+                        content.find("a").attr("href", "http://localhost:8080/lmb/user/search/" + element.id);
+                        content.find("button").addClass("btn bg-navy text-white");
+                        content.find("div:eq(2)").addClass("col-md-3 col-sm-3 col-xs-3");
+                        content.find("div:eq(3)").addClass("text-right");
+                        content.find("img").addClass("rounded").attr("src", "../resources/media/room.jpg").css("width", "100%");
+                    });
+
+                }
+
+            }
+
             // Get the modal
             var modal = document.getElementById("myModal");
 

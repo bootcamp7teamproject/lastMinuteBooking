@@ -31,6 +31,7 @@ public class UserDao {
         ur.save(newUser);
     }
     
+    
     public void confirmUserRegistration(User user) {
         ur.updateUserActivity(user.getId());
     }

@@ -35,7 +35,7 @@
         crossorigin="anonymous"></script>
     </head>
 
-    <body onload="displayblock()">
+    <body>
 
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-lg navbar-light bg-navy">
@@ -47,7 +47,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                     <li class="nav-item">
+                    <li class="nav-item">
                         <a id="home_link" class="nav-link rounded" href="${pageContext.request.contextPath}/user/customerCentral" tabindex="-1" aria-disabled="true">Home</a>
                     </li>
                 </ul>
@@ -129,8 +129,8 @@
                                                             <td >${reservations.hotelid.destinationid.name}</td>
                                                             <td class="text-center" ><button class="text-white btn block " id="status${reservations.id}">
                                                                     <p id="buttonText${reservations.id}" style="text-center: left;"></p></button></td>
-                                                            <td  id="delete${reservations.id}"><button class="btn btn-danger block text-white " >
-                                                                    <p id="buttonText${reservations.id}" class="text text-center"></p>CANCEL YOUR RESERVATION</button></td>
+                                                            <td  id="delete${reservations.id}"><a  href="${pageContext.request.contextPath}/user/deletereservation/${reservations.id}"><button class="btn btn-danger block text-white" >
+                                                                        <p id="buttonText${reservations.id}" class="text text-center"></p>CANCEL YOUR RESERVATION</button></a></td>
                                                         </tr>
                                                     </c:forEach> 
                                                 </tbody>    
@@ -245,53 +245,48 @@
                                                     information</h1>
                                                 <form:label path="name">Type your first name
                                                 </form:label>
-                                                <form:input class="form-control mb-2" style="display:none"
-                                                            required="true" autofocus="true" path="id"
-                                                            value="${sessionScope.loggedUser.id}" />
-                                                <form:input class="form-control mb-2" id="nameUP"
-                                                            value="${sessionScope.loggedUser.name}" placeholder="First name"
-                                                            required="true" autofocus="true" path="name" />
+                                                <form:input class="form-control mb-2" style="display:none" placeholder="First name" required="true"
+                                                            autofocus="true" path="id" value="${sessionScope.loggedUser.id}" />
+                                                <form:input class="form-control mb-2" style="display:none" placeholder="Role" required="true"
+                                                            autofocus="true" path="role" value="${sessionScope.loggedUser.role.id}" />
+                                                <form:input class="form-control mb-2" style="display:none" placeholder="serial" required="true"
+                                                            autofocus="true" path="serial" value="${sessionScope.loggedUser.serial}" />
+                                                <form:input class="form-control mb-2" style="display:none" placeholder="active" required="true"
+                                                            autofocus="true" path="active" value="${sessionScope.loggedUser.active}" />
+                                                <form:input class="form-control mb-2" id="nameUP" value="${sessionScope.loggedUser.name}" placeholder="First name" required="true"
+                                                            autofocus="true" path="name" />
                                                 <form:label path="surname">Type your last name
                                                 </form:label>
-                                                <form:input class="form-control mb-2" id="surnameUP"
-                                                            value="${sessionScope.loggedUser.surname}" placeholder="Last name"
-                                                            required="true" path="surname" />
+                                                <form:input class="form-control mb-2" id="surnameUP" value="${sessionScope.loggedUser.surname}" placeholder="Last name" required="true"
+                                                            path="surname" />
                                                 <form:label path="address">Type your home address
                                                 </form:label>
-                                                <form:input class="form-control mb-2" id="addressUP"
-                                                            value="${sessionScope.loggedUser.address}" placeholder="Address"
-                                                            required="true" path="address" />
+                                                <form:input class="form-control mb-2" id="addressUP" value="${sessionScope.loggedUser.address}" placeholder="Address" required="true"
+                                                            path="address" />
                                                 <form:label path="city">Type your city
                                                 </form:label>
-                                                <form:input class="form-control mb-2" id="cityUP"
-                                                            value="${sessionScope.loggedUser.city}" placeholder="City"
-                                                            required="true" path="city" />
+                                                <form:input class="form-control mb-2" id="cityUP" value="${sessionScope.loggedUser.city}" placeholder="City" required="true"
+                                                            path="city" />
                                                 <form:label path="postcode">Type your postcode area
                                                 </form:label>
-                                                <form:input class="form-control mb-2" id="postcodeUP"
-                                                            value="${sessionScope.loggedUser.postcode}" placeholder="Postcode"
-                                                            required="true" path="postcode" />
+                                                <form:input class="form-control mb-2" id="postcodeUP" value="${sessionScope.loggedUser.postcode}" placeholder="Postcode" required="true"
+                                                            path="postcode" />
                                                 <form:label path="phone">Type your phone number
                                                 </form:label>
-                                                <form:input class="form-control mb-2" id="phoneUP"
-                                                            value="${sessionScope.loggedUser.phone}" placeholder="Phone number"
-                                                            required="true" path="phone" />
+                                                <form:input class="form-control mb-2" id="phoneUP" value="${sessionScope.loggedUser.phone}"  placeholder="Phone number" required="true"
+                                                            path="phone" />
                                                 <form:label path="email">Type your email address
                                                 </form:label>
-                                                <form:input class="form-control mb-2" id="emailUP"
-                                                            value="${sessionScope.loggedUser.email}" placeholder="Email address"
-                                                            required="true" path="email" />
+                                                <form:input class="form-control mb-2" id="emailUP" value="${sessionScope.loggedUser.email}" placeholder="Email address" required="true"
+                                                            path="email" />
                                                 <form:label path="username">Type your username
                                                 </form:label>
-                                                <form:input class="form-control mb-2" id="usernameUP"
-                                                            value="${sessionScope.loggedUser.username}" placeholder="Username"
-                                                            required="true" path="username" />
-
-                                                <form:label path="password" style="display:none">Type your password</form:label>
-                                                <form:input type="password" style="display:none" class="form-control mb-2" required="true" id="userpassword"
-                                                            value="${sessionScope.loggedUser.password}" path="password" />
-                                                <form:input type="role" style="display:none" class="form-control mb-2" required="true" id="role"
-                                                            value="${sessionScope.loggedUser.role.id}" path="role" />
+                                                <form:input class="form-control mb-2" id="usernameUP" value="${sessionScope.loggedUser.username}" placeholder="Username" required="true"
+                                                            path="username" />
+                                                <form:label path="password">Type your password
+                                                </form:label>
+                                                <form:input type="password" class="form-control mb-2" 
+                                                            required="true" path="password" />
                                                 <!--<p id="wrongpassword">The password is wrong</p>-->
                                                 <button id="submitbutton" class="btn btn-lg btn-primary btn-block mt-2"
                                                         type="submit">Submit</button>
@@ -314,7 +309,9 @@
 
         <script>
 
-document.body.addEventListener("onload", displayblock());
+            window.onload = function () {
+                displaybookingblock();
+            };
 
             $('#Bookings_context').show();
 

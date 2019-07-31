@@ -19,9 +19,9 @@
 
         <link rel="stylesheet" type="text/css" href="../resources/css/owner_central.css">
 
-        <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt8otviU1hSrLQenHKOgpOVH8yUZl2LUI&callback=myMap"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw2rbACCi2uAkd_jkTHIh4aggS-irgrRQ&libraries=places&callback=initAutocomplete"
+        async defer></script>
+
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -48,11 +48,11 @@
                 <ul class="navbar-nav mr-auto">
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                   
-                        <a class="nav-link  text-white" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Welcome, ${sessionScope.loggedUser.name} ${sessionScope.loggedUser.surname}
-                        </a>
+
+                    <a class="nav-link  text-white" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Welcome, ${sessionScope.loggedUser.name} ${sessionScope.loggedUser.surname}
+                    </a>
 
                 </form>
             </div>
@@ -174,21 +174,23 @@
                                                         <option value="${destinations.id}">${destinations.name}</option>
                                                     </c:forEach>                                                                                     
                                                 </form:select>
-                                                <!--                                                    <div id="locationField">
-                                                                                                                <input id="autocomplete" class="form-control mb-2"
-                                                                                                               placeholder="Enter your address" autofocus="true"
-                                                                                                               onFocus="geolocate()"
-                                                                                                               type="text"/>
-                                                                                                    </div>-->
+
+                                                         <!--<label name="address">Address  </label>                                             </label>-->
+<!--                                                <div id="locationField">
+                                                    <input id="autocomplete" class="form-control mb-2"
+                                                           placeholder="Enter your address" autofocus="true"
+                                                           onFocus="geolocate()"
+                                                           type="text"/>
+                                                </div>-->
 
                                                 <form:label path="address">Address
                                                 </form:label>
                                                 <form:input class="form-control mb-2" id="route" placeholder="Address" required="true"
                                                             path="address" />
-                                                <!--<label path="address">Address Number-->
-                                                <!--</label>-->
-                                                <!--<input class="form-control mb-2" id="street_number" placeholder="Street number" required="true"-->
-                                                <!--name="street_number" />-->
+<!--                                                <label name="address">Address Number
+                                                </label>
+                                                <input class="form-control mb-2" id="street_number" placeholder="Street number" required="true"
+                                                       name="street_number" />-->
                                                 <form:label path="postcode">Postcode
                                                 </form:label>
                                                 <form:input class="form-control mb-2" id="postal_code" placeholder="Postcode" required="true"
@@ -748,6 +750,12 @@
                                                                     </form:label>
                                                                     <form:input class="form-control mb-2" style="display:none" placeholder="First name" required="true"
                                                                                 autofocus="true" path="id" value="${sessionScope.loggedUser.id}" />
+                                                                    <form:input class="form-control mb-2" style="display:none" placeholder="Role" required="true"
+                                                                                autofocus="true" path="role" value="${sessionScope.loggedUser.role.id}" />
+                                                                    <form:input class="form-control mb-2" style="display:none" placeholder="serial" required="true"
+                                                                                autofocus="true" path="serial" value="${sessionScope.loggedUser.serial}" />
+                                                                    <form:input class="form-control mb-2" style="display:none" placeholder="active" required="true"
+                                                                                autofocus="true" path="active" value="${sessionScope.loggedUser.active}" />
                                                                     <form:input class="form-control mb-2" id="nameUP" value="${sessionScope.loggedUser.name}" placeholder="First name" required="true"
                                                                                 autofocus="true" path="name" />
                                                                     <form:label path="surname">Type your last name
@@ -776,7 +784,7 @@
                                                                                 path="email" />
                                                                     <form:label path="username">Type your username
                                                                     </form:label>
-                                                                    <form:input class="form-control mb-2" id="usernameUP" value="${sessionScope.loggedUser.postcode}" placeholder="Username" required="true"
+                                                                    <form:input class="form-control mb-2" id="usernameUP" value="${sessionScope.loggedUser.username}" placeholder="Username" required="true"
                                                                                 path="username" />
                                                                     <form:label path="password">Type your password
                                                                     </form:label>
@@ -853,7 +861,11 @@
 
                                                     <script>
 
-                                                        $('#HotelList_context').show();
+                                                        window.onload = function () {
+                                                            myMap();
+                                                            $('#Map_context').show();
+                                                        };
+
                                                         $('#btnmap').click(function () {
                                                             $('#Map_context').show();
                                                             $('#HotelList_context').hide();
@@ -864,7 +876,6 @@
                                                             $('#Settings_context').hide();
                                                             $('#AddHotel_context').hide();
                                                         });
-
                                                         $('#btn0').click(function () {
                                                             $('#Map_context').hide();
                                                             $('#HotelList_context').show();
@@ -875,7 +886,6 @@
                                                             $('#Settings_context').hide();
                                                             $('#AddHotel_context').hide();
                                                         });
-
                                                         $('#btn1').click(function () {
                                                             $('#Map_context').hide();
                                                             $('#HotelList_context').hide();
@@ -886,7 +896,6 @@
                                                             $('#Settings_context').hide();
                                                             $('#AddHotel_context').show();
                                                         });
-
                                                         $('#btn2').click(function () {
                                                             $('#Map_context').hide();
                                                             $('#HotelList_context').hide();
@@ -897,7 +906,6 @@
                                                             $('#DeclareUnavailability_context').hide();
                                                             $('#Settings_context').hide();
                                                         });
-
                                                         $('#btn3').click(function () {
                                                             $('#Map_context').hide();
                                                             $('#HotelList_context').hide();
@@ -908,7 +916,6 @@
                                                             $('#DeclareUnavailability_context').hide();
                                                             $('#Settings_context').hide();
                                                         });
-
                                                         $('#btn4').click(function () {
                                                             $('#Map_context').hide();
                                                             $('#HotelList_context').hide();
@@ -919,7 +926,6 @@
                                                             $('#DeclareUnavailability_context').hide();
                                                             $('#Settings_context').hide();
                                                         });
-
                                                         $('#btn5').click(function () {
                                                             $('#Map_context').hide();
                                                             $('#HotelList_context').hide();
@@ -930,7 +936,6 @@
                                                             $('#DeclareUnavailability_context').show();
                                                             $('#Settings_context').hide();
                                                         });
-
                                                         $('#btn6').click(function () {
                                                             $('#Map_context').hide();
                                                             $('#HotelList_context').hide();
@@ -941,8 +946,6 @@
                                                             $('#DeclareUnavailability_context').hide();
                                                             $('#Settings_context').show();
                                                         });
-
-
                                                         var nameUH = document.getElementById("nameUH");
                                                         var hotelnamesel = document.getElementById("selectUH_hotel");
                                                         var hotelnameselid = document.getElementById("idhotel");
@@ -968,16 +971,11 @@
                                                         var Price = document.getElementById("Price");
                                                         var descriptionUR = document.getElementById("descriptionUR");
                                                         var deleteRoomUR = document.getElementById("deleteRoomUR");
-
                                                         var roomidselDU = document.getElementById("roomidselDU");
                                                         var hotelidselDU = document.getElementById("hotelidselDU");
-
-
                                                         document.querySelector("#selectUH_hotel").addEventListener("click", function () {
                                                             updatehotel();
-
                                                         });
-
                                                         function updatehotel() {
                                                         <c:forEach items = "${hotels}" var = "hotel">
 
@@ -996,7 +994,6 @@
                                                                 descriptionUH.value = "${hotel.description}";
                                                                 starsnumberUH.value = "${hotel.starsnumber}";
                                                                 deleteHotelUH.href = "${pageContext.request.contextPath}/owner/deletehotel/" + hotelnamesel.value;
-
                                                                 document.getElementById("FreeWifiUH").checked = false;
                                                                 document.getElementById("Non-smokingroomUH").checked = false;
                                                                 document.getElementById("FamilyRoomsUH").checked = false;
@@ -1005,7 +1002,6 @@
                                                                 document.getElementById("SwimmingpoolUH").checked = false;
                                                                 document.getElementById("SpaandwellnesscenterUH").checked = false;
                                                                 document.getElementById("BarUH").checked = false;
-
                                                             <c:forEach items = "${hotelFacilities}" var = "hotelFacilities">
                                                                 if ("${hotelFacilities.hotel.id}" == hotelnamesel.value) {
                                                                     if ("${hotelFacilities.facilities.id}" == 1) {
@@ -1038,27 +1034,20 @@
                                                         </c:forEach>
                                                         }
                                                         ;
-
-
                                                         document.querySelector("#roomidsel").addEventListener("change", function () {
                                                             updateroom();
-
                                                         });
                                                         document.querySelector("#hotelidsel").addEventListener("change", function () {
                                                             updateroomnames();
-
                                                         });
                                                         document.querySelector("#hotelidselDU").addEventListener("change", function () {
                                                             updateroomnamesunavailability();
-
                                                         });
-
                                                         function updateroomnamesunavailability() {
 
                                                             for (var i = 0; i < roomidselDU.length; i++) {
 
                                                                 roomidselDU.options[i].style.display = "block";
-
                                                             }
 
 
@@ -1077,14 +1066,11 @@
 
                                                         }
                                                         ;
-
-
                                                         function updateroomnames() {
 
                                                             for (var i = 0; i < roomidsel.length; i++) {
 
                                                                 roomidsel.options[i].style.display = "block";
-
                                                             }
 
                                                             RoomName.value = " ";
@@ -1092,7 +1078,6 @@
                                                             Price.value = " ";
                                                             descriptionUR.value = " ";
                                                             roomidsel.value = " ";
-
                                                             document.getElementById("KitchenUR").checked = false;
                                                             document.getElementById("PrivatebathroomUR").checked = false;
                                                             document.getElementById("AirconditioningUR").checked = false;
@@ -1105,7 +1090,6 @@
                                                             document.getElementById("ElectrickettleUR").checked = false;
                                                             document.getElementById("DoublebedUR").checked = false;
                                                             document.getElementById("SingleBedUR").checked = false;
-
                                                         <c:forEach items = "${rooms}" var = "room">
                                                             if (("${room.hotelid.id}") != hotelidsel.value) {
 
@@ -1121,7 +1105,6 @@
 
                                                         }
                                                         ;
-
                                                         function updateroom() {
 
 
@@ -1133,7 +1116,6 @@
                                                                 Price.value = "${room.pricepernight}";
                                                                 descriptionUR.value = "${room.description}";
                                                                 deleteRoomUR.href = "/owner/deleteroom/" + roomidsel.value;
-
                                                                 document.getElementById("KitchenUR").checked = false;
                                                                 document.getElementById("PrivatebathroomUR").checked = false;
                                                                 document.getElementById("AirconditioningUR").checked = false;
@@ -1146,7 +1128,6 @@
                                                                 document.getElementById("ElectrickettleUR").checked = false;
                                                                 document.getElementById("DoublebedUR").checked = false;
                                                                 document.getElementById("SingleBedUR").checked = false;
-
                                                             <c:forEach items = "${roomEquipments}" var = "roomEquipments">
                                                                 if ("${roomEquipments.room.id}" == roomidsel.value) {
                                                                     if ("${roomEquipments.equipment.id}" == 1) {
@@ -1192,20 +1173,14 @@
                                                         </c:forEach>
                                                         }
                                                         ;
-
                                                         document.querySelector("#btnmap").addEventListener("click", function () {
                                                             myMap();
-
                                                         });
-
                                                         function myMap() {
-                                                            var options = {
-                                                                zoom: 6,
-                                                                center: {lat: 37.9838, lng: 23.7275}
+                                                            var options = {zoom: 6, center: {lat: 37.9838, lng: 23.7275}
                                                             }
 
                                                             var map = new google.maps.Map(document.getElementById('map'), options);
-
                                                         <c:forEach items = "${hotels}" var = "hotel">
                                                             addMarker({coords: {lat:${hotel.longtitude}, lng:${hotel.latitude}},
                                                                 content: '<h1>${hotel.name}</h1>'
@@ -1217,7 +1192,6 @@
                                                                     position: props.coords,
                                                                     map: map
                                                                 });
-
                                                                 if (props.content) {
                                                                     var infoWindow = new google.maps.InfoWindow({
                                                                         content: props.content
@@ -1229,6 +1203,9 @@
                                                                 }
                                                             }
                                                         }
+                                                        ;
+
+                                                        
                                                     </script>
 
                                                     </body>

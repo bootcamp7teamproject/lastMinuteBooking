@@ -5,6 +5,7 @@
  */
 package bootcamp.project.lmb.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -99,22 +100,30 @@ public class Hotel implements Serializable {
     @Column(name = "Description")
     private String description;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
+    @JsonBackReference
     private Collection<Rating> ratingCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
+    @JsonBackReference
     private Collection<RoomEquipment> roomEquipmentCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotelid")
+    @JsonBackReference
     private Collection<Room> roomCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
+    @JsonBackReference
     private Collection<HotelFacilities> hotelFacilitiesCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
+    @JsonBackReference
     private Collection<RoomStatus> roomStatusCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotelid")
+    @JsonBackReference
     private Collection<RoomUnavailability> roomUnavailabilityCollection;
     @JoinColumn(name = "Destination_id", referencedColumnName = "Id")
     @ManyToOne(optional = false)
+    @JsonBackReference
     private Destination destinationid;
     @JoinColumn(name = "Owner_id", referencedColumnName = "Id")
     @ManyToOne(optional = false)
+    @JsonBackReference
     private User ownerid;
 
     public Hotel() {
@@ -323,5 +332,5 @@ public class Hotel implements Serializable {
     public String toString() {
         return "bootcamp.project.lmb.model.Hotel[ id=" + id + " ]";
     }
-    
+
 }

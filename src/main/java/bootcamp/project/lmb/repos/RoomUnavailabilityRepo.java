@@ -43,5 +43,5 @@ public interface RoomUnavailabilityRepo extends JpaRepository<RoomUnavailability
 
     @Modifying
     @Query(value = "delete from room_unavailability where Id= ?1 ;", nativeQuery = true)
-    void deleteReservation(int id);
+    void deleteReservation(Integer id);
 }

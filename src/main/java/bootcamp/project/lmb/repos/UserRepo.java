@@ -25,4 +25,6 @@ public interface UserRepo extends JpaRepository <User, Integer> {
     @Modifying
     @Query(value = "UPDATE user SET active = 1 WHERE id = :id", nativeQuery = true)
     public void updateUserActivity(@Param("id") Integer id);
+    
+
 }

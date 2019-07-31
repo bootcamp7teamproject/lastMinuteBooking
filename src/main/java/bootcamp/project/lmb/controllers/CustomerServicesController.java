@@ -5,6 +5,7 @@
  */
 package bootcamp.project.lmb.controllers;
 
+import static bootcamp.project.lmb.controllers.OwnerController.encoder;
 import bootcamp.project.lmb.dao.HotelDao;
 import bootcamp.project.lmb.dao.RatingDao;
 import bootcamp.project.lmb.dao.RoomUnavailabilityDao;
@@ -13,6 +14,7 @@ import bootcamp.project.lmb.model.Hotel;
 import bootcamp.project.lmb.model.RoomUnavailability;
 import bootcamp.project.lmb.model.User;
 import java.util.ArrayList;
+import java.util.Base64;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,6 +48,8 @@ public class CustomerServicesController {
 
     @Autowired
     RatingDao rd;
+
+    public static Base64.Encoder encoder = Base64.getEncoder();
 
     @GetMapping("/customer_services")
     public String getCustomerServices(ModelMap model, @SessionAttribute("loggedUser") User user, HttpSession session) {
@@ -95,13 +99,16 @@ public class CustomerServicesController {
             HttpSession session
     ) {
 
+        String decryptedPassword = new String(encoder.encode(updateUser.getPassword().getBytes()));
+        updateUser.setPassword(decryptedPassword);
         ud.insertUser(updateUser);
+        session.setAttribute("loggedUser", updateUser);
 
         return "redirect:/user/customer_services";
     }
 
     @GetMapping("/deletereservation/{reservationid}")
-    public String deleteReservation(ModelMap model,
+    public String getdeleteReservation(ModelMap model,
             @PathVariable(name = "reservationid") Integer reservationid
     ) {
 
