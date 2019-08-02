@@ -219,18 +219,7 @@
                                                 </form:label>
                                                 <form:input class="form-control mb-2" placeholder="Email" required="true"
                                                             path="email" />
-                                                <form:label path="longtitude">Longtitude
-                                                </form:label>
-                                                <form:input class="form-control mb-2" id="longitude" placeholder="Longitude" required="true"
-                                                            path="longtitude" />
-                                                <form:label path="latitude">Latitude
-                                                </form:label>
-                                                <form:input class="form-control mb-2" id="latitude" placeholder="latitude" required="true"
-                                                            path="latitude" />
-                                                <form:label path="imagespath">imagespath
-                                                </form:label>
-                                                <form:input class="form-control mb-2" placeholder="imagespath" required="false"
-                                                            path="imagespath" />
+                                               
 
                                                 <div class="form-group">
                                                     <form:label for="exampleFormControlTextarea1" path="description">Hotel Description</form:label>
@@ -375,20 +364,7 @@
                                                             path="phone" />
                                                 <form:label path="email">Email
                                                 </form:label>
-                                                <form:input class="form-control mb-2" id="emailUH" placeholder="Email" required="true"
-                                                            path="email" />
-                                                <form:label path="longtitude">Longtitude
-                                                </form:label>
-                                                <form:input class="form-control mb-2" id="longtitudeUH" placeholder="Longtitude" required="true"
-                                                            path="longtitude" />
-                                                <form:label path="latitude">Latitude
-                                                </form:label>
-                                                <form:input class="form-control mb-2" id="latitudeUH"  placeholder="latitude" required="true"
-                                                            path="latitude" />
-                                                <form:label path="imagespath">imagespath
-                                                </form:label>
-                                                <form:input class="form-control mb-2" id="imagespathUH" placeholder="imagespath" required="true"
-                                                            path="imagespath" />
+                                              
                                                 <div class="form-group">
                                                     <form:label for="exampleFormControlTextarea1" path="description">Hotel Description</form:label>
                                                     <form:textarea id="descriptionUH" path="description" class="form-control rounded-0" rows="10"></form:textarea>
