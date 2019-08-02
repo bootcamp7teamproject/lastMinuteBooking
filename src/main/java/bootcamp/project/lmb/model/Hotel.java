@@ -6,6 +6,8 @@
 package bootcamp.project.lmb.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -100,30 +102,30 @@ public class Hotel implements Serializable {
     @Column(name = "Description")
     private String description;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
-    @JsonBackReference
+    @JsonIgnore
     private Collection<Rating> ratingCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
-    @JsonBackReference
+    @JsonIgnore
     private Collection<RoomEquipment> roomEquipmentCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotelid")
-    @JsonBackReference
+    @JsonIgnore
     private Collection<Room> roomCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
-    @JsonBackReference
+    @JsonManagedReference
     private Collection<HotelFacilities> hotelFacilitiesCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
-    @JsonBackReference
+    @JsonIgnore
     private Collection<RoomStatus> roomStatusCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotelid")
-    @JsonBackReference
+    @JsonIgnore
     private Collection<RoomUnavailability> roomUnavailabilityCollection;
     @JoinColumn(name = "Destination_id", referencedColumnName = "Id")
     @ManyToOne(optional = false)
-    @JsonBackReference
+    @JsonIgnore
     private Destination destinationid;
     @JoinColumn(name = "Owner_id", referencedColumnName = "Id")
     @ManyToOne(optional = false)
-    @JsonBackReference
+    @JsonIgnore
     private User ownerid;
 
     public Hotel() {

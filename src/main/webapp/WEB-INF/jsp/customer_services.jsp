@@ -154,7 +154,7 @@
                                                             <div class="col-md-6 col-sm-6 col-xs-6">
                                                                 <label><h4>General Assessment</h4></label>
                                                                 <div class="rating">
-                                                                    <input type="radio" name="GeneralAssessment" value="5" id="star1"><label for="star1">           
+                                                                    <input type="radio" name="GeneralAssessment" value="5" id="star1" ><label for="star1">           
                                                                     </label>
                                                                     <input type="radio" name="GeneralAssessment" value="4" id="star2"><label for="star2">           
                                                                     </label>

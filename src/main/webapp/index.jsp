@@ -25,7 +25,7 @@
     <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-white bg-navy">
-        <a class="navbar-brand"><img src='resources/media/logo.jpg'></a>
+        <a class="navbar-brand"><img src='resources/media/logo120x60.svg'></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -64,11 +64,15 @@
         </div>
     </nav>
     <div class="fullscreen-bg">
-        <video loop muted autoplay class="fullscreen-bg_video">
-            <source src="resources/media/beach2.mp4" type="video/mp4">
-            <source src="resources/media/beach2.ogv" type="video/ogv">
-            <source src="resources/media/beach2.webm" type="video/webm">
-        </video>
-    </div>
+       <video loop muted autoplay class="fullscreen-bg_video">
+           <source src="sunrise.mp4" type="video/mp4">
+           <!-- <source src="beach2.ogv" type="video/ogv">
+           <source src="beach2.webm" type="video/webm"> -->
+       </video>    </div>    <div class="content">
+       <h3>Enjoy the best travelling experience around continental Greece.</h3>
+       <h3>Find out where is possible to go according to your budget.</h3>
+       <p>A flavourful melting pot of sparkling nightspots,fresh seafood,sizzling Mediterranean passion and mythical legend, Greece is a fascinating and enchanting destination.
+           The country has long held appeal for travellers, who decamp to its shores to lounch on beaches,explore ancient relics and take advantage of great Grecian hospitality.             </p>
+   </div>    <script src="indexcentral.js"></script>
     </body>
 </html>

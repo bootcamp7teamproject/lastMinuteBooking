@@ -5,6 +5,8 @@
  */
 package bootcamp.project.lmb.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -30,9 +32,11 @@ public class HotelFacilities implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
+    @JsonManagedReference
     protected HotelFacilitiesPK hotelFacilitiesPK;
     @JoinColumn(name = "Hotel_id", referencedColumnName = "Id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
+    @JsonBackReference
     private Hotel hotel;
     @JoinColumn(name = "Facility_id", referencedColumnName = "Id", insertable = false, updatable = false)
     @ManyToOne(optional = false)

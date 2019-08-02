@@ -5,6 +5,7 @@
  */
 package bootcamp.project.lmb.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -48,6 +49,7 @@ public class Facilities implements Serializable {
     @Column(name = "Name")
     private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "facilities")
+    @JsonBackReference
     private Collection<HotelFacilities> hotelFacilitiesCollection;
 
     public Facilities() {

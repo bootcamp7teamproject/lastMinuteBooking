@@ -35,5 +35,11 @@ public class RoomEquipmentDao {
 
         return roomequipment;
     }
+    
+    public ArrayList<RoomEquipment> getRoomEquipmentByHotelId(int hotelid) {
+        ArrayList<RoomEquipment> roomequipment = rer.getRoomEquipmentByHotelId(hotelid);
+
+        return roomequipment;
+    }
 
 }

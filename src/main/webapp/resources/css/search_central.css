@@ -92,3 +92,9 @@ and open the template in the editor.
     width: 100%
 }
 
+.test {
+  width: 62px;
+  height: 63px;
+  background-color: rgb(255, 165, 0);
+}
+

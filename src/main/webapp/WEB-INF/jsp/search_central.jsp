@@ -20,15 +20,14 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Available Hotels</title>
         <link rel="stylecentral" href="styles.css">
-        <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt8otviU1hSrLQenHKOgpOVH8yUZl2LUI&callback=myMap"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw2rbACCi2uAkd_jkTHIh4aggS-irgrRQ&libraries=places&callback=initAutocomplete"
+        async defer></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&effect=brick-sign">
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
                 integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
@@ -100,7 +99,7 @@
                                                         <label class="control-label" for="budget">
                                                             Total Budget
                                                         </label>
-                                                        <input class="form-control" id="budget" name="budget" type="text" />
+                                                        <input class="form-control" id="budget" name="budget" type="text" value="${budget}" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 col-sm-2 col-xs-2">
@@ -108,7 +107,7 @@
                                                         <label class="control-label" for="persons">
                                                             Number of persons
                                                         </label>
-                                                        <input class="form-control" id="persons" name="persons" type="text" />
+                                                        <input class="form-control" id="persons" name="persons" type="text" value="${persons}" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 col-sm-3 col-xs-3">
@@ -116,7 +115,7 @@
                                                         <label class="control-label" for="checkin">
                                                             Check in
                                                         </label>
-                                                        <input class="form-control" id="date" name="checkin" type="date" />
+                                                        <input class="form-control" id="date" name="checkin" type="date" value="${checkinS}" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 col-sm-3 col-xs-3">
@@ -124,7 +123,7 @@
                                                         <label class="control-label" for="checkout">
                                                             Check out
                                                         </label>
-                                                        <input class="form-control" id="date" name="checkout" type="date" />
+                                                        <input class="form-control" id="date" name="checkout" type="date" value="${checkoutS}" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 col-sm-2 col-xs-2">
@@ -171,39 +170,33 @@
                                         <div class="card-body">
                                             <form>
                                                 <label class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <input class="form-check-input" type="checkbox" value="1" id="1star">
                                                     <span class="form-check-label">
                                                         1 Star
                                                     </span>
                                                 </label> 
                                                 <label class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <input class="form-check-input" type="checkbox" value="2" id="2star">
                                                     <span class="form-check-label">
                                                         2 Star
                                                     </span>
                                                 </label> 
                                                 <label class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <input class="form-check-input" type="checkbox" value="3" id="3star">
                                                     <span class="form-check-label">
                                                         3 Star
                                                     </span>
                                                 </label>
                                                 <label class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <input class="form-check-input" type="checkbox" value="4" id="4star">
                                                     <span class="form-check-label">
                                                         4 Star
                                                     </span>
                                                 </label>
                                                 <label class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <input class="form-check-input" type="checkbox" value="5" id="5star">
                                                     <span class="form-check-label">
                                                         5 Star
-                                                    </span>
-                                                </label>
-                                                <label class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="">
-                                                    <span class="form-check-label">
-                                                        Unrated
                                                     </span>
                                                 </label>
                                                 </label> 
@@ -211,32 +204,6 @@
                                         </div> 
                                     </div>
                                 </article> 
-
-                                <div class="card">
-                                    <article class="card-group-item">
-                                        <header class="card-header bg-navy">
-                                            <h6 class="title text-white">Bed Preference </h6>
-                                        </header>
-                                        <div class="filter-content">
-                                            <div class="card-body">
-                                                <form>
-                                                    <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-label">
-                                                            Twin beds
-                                                        </span>
-                                                    </label> 
-                                                    <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-label">
-                                                            Double bed
-                                                        </span>
-                                                    </label> 
-                                                </form>
-                                            </div> 
-                                        </div>
-                                    </article> 
-
 
                                     <article class="card-group-item">
                                         <header class="card-header bg-navy">
@@ -246,61 +213,61 @@
                                             <div class="card-body">
                                                 <form>
                                                     <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <input class="form-check-input" type="checkbox" value="" id="wifi">
                                                         <span class="form-check-label">
                                                             Free WiFi
                                                         </span>
                                                     </label> 
                                                     <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <input class="form-check-input" type="checkbox" value="" id="smoke">
                                                         <span class="form-check-label">
                                                             Non-smoking rooms
                                                         </span>
                                                     </label> 
                                                     <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <input class="form-check-input" type="checkbox" value="" id="family">
                                                         <span class="form-check-label">
                                                             Family rooms
                                                         </span>
                                                     </label>
                                                     <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <input class="form-check-input" type="checkbox" value="" id="airport">
                                                         <span class="form-check-label">
                                                             Airport shuttle
                                                         </span>
                                                     </label>
                                                     <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <input class="form-check-input" type="checkbox" value="" id="parking">
                                                         <span class="form-check-label">
                                                             Parking
                                                         </span>
                                                     </label>
                                                     <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <input class="form-check-input" type="checkbox" value="" id="pets">
                                                         <span class="form-check-label">
                                                             Pets allowed
                                                         </span>
                                                     </label>
                                                     <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <input class="form-check-input" type="checkbox" value="" id="room">
                                                         <span class="form-check-label">
                                                             Room service
                                                         </span>
                                                     </label>
                                                     <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <input class="form-check-input" type="checkbox" value="" id="pool">
                                                         <span class="form-check-label">
                                                             Swimming pool
                                                         </span>
                                                     </label>
                                                     <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <input class="form-check-input" type="checkbox" value="" id="spa">
                                                         <span class="form-check-label">
                                                             Spa and wellness centre
                                                         </span>
                                                     </label>
                                                     <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
+                                                        <input class="form-check-input" type="checkbox" value="" id="bar">
                                                         <span class="form-check-label">
                                                             Bar
                                                         </span>
@@ -309,82 +276,10 @@
                                             </div>
                                     </article> 
 
-                                    <article class="card-group-item">
-                                        <header class="card-header bg-navy">
-                                            <h6 class="title text-white">Room Facilities </h6>
-                                        </header>
-                                        <div class="filter-content">
-                                            <div class="card-body">
-                                                <form>
-                                                    <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-label">
-                                                            Kitchen
-                                                        </span>
-                                                    </label> 
-                                                    <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-label">
-                                                            Private bathroom
-                                                        </span>
-                                                    </label> 
-                                                    <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-label">
-                                                            Air conditioning
-                                                        </span>
-                                                    </label>
-                                                    <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-label">
-                                                            Bath
-                                                        </span>
-                                                    </label>
-                                                    <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-label">
-                                                            Flat-screen TV
-                                                        </span>
-                                                    </label>
-                                                    <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-label">
-                                                            Washing Machine
-                                                        </span>
-                                                    </label>
-                                                    <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-label">
-                                                            View
-                                                        </span>
-                                                    </label>
-                                                    <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-label">
-                                                            Coffee/tea maker
-                                                        </span>
-                                                    </label>
-                                                    <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-label">
-                                                            Coffee machine
-                                                        </span>
-                                                    </label>
-                                                    <label class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-label">
-                                                            Electric kettle
-                                                        </span>
-                                                    </label>
-                                                </form>
-                                            </div>
-                                    </article> 
-
+                                 
 
                                     <button class="btn bg-danger text-white " id="reset">
-
                                         Reset filters
-
                                     </button>
 
 
@@ -392,40 +287,10 @@
                         </aside>
 
 
-                        <aside class="col-md-9 col-sm-9 col-xs-9">
-                            <div class="container">
-                                <div class="jumbotron jumbotron-fluid bg-white shadow rounded border-color-navy2 "
-                                     style="padding-top:15px; padding-bottom:15px">
-                                    <div class="container">
-                                        <div class="row" id="myrow">
-                                            <c:forEach items = "${searchHotels}" var = "hotel">
-                                                <!--                                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                                                                                <div class="text-center">
-                                                                                                    <img src="../resources/media/room.jpg" class="rounded" style="width:100%">
-                                                                                                </div>
-                                                                                            </div>-->
+                        <aside class="col-md-9 col-sm-9 col-xs-9" id="myrow">
+                            
 
-                                                <!--                                                <div class="col-md-8 col-sm-8 col-xs-8">
-                                                                                                    <p class="text-left">
-                                                                                                    <h1 class="w3-lobster  w3-xxlarge" >${hotel.name}</h1>
-                                                                                                    </p>                         
-                                                                                                    <p class="text-left">
-                                                                                                    <h2 class="w3-lobster w3-xlarge">${hotel.address},${hotel.destinationid.name}</h2>
-                                                                                                    </p>
-                                                                                                    <p class="text-left">
-                                                                                                    <h2 class="title text-navy">Rating</h2>
-                                                                                                    </p>
-                                                                                                    <div class="btn" style="padding-left:300px">
-                                                                                                        <a href="${pageContext.request.contextPath}/user/search/${hotel.id}"><button class="btn bg-navy w3-lobster w3-xlarge text-white " id="Search" name="Search">
-                                                                                                                Choose your room >
-                                                                                                            </button></a>
-                                                                                                    </div>
-                                                                                                </div>-->
-                                            </c:forEach>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        </aside>
                     </div>
             </div>
         </div>
@@ -436,19 +301,17 @@
             jQuery(init);
 
             function init($) {
-
                 $(document).ready(getHotels);
                 let searchHotels;
                 let lastFilteredResult;
                 let myrow = $("#myrow");
 
                 function getHotels() {
-
                     let URL = "http://localhost:8080/lmb/user/search/ajax";
                     $.ajax({
                         url: URL,
                         success: getUserSearchHotels,
-                        error: handleEror
+                        error: handleError
                     });
 
                     function handleError(jqXHR, testStatus, errorThrown) {
@@ -456,9 +319,8 @@
                     }
 
                     function getUserSearchHotels(data) {
-
-                        searchHotels = data;
-                        lastFilteredResult = data;
+                        searchHotels = JSON.parse(JSON.stringify(data)); // Deep object copy
+                        lastFilteredResult = JSON.parse(JSON.stringify(data));
                         showResults(searchHotels);
                     }
                 }
@@ -467,150 +329,353 @@
                 reset.on("click", resetFilters);
                 function resetFilters() {
                     $("input:checkbox").prop("checked", false);
+                    lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
                     showResults(searchHotels);
                 }
 
 
+
                 let star1 = $("#1star");
-                star1.on("click", handleStar1);
+                star1.on("change", handleStar1);
+
                 function handleStar1() {
-                    handleStar(star1, 1);
+                    if (star1.is(":checked"))
+                        handleStar(1);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
+                    }
                 }
 
 
 
                 let star2 = $("#2star");
-                star2.on("click", handleStar2);
+                star2.on("change", handleStar2);
+
                 function handleStar2() {
-                    handleStar(star2, 2);
+                    if (star2.is(":checked"))
+                        handleStar(2);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
+                    }
                 }
 
 
 
                 let star3 = $("#3star");
-                star3.on("click", handleStar3);
+                star3.on("change", handleStar3);
                 function handleStar3() {
-                    handleStar(star3, 3);
+                    if (star3.is(":checked"))
+                        handleStar(3);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
+                    }
                 }
 
 
 
                 let star4 = $("#4star");
-                star4.on("click", handleStar4);
+                star4.on("change", handleStar4);
+
                 function handleStar4() {
-                    handleStar(star4, 4);
+                    if (star4.is(":checked"))
+                        handleStar(4);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
+                    }
                 }
 
 
 
                 let star5 = $("#5star");
-                star5.on("click", handleStar5);
+                star5.on("change", handleStar5);
+
                 function handleStar5() {
-                    handleStar(star5, 5);
-                }
-
-
-
-                function handleStar(starSelector, starNumber) {
-                    let temp = [{}];
-                    if (starSelector.is(":checked")) {
-                        lastFilteredResult.forEach(element => {
-                            if (element.starsnumber === starNumber) {
-                                console.log(element);
-                            }
-                        });
-
-                        lastFilteredResult = temp;
-                        showResults(lastFilteredResult);
+                    if (star5.is(":checked"))
+                        handleStar(5);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
                     }
                 }
+
+
+
+                function handleStar(starNumber) {
+                    let temp = [{}];
+
+                    lastFilteredResult.forEach(element => {
+                        if (element.starsnumber === starNumber) {
+                            temp = temp.concat(element);
+                        }
+                    });
+
+                    lastFilteredResult = JSON.parse(JSON.stringify(temp));
+                    showResults(lastFilteredResult);
+
+                }
+
+
+
+                let wifi = $("#wifi");
+                wifi.on("change", handleWifi);
+
+                function handleWifi() {
+                    if (wifi.is(":checked"))
+                        handleFacility(1);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
+                    }
+                }
+
+
+
+                let smoke = $("#smoke");
+                smoke.on("change", handleSmoke);
+
+                function handleSmoke() {
+                    if (smoke.is(":checked"))
+                        handleFacility(2);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
+                    }
+                }
+
+
+
+                let family = $("#family");
+                family.on("change", handleFamily);
+
+                function handleFamily() {
+                    if (family.is(":checked"))
+                        handleFacility(3);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
+                    }
+                }
+
+
+
+                let airport = $("#airport");
+                airport.on("change", handleAirport);
+
+                function handleAirport() {
+                    if (airport.is(":checked"))
+                        handleFacility(4);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
+                    }
+                }
+
+
+
+                let parking = $("#parking");
+                parking.on("change", handleParking);
+
+                function handleParking() {
+                    if (parking.is(":checked"))
+                        handleFacility(5);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
+                    }
+                }
+
+
+
+                let pets = $("#pets");
+                pets.on("change", handlePets);
+
+                function handlePets() {
+                    if (pets.is(":checked"))
+                        handleFacility(6);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
+                    }
+                }
+
+
+
+                let room = $("#room");
+                room.on("change", handleRoom);
+
+                function handleRoom() {
+                    if (room.is(":checked"))
+                        handleFacility(7);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
+                    }
+                }
+
+
+
+                let pool = $("#pool");
+                pool.on("change", handlePool);
+
+                function handlePool() {
+                    if (pool.is(":checked"))
+                        handleFacility(8);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
+                    }
+                }
+
+
+
+                let spa = $("#spa");
+                spa.on("change", handleSpa);
+
+                function handleSpa() {
+                    if (spa.is(":checked"))
+                        handleFacility(9);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
+                    }
+                }
+
+
+
+                let bar = $("#bar");
+                bar.on("change", handleBar);
+
+                function handleBar() {
+                    if (bar.is(":checked"))
+                        handleFacility(10);
+                    else {
+                        lastFilteredResult = JSON.parse(JSON.stringify(searchHotels));
+                        showResults(searchHotels);
+                    }
+                }
+
+
+
+
+
+                function handleFacility(facilityNumber) {
+
+                    let temp = [{}];
+                    lastFilteredResult.forEach(hotel => {
+                        (hotel.hotelFacilitiesCollection).forEach(element => {
+                            if (element.hotelFacilitiesPK.facilityid === facilityNumber) {
+                                temp = temp.concat(hotel);
+                            }
+                        });
+                    });
+                    lastFilteredResult = JSON.parse(JSON.stringify(temp));
+                    showResults(lastFilteredResult);
+                }
+
+
+
+
+
+
+
+
 
 
 
                 function showResults(data) {
-
-
-//myrow.html("<div class='col-md-4 col-sm-4 col-xs-4'><div class='text-center'><img src='../resources/media/room.jpg' class='rounded' style='width:100%'></div></div><div class='col-md-8 col-sm-8 col-xs-8'><p class='text-left'><h1 class='w3-lobster  w3-xxlarge' >"+element.name+"</h1></p><p class='text-left'><h2 class='w3-lobster w3-xlarge'>"+element.address+"</h2></p><p class='text-left'><h2 class='title text-navy'>Rating</h2></p><div class='btn' style='padding-left:300px'><a href='/user/search/"+element.id+"'><button class='btn bg-navy w3-lobster w3-xlarge text-white ' id='Search' name='Search'>Choose your room ></button></a></div></div>");
-
                     myrow.empty();
+                        
                     data.forEach(element => {
-                        let content = $("<div><p><h1></h1></p><p><h2></h2></p><p><h3></h3></p><div><a><button>Choose your room</button></a></div></div><div><div><img></div></div>")
-                                .appendTo(myrow);
-                        content.find("div:eq(0)").addClass("col-md-9 col-sm-9 col-xs-9");
-                        content.find("p").addClass("text-left");
-                        content.find("h1,h2,h3").addClass("title text-navy");
-                        content.find("h1").html(element.name);
-                        content.find("h2").html("Number of stars: " + element.starsnumber);
-                        content.find("h3").html(element.description);
-                        content.find("div:eq(1)").addClass("btn").css("padding-left", "300px");
-                        content.find("a").attr("href", "http://localhost:8080/lmb/user/search/" + element.id);
-                        content.find("button").addClass("btn bg-navy text-white");
-                        content.find("div:eq(2)").addClass("col-md-3 col-sm-3 col-xs-3");
-                        content.find("div:eq(3)").addClass("text-right");
-                        content.find("img").addClass("rounded").attr("src", "../resources/media/room.jpg").css("width", "100%");
+                        <c:forEach items="${ratings}" var="hotel">
+                                    if ("${hotel.key}"==element.id){
+                        if (element.name !== undefined) {
+                             
+            let content = $("<div class='container'><div class='jumbotron jumbotron-fluid bg-white shadow rounded border-color-navy2' style='padding-top:15px; padding-bottom:15px'><div class='container'><div class='row'><div class='col-md-4 col-sm-4 col-xs-4'><div class='text-center'><img src='../resources/media/HotelPhotos/"
+                                    + element.id +"/1.jpg' class='rounded' style='width:100%;height:200px'></div></div><div class='col-md-8 col-sm-8 col-xs-8'><div class='d-flex'><div class='p-2 mr-auto'><h1 class='w3-lobster  w3-xxlarge' >"
+                                    + element.name + "</h1></div><div class='p-2 test rounded-circle '><h1 class='pr-3 w3-lobster  w3-xxlarge'>${hotel.value}</h1></div></div><p class='text-left'><h3 class='w3-lobster w3-xlarge'>"
+                                    + element.address + "</h3></p><p class='text-left'><h6 class='title text-navy'>"
+                                    + element.description + "</h6></p><div class='btn pull-right' ><a href='${pageContext.request.contextPath}/user/search/"
+                                    + element.id + "'><button class='btn bg-navy w3-lobster w3-xlarge text-white '>Choose your room</button></a></div></div></div></div></div></div>")
+                                    .appendTo(myrow);
+                        }}
+                        
+                        </c:forEach>
                     });
-
-                }
-
-            }
-
-            // Get the modal
-            var modal = document.getElementById("myModal");
+                    
+                    
+                            // Get the modal
+                var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-            var btn = document.getElementById("myBtn");
+                var btn = document.getElementById("myBtn");
 
-// Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
-            btn.onclick = function () {
-                modal.style.display = "block";
+                // When the user clicks the button, open the modal 
+                btn.onclick = function () {
+                    modal.style.display = "block";
 
 
-                var options = {
-                    zoom: 6,
-                    center: {lat: 37.9838, lng: 23.7275}
-                }
+                    var options = {
+                        zoom: 6,
+                        center: {lat: 37.9838, lng: 23.7275}
+                    };
 
-                var map = new google.maps.Map(document.getElementById('map'), options);
+                    var map = new google.maps.Map(document.getElementById('map'), options);
 
-            <c:forEach items = "${searchHotels}" var = "hotel">
-                addMarker({coords: {lat:${hotel.longtitude}, lng:${hotel.latitude}},
-                    content: '<h1>${hotel.name}</h1>'
-                });
-            </c:forEach>
-
-                function addMarker(props) {
-                    var marker = new google.maps.Marker({
-                        position: props.coords,
-                        map: map
+                    searchHotels.forEach(element => {
+                        console.log(parseFloat(element.longtitude), element.latitude , 1);
+                        addMarker({coords: {lat: parseFloat(element.longtitude) , lng: parseFloat(element.latitude)},
+                    content: "<h1>element.name</h1>"
+                        });
                     });
 
-                    if (props.content) {
-                        var infoWindow = new google.maps.InfoWindow({
-                            content: props.content
+                    function addMarker(props) {
+                        var marker = new google.maps.Marker({
+                            position: props.coords,
+                            map: map
+                        });
 
-                        });
-                        marker.addListener('click', function () {
-                            infoWindow.open(map, marker);
-                        });
+                        if (props.content) {
+                            var infoWindow = new google.maps.InfoWindow({
+                                content: props.content
+
+                            });
+                            marker.addListener('click', function () {
+                                infoWindow.open(map, marker);
+                            });
+                        }
                     }
-                }
 
-            }
+                };
 
-// When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-// When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function () {
                     modal.style.display = "none";
+                };
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                };
                 }
+
+
+        
+
+
             }
+
+
+
+
 
 
         </script>

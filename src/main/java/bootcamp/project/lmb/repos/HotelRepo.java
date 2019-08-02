@@ -41,7 +41,7 @@ public interface HotelRepo extends JpaRepository<Hotel, Integer> {
             nativeQuery = true
     )
     ArrayList<Hotel> findSearchHotels(@Param("budget") Integer budget, @Param("nights") Integer nights, @Param("persons") Integer persons,
-            @Param("checkin") String checkin, @Param("checkout") String checkout);
+            @Param("checkin") Date checkin, @Param("checkout") Date checkout);
 
     @Query(value = "select hotel.* from hotel inner join user on hotel.Owner_id=user.Id where user.Id=?1 ;", nativeQuery = true)
     List<Hotel> getHotelsByUserId(Integer id);
