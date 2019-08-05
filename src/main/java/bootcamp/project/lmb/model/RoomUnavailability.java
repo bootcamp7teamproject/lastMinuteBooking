@@ -35,7 +35,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 @NamedQueries({
     @NamedQuery(name = "RoomUnavailability.findAll", query = "SELECT r FROM RoomUnavailability r")
     , @NamedQuery(name = "RoomUnavailability.findById", query = "SELECT r FROM RoomUnavailability r WHERE r.id = :id")
-    , @NamedQuery(name = "RoomUnavailability.findByUserid", query = "SELECT r FROM RoomUnavailability r WHERE r.userid = :userid")
     , @NamedQuery(name = "RoomUnavailability.findByStartdate", query = "SELECT r FROM RoomUnavailability r WHERE r.startdate = :startdate")
     , @NamedQuery(name = "RoomUnavailability.findByEnddate", query = "SELECT r FROM RoomUnavailability r WHERE r.enddate = :enddate")
     , @NamedQuery(name = "RoomUnavailability.findByTotalcost", query = "SELECT r FROM RoomUnavailability r WHERE r.totalcost = :totalcost")})
@@ -47,26 +46,21 @@ public class RoomUnavailability implements Serializable {
     @Basic(optional = false)
     @Column(name = "Id")
     private Integer id;
-    @Column(name = "User_id")
-    private Integer userid;
     @Basic(optional = false)
     @NotNull
     @Column(name = "Start_date")
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern="YYYY-MM-dd")
+    @DateTimeFormat(pattern = "YYYY-MM-dd")
     private Date startdate;
     @Basic(optional = false)
     @NotNull
     @Column(name = "End_date")
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern="YYYY-MM-dd")
+    @DateTimeFormat(pattern = "YYYY-MM-dd")
     private Date enddate;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "Total_cost")
     private Float totalcost;
-    @JoinColumn(name = "Id", referencedColumnName = "Id", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private User user;
     @JoinColumn(name = "Room_id", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private Room roomid;
@@ -76,6 +70,9 @@ public class RoomUnavailability implements Serializable {
     @JoinColumn(name = "Status", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private Status status;
+    @JoinColumn(name = "User_id", referencedColumnName = "Id")
+    @ManyToOne
+    private User userid;
 
     public RoomUnavailability() {
     }
@@ -84,7 +81,17 @@ public class RoomUnavailability implements Serializable {
         this.id = id;
     }
 
-    public RoomUnavailability(Integer id, Date startdate, Date enddate) {
+    public RoomUnavailability(User userid, Date startdate, Date enddate, Float totalcost, Room roomid, Hotel hotelid, Status status) {
+        this.userid = userid;
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.totalcost = totalcost;
+        this.roomid = roomid;
+        this.hotelid = hotelid;
+        this.status = status;
+    }
+
+   public RoomUnavailability(Integer id, Date startdate, Date enddate) {
         this.id = id;
         this.startdate = startdate;
         this.enddate = enddate;
@@ -96,14 +103,6 @@ public class RoomUnavailability implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
     }
 
     public Date getStartdate() {
@@ -130,14 +129,6 @@ public class RoomUnavailability implements Serializable {
         this.totalcost = totalcost;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Room getRoomid() {
         return roomid;
     }
@@ -162,6 +153,14 @@ public class RoomUnavailability implements Serializable {
         this.status = status;
     }
 
+    public User getUserid() {
+        return userid;
+    }
+
+    public void setUserid(User userid) {
+        this.userid = userid;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -184,7 +183,7 @@ public class RoomUnavailability implements Serializable {
 
     @Override
     public String toString() {
-        return "bootcamp.project.lmb.model.RoomUnavailability[ id=" + id + " ]";
+        return "com.teamproject.lmb.entities.RoomUnavailability[ id=" + id + " ]";
     }
-    
+
 }

@@ -9,6 +9,7 @@ import bootcamp.project.lmb.model.Room;
 import bootcamp.project.lmb.repos.RoomRepo;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,4 +50,10 @@ public class RoomDao {
         ArrayList <Room> rooms = rr.getRoomByUserId(id);
         return rooms;
     }
+    
+    public Room getRoomById(int id) {
+        Room room = rr.getOne(id);
+        return room;
+    }
+    
 }

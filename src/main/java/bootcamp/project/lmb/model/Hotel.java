@@ -45,7 +45,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Hotel.findBySiteurl", query = "SELECT h FROM Hotel h WHERE h.siteurl = :siteurl")
     , @NamedQuery(name = "Hotel.findByPhone", query = "SELECT h FROM Hotel h WHERE h.phone = :phone")
     , @NamedQuery(name = "Hotel.findByEmail", query = "SELECT h FROM Hotel h WHERE h.email = :email")
-    , @NamedQuery(name = "Hotel.findByImagespath", query = "SELECT h FROM Hotel h WHERE h.imagespath = :imagespath")
     , @NamedQuery(name = "Hotel.findByLongtitude", query = "SELECT h FROM Hotel h WHERE h.longtitude = :longtitude")
     , @NamedQuery(name = "Hotel.findByLatitude", query = "SELECT h FROM Hotel h WHERE h.latitude = :latitude")
     , @NamedQuery(name = "Hotel.findByDescription", query = "SELECT h FROM Hotel h WHERE h.description = :description")})
@@ -89,9 +88,6 @@ public class Hotel implements Serializable {
     @Size(max = 45)
     @Column(name = "Email")
     private String email;
-    @Size(max = 45)
-    @Column(name = "Images_path")
-    private String imagespath;
     @Size(max = 45)
     @Column(name = "Longtitude")
     private String longtitude;
@@ -206,14 +202,6 @@ public class Hotel implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getImagespath() {
-        return imagespath;
-    }
-
-    public void setImagespath(String imagespath) {
-        this.imagespath = imagespath;
     }
 
     public String getLongtitude() {

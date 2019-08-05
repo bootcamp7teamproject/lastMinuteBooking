@@ -22,6 +22,7 @@
         <link rel="stylesheet" type="text/css" href="../resources/css/customer_services.css">
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
 
+        <script src="https://www.paypalobjects.com/api/checkout.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -70,7 +71,7 @@
         <div class="container">
             <div class="row">
 
-                <aside class="col-md-2 col-sm-2 col-xs-2 bg-navy" style="padding-top: 35px;left:-190px;padding-bottom: 400px;">
+                <aside class="col-md-2 col-sm-2 col-xs-2 bg-navy" >
                     <ul class="list-group border-color-navy rounded">
                         <li class="list-group-item-secondary text-center py-2 list-unstyled bg-navy disabled"> <button
                                 id="btn" class="btn btn-primary custom" type="button" data-toggle="collapse"
@@ -110,27 +111,33 @@
                                             <table class="table table-bordered table-hover rounded ">
                                                 <thead class="text-center">
                                                     <tr>
-                                                        <th>Start Date</th>
-                                                        <th>End Date</th>
-                                                        <th>Hotel</th>
-                                                        <th>Address</th>
-                                                        <th>Area</th>
-                                                        <th>Status</th>
-                                                        <th>Cancelation</th>
+                                                        <th class="text-center align-middle">Start Date</th>
+                                                        <th class="text-center align-middle" >End Date</th>
+                                                        <th class="text-center align-middle">Hotel</th>
+                                                        <th class="text-center align-middle">Address</th>
+                                                        <th class="text-center align-middle">Area</th>
+                                                        <th class="text-center align-middle">Total Cost</th>
+                                                        <th class="text-center align-middle">Status</th>
+                                                        <th class="text-center align-middle">Cancelation</th>
+                                                        <th class="text-center align-middle">Payments</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="text-center">
                                                     <c:forEach items = "${reservations}" var = "reservations">
                                                         <tr>
-                                                            <td >${reservations.startdate}</td>
-                                                            <td >${reservations.enddate}</td>
-                                                            <td >${reservations.hotelid.name}</td>
-                                                            <td >${reservations.hotelid.address}</td>
-                                                            <td >${reservations.hotelid.destinationid.name}</td>
-                                                            <td class="text-center" ><button class="text-white btn block " id="status${reservations.id}">
-                                                                    <p id="buttonText${reservations.id}" style="text-center: left;"></p></button></td>
-                                                            <td  id="delete${reservations.id}"><a  href="${pageContext.request.contextPath}/user/deletereservation/${reservations.id}"><button class="btn btn-danger block text-white" >
+                                                            <td class="text-center align-middle">${reservations.startdate}</td>
+                                                            <td class="text-center align-middle" >${reservations.enddate}</td>
+                                                            <td class="text-center align-middle">${reservations.hotelid.name}</td>
+                                                            <td class="text-center align-middle">${reservations.hotelid.address}</td>
+                                                            <td class="text-center align-middle">${reservations.hotelid.destinationid.name}</td>
+                                                            <td class="text-center align-middle">${reservations.totalcost}</td>
+                                                            <td class="text-center align-middle" ><button class="text-white btn block " id="status${reservations.id}">
+                                                                    <p id="buttonText${reservations.id}"></p></button></td>
+                                                            <td class="text-center align-middle" id="delete${reservations.id}"><a  href="${pageContext.request.contextPath}/user/deletereservation/${reservations.id}"><button class="btn btn-danger block text-white" >
                                                                         <p id="buttonText${reservations.id}" class="text text-center"></p>CANCEL YOUR RESERVATION</button></a></td>
+                                                            <td class="text-center align-middle" >
+                                                                <div id="paypal-button"> </div>
+                                                            </td>
                                                         </tr>
                                                     </c:forEach> 
                                                 </tbody>    
@@ -287,7 +294,7 @@
                                                 </form:label>
                                                 <form:input type="password" class="form-control mb-2" 
                                                             required="true" path="password" />
-                                                <!--<p id="wrongpassword">The password is wrong</p>-->
+                                          
                                                 <button id="submitbutton" class="btn btn-lg btn-primary btn-block mt-2"
                                                         type="submit">Submit</button>
 
@@ -308,39 +315,30 @@
         </div>
 
         <script>
-
             window.onload = function () {
                 displaybookingblock();
             };
-
             $('#Bookings_context').show();
-
             $('#btn0').click(function () {
                 $('#Bookings_context').show();
                 $('#Reviews_context').hide();
                 $('#Settings_context').hide();
-
             });
-
             $('#btn1').click(function () {
                 $('#Bookings_context').hide();
                 $('#Reviews_context').show();
                 $('#Settings_context').hide();
             });
-
             $('#btn2').click(function () {
                 $('#Bookings_context').hide();
                 $('#Reviews_context').hide();
                 $('#Settings_context').show();
             });
-
             var ratingform = document.getElementById("ratingform");
             document.querySelector("#btn1").addEventListener("click", function () {
                 displayblock();
-
             });
             function displayblock() {
-
             <c:if test="${availableRatings.userid == null}" >
                 ratingform.style.display = "none";
                 $("#ratingText").text("You don't have to rate any hotel");
@@ -348,30 +346,21 @@
             </c:if>
             }
             ;
-
             var reservationsform = document.getElementById("reservationsform");
             document.querySelector("#btn0").addEventListener("click", function () {
                 displaybookingblock();
-
             });
             function displaybookingblock() {
-
             <jsp:useBean id="now" class="java.util.Date"/>
-
-
             <c:if test="${reservations[0].userid == null}" >
                 reservationsform.style.display = "none";
                 $("#reservationsText").text("You haven't done any reservation until now.");
                 $("#reservationsText").style.display = "block";
             </c:if>
-
             <c:forEach items = "${reservations}" var = "reservations">
-
                 var buttonstatus = document.getElementById("status${reservations.id}");
                 var buttondelete = document.getElementById("delete${reservations.id}");
                 var buttonText = document.getElementById("buttonText${reservations.id}");
-
-
                 <c:if test="${reservations.enddate lt now}" >
                 buttondelete.style.display = "none";
                 buttonstatus.classList.add("btn-success");
@@ -379,37 +368,51 @@
                 $("#buttonText${reservations.id}").text("COMPLETE");
                 </c:if>
                 <c:if test="${reservations.enddate gt now}" >
-
                 buttondelete.style.display = "block";
                 buttonstatus.classList.add("btn-warning");
                 buttonstatus.classList.add("block");
                 $("#buttonText${reservations.id}").text("IN PRGOGRESS");
                 </c:if>
-
-
             </c:forEach>
             }
             ;
 
-//            document.querySelector("#userpassword").addEventListener("change", function () {
-//                checkpassword();
-//
-//            });
-//
-//            function checkpassword() {
-//
-//                var password = document.getElementById("userpassword").value;
-//            <c:if test="${loggedUser.password != password}" >
-//                $("#wrongpassword").style.display = "block";
-//                $("#buttonsubmit").disabled = true;
-//            </c:if>
-//                 <c:if test="${loggedUser.password == password}" >
-//                $("#wrongpassword").style.display = "none";
-//                $("#buttonsubmit").disabled = false;
-//            </c:if>
-//
-//            }
 
+            paypal.Button.render({
+                // Configure environment
+                env: 'sandbox',
+                client: {
+                    sandbox: 'demo_sandbox_client_id',
+                    production: 'demo_production_client_id'
+                },
+                // Customize button (optional)
+                locale: 'en_US',
+                style: {
+                    size: 'small',
+                    color: 'gold',
+                    shape: 'pill',
+                }, // Enable Pay Now checkout flow (optional)
+                commit: true, // Set up a payment
+                payment: function (data, actions) {
+                    return actions.payment.create({
+                        
+               
+                        transactions: [{
+                                amount: {
+                                    total: '250',
+                                    currency: 'EUR'
+                                }
+                            }]
+                    });
+                },
+                // Execute the payment
+                onAuthorize: function (data, actions) {
+                    return actions.payment.execute().then(function () {
+                        // Show a confirmation message to the buyer
+                        window.alert('Thank you for your purchase!');
+                    });
+                }
+            }, '#paypal-button');
 
         </script>
 

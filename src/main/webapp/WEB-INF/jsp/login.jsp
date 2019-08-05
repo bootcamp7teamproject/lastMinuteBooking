@@ -22,11 +22,12 @@
 
         <!-- Custom styles for this template -->
         <link href="../resources/css/signin.css" rel="stylesheet">
+        <link href="../../resources/css/signin.css" rel="stylesheet">
     </head>
 
     <body class="text-center">
         <form:form class="form-signin" action = "${pageContext.request.contextPath}/user/login" method = "POST" modelAttribute = "user">
-            <a href="${pageContext.request.contextPath}"><img class="mb-4" src="../resources/media/template.jpg" alt="" width="300" height="150"></a>
+            <a href="${pageContext.request.contextPath}"><img class="mb-4" src="../resources/media/template.jpg" srcset="../../resources/media/template.jpg"  alt="" width="300" height="150"></a>
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
             <form:label class="sr-only" path="username">Username</form:label>
             <form:input class = "form-control" placeholder = "Username" required = "true" autofocus = "true" path = "username"/>

@@ -19,12 +19,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw2rbACCi2uAkd_jkTHIh4aggS-irgrRQ&libraries=places&callback=initAutocomplete"
-        async defer></script>
         <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-        <script
-            src="https://www.paypal.com/sdk/js?client-id=SB_CLIENT_ID">
-        </script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -214,84 +209,53 @@
                                                                         <ul class="list-group list-group-flush">
                                                                             <c:forEach items = "${roomequipment}" var = "roomequipments"> 
                                                                                 <c:if test = "${roomequipments.room.id == room.id}">
-                                                                                <li class="list-group-item py-0 ">${roomequipments.equipment.name}</li>
-                                                                                </c:if>
-                                                                            </c:forEach>
-                                                                            </ul></td>
-                                                                        <td align="center" style="vertical-align:middle;">${room.pricepernight}€</td>
+                                                                                    <li class="list-group-item py-0 ">${roomequipments.equipment.name}</li>
+                                                                                    </c:if>
+                                                                                </c:forEach>
+                                                                        </ul></td>
+                                                                        <c:forEach items = "${totalcostlist}" var = "totalcostlist"> 
+                                                                            <c:if test = "${totalcostlist.key == room.id}">
+                                                                            <td id="TotalCost${totalcostlist.key}" align="center" style="vertical-align:middle;">${totalcostlist.value}</td>
 
-                                                                        <td align="center" style="vertical-align:middle;"><a id="paypalbutton"type="button" 
-                                                                                                                             class="btn bg-navy text-white" href="">I'll reserve</a></td>
-                                                                    </tr>
-                                                                </c:forEach> 
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-
+                                                                            <td ><h6 class="title text-white"> <a href="${pageContext.request.contextPath}/user/reserve/${room.hotelid.id}/${room.id}/${totalcostlist.value}"><button class="btn btn-warning btn-lg btn-block" type="button" id="myBtn">I'll reserve</button></a></h6>
+                                                                            </td>
+                                                                        </c:if>
+                                                                    </c:forEach>
+                                                                </tr>
+                                                            </c:forEach> 
+                                                        </tbody>
+                                                    </table>
 
                                                 </div>
+
+
+
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    <!-- End Hotel -->
-                                </aside>
-                                <!-- End Hotel List-->
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                <!-- End Hotel -->
+                            </aside>
+                            <!-- End Hotel List-->
 
-                        </div>
-                </div>
+                    </div>
+            </div>
 
-                <script>
+            <script>
                 $(document).ready(function () {
                     $("#myCarousel").carousel();
                 });
 
 
-                paypal.Button.render({
-                    // Configure environment
-                    env: 'sandbox',
-                    client: {
-                        sandbox: 'demo_sandbox_client_id',
-                        production: 'demo_production_client_id'
-                    },
-                    // Customize button (optional)
-                    locale: 'en_US',
-                    style: {
-                        size: 'small',
-                        color: 'gold',
-                        shape: 'pill',
-                    }, // Enable Pay Now checkout flow (optional)
-                    commit: true, // Set up a payment
+            </script>
 
 
 
-                    payment: function (data, actions) {
-                        return actions.payment.create({
-                            transactions: [{
-                                    amount: {
-                                        total: '250',
-                                        currency: 'EUR'
-                                    }
-                                }]
-                        });
-                    },
-                    // Execute the payment
-                    onAuthorize: function (data, actions) {
-                        return actions.payment.execute().then(function () {
-                            // Show a confirmation message to the buyer
-                            window.alert('Thank you for your purchase!');
-                        });
-                    }
-                }, '#paypal-button');
-                </script>
-
-
-
-        </body>
-    </html>
+    </body>
+</html>

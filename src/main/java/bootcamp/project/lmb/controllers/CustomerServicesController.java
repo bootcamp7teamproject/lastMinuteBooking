@@ -52,9 +52,12 @@ public class CustomerServicesController {
     public static Base64.Encoder encoder = Base64.getEncoder();
 
     @GetMapping("/customer_services")
-    public String getCustomerServices(ModelMap model, @SessionAttribute("loggedUser") User user, HttpSession session) {
+    public String getCustomerServices(
+            ModelMap model,
+            @SessionAttribute("loggedUser") User user,
+            HttpSession session) {
 
-        User updateUser = new User();
+      User updateUser = new User();
         RoomUnavailability availableRatings = rud.availableRatings(user.getId());
         ArrayList<RoomUnavailability> reservations = rud.reservations(user.getId());
         if (availableRatings != null) {
@@ -93,7 +96,8 @@ public class CustomerServicesController {
     }
 
     @PostMapping("/updateUserSettings")
-    public String updateUserSettings(ModelMap model,
+    public String updateUserSettings(
+            ModelMap model,
             @SessionAttribute("loggedUser") User user,
             @ModelAttribute("updateUser") User updateUser,
             HttpSession session
@@ -102,7 +106,7 @@ public class CustomerServicesController {
         String decryptedPassword = new String(encoder.encode(updateUser.getPassword().getBytes()));
         updateUser.setPassword(decryptedPassword);
         ud.insertUser(updateUser);
-        session.setAttribute("loggedUser", updateUser);
+//        session.setAttribute("loggedUser", updateUser);
 
         return "redirect:/user/customer_services";
     }

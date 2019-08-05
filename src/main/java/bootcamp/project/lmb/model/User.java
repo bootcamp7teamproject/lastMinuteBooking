@@ -109,8 +109,8 @@ public class User implements Serializable {
     private Integer active;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Rating> ratingCollection;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-    private RoomUnavailability roomUnavailability;
+     @OneToMany(mappedBy = "userid")
+    private Collection<RoomUnavailability> roomUnavailabilityCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerid")
     private Collection<Hotel> hotelCollection;
     @JoinColumn(name = "Role", referencedColumnName = "id")
@@ -242,12 +242,13 @@ public class User implements Serializable {
         this.ratingCollection = ratingCollection;
     }
 
-    public RoomUnavailability getRoomUnavailability() {
-        return roomUnavailability;
+    @XmlTransient
+    public Collection<RoomUnavailability> getRoomUnavailabilityCollection() {
+        return roomUnavailabilityCollection;
     }
 
-    public void setRoomUnavailability(RoomUnavailability roomUnavailability) {
-        this.roomUnavailability = roomUnavailability;
+    public void setRoomUnavailabilityCollection(Collection<RoomUnavailability> roomUnavailabilityCollection) {
+        this.roomUnavailabilityCollection = roomUnavailabilityCollection;
     }
 
     @XmlTransient

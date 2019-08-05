@@ -3,7 +3,6 @@
     Created on : Jul 6, 2019, 2:48:58 PM
     Author     : Panos
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -61,7 +60,7 @@
         <div class="container">
             <div class="row">
 
-                <aside class="col-md-2 col-sm-2 col-xs-2 bg-navy" style="padding-top: 35px;left:-200px;">
+                <aside class="col-md-2 col-sm-2 col-xs-2 bg-navy">
                     <!-- <h1><span class="badge badge-primary bg-navy custom">&nbspServices&nbsp&nbsp</span></h1> -->
                     <ul class="list-group border-color-navy rounded">
                         <li class="list-group-item-secondary text-center py-2 list-unstyled bg-navy disabled"> <button
@@ -128,25 +127,27 @@
                                         <table class="table table-responsive-lg table-lg table-bordered border-primary rounded table-hover">
                                             <thead class="text-center bg-primary">
                                                 <tr>
-                                                    <th>Brand Name</th>
-                                                    <th>Address</th>
-                                                    <th>Postcode</th>
-                                                    <th>Stars</th>
-                                                    <th>Phone</th>
-                                                    <th>Email</th>
-                                                    <th>Website</th>
+                                                    <th class="text-center align-middle">Brand Name</th>
+                                                    <th class="text-center align-middle">Address</th>
+                                                    <th class="text-center align-middle">Postcode</th>
+                                                    <th class="text-center align-middle">Stars</th>
+                                                    <th class="text-center align-middle">Phone</th>
+                                                    <th class="text-center align-middle">Email</th>
+                                                    <th class="text-center align-middle">Website</th>
+
                                                 </tr>
                                             </thead>
                                             <tbody class="text-center">
                                                 <c:forEach items = "${hotels}" var = "hotel"> 
                                                     <tr>
-                                                        <td>${hotel.name}</td>
-                                                        <td>${hotel.address}</td>
-                                                        <td>${hotel.postcode}</td>
-                                                        <td>${hotel.starsnumber}</td>
-                                                        <td>${hotel.phone}</td>
-                                                        <td>${hotel.email}</td>
-                                                        <td>${hotel.siteurl}</td>
+                                                        <td class="text-center align-middle">${hotel.name}</td>
+                                                        <td class="text-center align-middle">${hotel.address}</td>
+                                                        <td class="text-center align-middle">${hotel.postcode}</td>
+                                                        <td class="text-center align-middle">${hotel.starsnumber}</td>
+                                                        <td class="text-center align-middle">${hotel.phone}</td>
+                                                        <td class="text-center align-middle">${hotel.email}</td>
+                                                        <td class="text-center align-middle">${hotel.siteurl}</td>
+
                                                     </tr>
                                                 </c:forEach> 
                                             </tbody>
@@ -175,36 +176,22 @@
                                                     </c:forEach>                                                                                     
                                                 </form:select>
 
-                                                         <!--<label name="address">Address  </label>                                             </label>-->
-<!--                                                <div id="locationField">
-                                                    <input id="autocomplete" class="form-control mb-2"
-                                                           placeholder="Enter your address" autofocus="true"
-                                                           onFocus="geolocate()"
-                                                           type="text"/>
-                                                </div>-->
-
                                                 <form:label path="address">Address
                                                 </form:label>
                                                 <form:input class="form-control mb-2" id="route" placeholder="Address" required="true"
                                                             path="address" />
-<!--                                                <label name="address">Address Number
-                                                </label>
-                                                <input class="form-control mb-2" id="street_number" placeholder="Street number" required="true"
-                                                       name="street_number" />-->
                                                 <form:label path="postcode">Postcode
                                                 </form:label>
                                                 <form:input class="form-control mb-2" id="postal_code" placeholder="Postcode" required="true"
                                                             path="postcode" />
                                                 <form:label path="starsnumber">Stars</form:label>
-
                                                 <form:select path="starsnumber" class="browser-default custom-select mb-2">
                                                     <option selected>Number of Stars</option>
                                                     <option value="1">1 Star</option>
                                                     <option value="2">2 Stars</option>
                                                     <option value="3">3 Stars</option>
                                                     <option value="4">4 Stars</option>
-                                                    <option value="5">5 Stars</option>
-                                                    <option value="6">Unrated</option>                                                        
+                                                    <option value="5">5 Stars</option>                                                     
                                                 </form:select>
 
                                                 <form:label path="siteurl">URL
@@ -215,11 +202,19 @@
                                                 </form:label>
                                                 <form:input class="form-control mb-2" placeholder="Phone number" required="true"
                                                             path="phone" />
-                                                <form:label path="email">Email
+                                                <form:label path="email">Phone
                                                 </form:label>
-                                                <form:input class="form-control mb-2" placeholder="Email" required="true"
+                                                <form:input class="form-control mb-2" placeholder="email" required="true"
                                                             path="email" />
-                                               
+                                                <form:label path="longtitude">Email
+                                                </form:label>
+                                                <form:input class="form-control mb-2" placeholder="longtitude" required="true"
+                                                            path="longtitude" />
+                                                <form:label path="latitude">Email
+                                                </form:label>
+                                                <form:input class="form-control mb-2" placeholder="latitude" required="true"
+                                                            path="latitude" />
+
 
                                                 <div class="form-group">
                                                     <form:label for="exampleFormControlTextarea1" path="description">Hotel Description</form:label>
@@ -351,7 +346,6 @@
                                                     <option id="UH3" value="3">3 Stars</option>
                                                     <option id="UH4" value="4">4 Stars</option>
                                                     <option id="UH5" value="5">5 Stars</option>
-                                                    <option id="UH0" value="0">Unrated</option>                                                        
                                                 </form:select>
 
                                                 <form:label path="siteurl">URL
@@ -364,7 +358,17 @@
                                                             path="phone" />
                                                 <form:label path="email">Email
                                                 </form:label>
-                                              
+                                                <form:input class="form-control mb-2"  id="emailUH" placeholder="emailUH" required="true"
+                                                            path="email" />
+                                                <form:label path="longtitude">longtitude
+                                                </form:label>
+                                                <form:input class="form-control mb-2"  id="longtitudeUH" placeholder="longtitudeUH" required="true"
+                                                            path="longtitude" />
+                                                <form:label path="latitude">Latitude
+                                                </form:label>
+                                                <form:input class="form-control mb-2" id="latitudeUH" placeholder="latitudeUH" required="true"
+                                                            path="latitude" />
+
                                                 <div class="form-group">
                                                     <form:label for="exampleFormControlTextarea1" path="description">Hotel Description</form:label>
                                                     <form:textarea id="descriptionUH" path="description" class="form-control rounded-0" rows="10"></form:textarea>
@@ -436,8 +440,8 @@
 
                                                     <button class="btn btn-lg btn-primary btn-block mt-2"
                                                             type="submit">Update</button>
-                                                    <a id="deleteHotelUH"  > <button class="btn btn-lg btn-warning btn-block">Delete</button></a>
-                                                    <!---->
+
+
                                             </form:form> 
                                         </div>
                                     </div>
@@ -702,488 +706,453 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                                 <button class="btn btn-lg btn-primary btn-block mt-2"
                                                         type="submit">Update</button>
-                                                <a id="deleteRoomUR" href="" > <button class="btn btn-lg btn-warning btn-block">Delete</button><a>
+                                            </form:form> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                                                    </form:form> 
-                                                    </div>
-                                                    </div>
-                                                    </div>
-                                                    </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="collapse multi-collapse" id="Settings_context">
+                                    <div class="card card-body border-color-navy rounded">
+                                        <form:form class="form-signin"
+                                                   action="${pageContext.request.contextPath}/owner/updateOwnerSettings" method="POST"
+                                                   modelAttribute="updateUser"> 
+                                            <h1 class="h3 mb-3 font-weight-normal">Please update your personal
+                                                information</h1>
+                                            <form:label path="name">Type your first name
+                                            </form:label>
+                                            <form:input class="form-control mb-2" style="display:none" placeholder="First name" required="true"
+                                                        autofocus="true" path="id" value="${sessionScope.loggedUser.id}" />
+                                            <form:input class="form-control mb-2" style="display:none" placeholder="Role" required="true"
+                                                        autofocus="true" path="role" value="${sessionScope.loggedUser.role.id}" />
+                                            <form:input class="form-control mb-2" style="display:none" placeholder="serial" required="true"
+                                                        autofocus="true" path="serial" value="${sessionScope.loggedUser.serial}" />
+                                            <form:input class="form-control mb-2" style="display:none" placeholder="active" required="true"
+                                                        autofocus="true" path="active" value="${sessionScope.loggedUser.active}" />
+                                            <form:input class="form-control mb-2" id="nameUP" value="${sessionScope.loggedUser.name}" placeholder="First name" required="true"
+                                                        autofocus="true" path="name" />
+                                            <form:label path="surname">Type your last name
+                                            </form:label>
+                                            <form:input class="form-control mb-2" id="surnameUP" value="${sessionScope.loggedUser.surname}" placeholder="Last name" required="true"
+                                                        path="surname" />
+                                            <form:label path="address">Type your home address
+                                            </form:label>
+                                            <form:input class="form-control mb-2" id="addressUP" value="${sessionScope.loggedUser.address}" placeholder="Address" required="true"
+                                                        path="address" />
+                                            <form:label path="city">Type your city
+                                            </form:label>
+                                            <form:input class="form-control mb-2" id="cityUP" value="${sessionScope.loggedUser.city}" placeholder="City" required="true"
+                                                        path="city" />
+                                            <form:label path="postcode">Type your postcode area
+                                            </form:label>
+                                            <form:input class="form-control mb-2" id="postcodeUP" value="${sessionScope.loggedUser.postcode}" placeholder="Postcode" required="true"
+                                                        path="postcode" />
+                                            <form:label path="phone">Type your phone number
+                                            </form:label>
+                                            <form:input class="form-control mb-2" id="phoneUP" value="${sessionScope.loggedUser.phone}"  placeholder="Phone number" required="true"
+                                                        path="phone" />
+                                            <form:label path="email">Type your email address
+                                            </form:label>
+                                            <form:input class="form-control mb-2" id="emailUP" value="${sessionScope.loggedUser.email}" placeholder="Email address" required="true"
+                                                        path="email" />
+                                            <form:label path="username">Type your username
+                                            </form:label>
+                                            <form:input class="form-control mb-2" id="usernameUP" value="${sessionScope.loggedUser.username}" placeholder="Username" required="true"
+                                                        path="username" />
+                                            <form:label path="password">Type your password
+                                            </form:label>
+                                            <form:input type="password" class="form-control mb-2" 
+                                                        required="true" path="password" />
 
-                                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                                        <div class="collapse multi-collapse" id="Settings_context">
-                                                            <div class="card card-body border-color-navy rounded">
-                                                                <form:form class="form-signin"
-                                                                           action="${pageContext.request.contextPath}/owner/updateOwnerSettings" method="POST"
-                                                                           modelAttribute="updateUser"> 
-                                                                    <h1 class="h3 mb-3 font-weight-normal">Please update your personal
-                                                                        information</h1>
-                                                                    <form:label path="name">Type your first name
-                                                                    </form:label>
-                                                                    <form:input class="form-control mb-2" style="display:none" placeholder="First name" required="true"
-                                                                                autofocus="true" path="id" value="${sessionScope.loggedUser.id}" />
-                                                                    <form:input class="form-control mb-2" style="display:none" placeholder="Role" required="true"
-                                                                                autofocus="true" path="role" value="${sessionScope.loggedUser.role.id}" />
-                                                                    <form:input class="form-control mb-2" style="display:none" placeholder="serial" required="true"
-                                                                                autofocus="true" path="serial" value="${sessionScope.loggedUser.serial}" />
-                                                                    <form:input class="form-control mb-2" style="display:none" placeholder="active" required="true"
-                                                                                autofocus="true" path="active" value="${sessionScope.loggedUser.active}" />
-                                                                    <form:input class="form-control mb-2" id="nameUP" value="${sessionScope.loggedUser.name}" placeholder="First name" required="true"
-                                                                                autofocus="true" path="name" />
-                                                                    <form:label path="surname">Type your last name
-                                                                    </form:label>
-                                                                    <form:input class="form-control mb-2" id="surnameUP" value="${sessionScope.loggedUser.surname}" placeholder="Last name" required="true"
-                                                                                path="surname" />
-                                                                    <form:label path="address">Type your home address
-                                                                    </form:label>
-                                                                    <form:input class="form-control mb-2" id="addressUP" value="${sessionScope.loggedUser.address}" placeholder="Address" required="true"
-                                                                                path="address" />
-                                                                    <form:label path="city">Type your city
-                                                                    </form:label>
-                                                                    <form:input class="form-control mb-2" id="cityUP" value="${sessionScope.loggedUser.city}" placeholder="City" required="true"
-                                                                                path="city" />
-                                                                    <form:label path="postcode">Type your postcode area
-                                                                    </form:label>
-                                                                    <form:input class="form-control mb-2" id="postcodeUP" value="${sessionScope.loggedUser.postcode}" placeholder="Postcode" required="true"
-                                                                                path="postcode" />
-                                                                    <form:label path="phone">Type your phone number
-                                                                    </form:label>
-                                                                    <form:input class="form-control mb-2" id="phoneUP" value="${sessionScope.loggedUser.phone}"  placeholder="Phone number" required="true"
-                                                                                path="phone" />
-                                                                    <form:label path="email">Type your email address
-                                                                    </form:label>
-                                                                    <form:input class="form-control mb-2" id="emailUP" value="${sessionScope.loggedUser.email}" placeholder="Email address" required="true"
-                                                                                path="email" />
-                                                                    <form:label path="username">Type your username
-                                                                    </form:label>
-                                                                    <form:input class="form-control mb-2" id="usernameUP" value="${sessionScope.loggedUser.username}" placeholder="Username" required="true"
-                                                                                path="username" />
-                                                                    <form:label path="password">Type your password
-                                                                    </form:label>
-                                                                    <form:input type="password" class="form-control mb-2" 
-                                                                                required="true" path="password" />
+                                            <button class="btn btn-lg btn-primary btn-block mt-2"
+                                                    type="submit">Submit</button>
 
-                                                                    <button class="btn btn-lg btn-primary btn-block mt-2"
-                                                                            type="submit">Submit</button>
+                                        </form:form> 
+                                    </div>
+                                </div>
+                            </div>
 
-                                                                </form:form> 
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="collapse multi-collapse" id="DeclareUnavailability_context">
+                                    <div class="card card-body border-color-navy rounded">
 
-                                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                                        <div class="collapse multi-collapse" id="DeclareUnavailability_context">
-                                                            <div class="card card-body border-color-navy rounded">
+                                        <!--DECLARE UNAVAILABILITY-->
 
-                                                                <!--DECLARE UNAVAILABILITY-->
+                                        <form:form class="form-signin"
+                                                   action="${pageContext.request.contextPath}/owner/unavailability" method="POST"
+                                                   modelAttribute="roomUnavailability"> 
 
-                                                                <form:form class="form-signin"
-                                                                           action="${pageContext.request.contextPath}/owner/unavailability" method="POST"
-                                                                           modelAttribute="roomUnavailability"> 
-
-                                                                    <h1 class="h3 mb-3 font-weight-normal">Declare Room Unavailability
-                                                                    </h1>
+                                            <h1 class="h3 mb-3 font-weight-normal">Declare Room Unavailability
+                                            </h1>
 
 
-                                                                    <form:label path="hotelid">Choose Hotel
-                                                                    </form:label>
-                                                                    <form:select id="hotelidselDU" path="hotelid" class="browser-default custom-select mb-2">
-                                                                        <option selected>Select Hotel</option>
-                                                                        <c:forEach items = "${hotels}" var = "hotel"> 
-                                                                            <form:option value="${hotel.id}">${hotel.name}</form:option>
-                                                                        </c:forEach> 
-                                                                    </form:select>
-                                                                    <form:label path="roomid">Choose Room
-                                                                    </form:label>
-                                                                    <form:select id="roomidselDU" path="roomid" class="browser-default custom-select mb-2">
-                                                                        <option selected>Select Room</option>
-                                                                        <c:forEach items = "${rooms}" var = "rooms"> 
-                                                                            <form:option value="${rooms.id}" >${rooms.description}-${rooms.name}</form:option>
-                                                                        </c:forEach> 
-                                                                    </form:select>
-                                                                    <form:label path="startdate">Date from</form:label>
-                                                                    <form:input type="date" id="datepicker" class="form-control mb-2" placeholder="Start Date"
-                                                                                required="true" autofocus="true" path="startdate" />
-                                                                    <form:label path="enddate">Date to</form:label>
-                                                                    <form:input type="date" id="datepicker"  class="form-control mb-2" placeholder="End Date"
-                                                                                required="true" autofocus="true" path="enddate" />
-                                                                    <form:label path="status">Stars</form:label>
-                                                                    <form:select path="status" class="browser-default custom-select mb-2">
-                                                                        <option selected>Status</option>
-                                                                        <option value="2">Unavailable</option>
-                                                                        <option value="1">Reserved</option>                                                                                                           
-                                                                    </form:select>
+                                            <form:label path="hotelid">Choose Hotel
+                                            </form:label>
+                                            <form:select id="hotelidselDU" path="hotelid" class="browser-default custom-select mb-2">
+                                                <option selected>Select Hotel</option>
+                                                <c:forEach items = "${hotels}" var = "hotel"> 
+                                                    <form:option value="${hotel.id}">${hotel.name}</form:option>
+                                                </c:forEach> 
+                                            </form:select>
+                                            <form:label path="roomid">Choose Room
+                                            </form:label>
+                                            <form:select id="roomidselDU" path="roomid" class="browser-default custom-select mb-2">
+                                                <option selected>Select Room</option>
+                                                <c:forEach items = "${rooms}" var = "rooms"> 
+                                                    <form:option value="${rooms.id}" >${rooms.description}-${rooms.name}</form:option>
+                                                </c:forEach> 
+                                            </form:select>
+                                            <form:label path="startdate">Date from</form:label>
+                                            <form:input type="date" id="datepicker" class="form-control mb-2" placeholder="Start Date"
+                                                        required="true" autofocus="true" path="startdate" />
+                                            <form:label path="enddate">Date to</form:label>
+                                            <form:input type="date" id="datepicker"  class="form-control mb-2" placeholder="End Date"
+                                                        required="true" autofocus="true" path="enddate" />
+                                            <form:label path="status">Stars</form:label>
+                                            <form:select path="status" class="browser-default custom-select mb-2">
+                                                <option selected>Status</option>
+                                                <option value="2">Unavailable</option>
+                                                <option value="1">Reserved</option>                                                                                                           
+                                            </form:select>
 
-                                                                    <button class="btn btn-lg btn-primary btn-block mt-2"
-                                                                            type="submit">Submit</button>
+                                            <button class="btn btn-lg btn-primary btn-block mt-2"
+                                                    type="submit">Submit</button>
 
-                                                                </form:form> 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                                    </div>
-                                                    </div>
-                                                    </div>
-                                                    </div>
-                                                    </aside>
-                                                    </div>
-                                                    </div>
-
-                                                    <script>
-
-                                                        window.onload = function () {
-                                                            myMap();
-                                                            $('#Map_context').show();
-                                                        };
-
-                                                        $('#btnmap').click(function () {
-                                                            $('#Map_context').show();
-                                                            $('#HotelList_context').hide();
-                                                            $('#UpdateHotel_context').hide();
-                                                            $('#AddRoom_context').hide();
-                                                            $('#UpdateRoom_context').hide();
-                                                            $('#DeclareUnavailability_context').hide();
-                                                            $('#Settings_context').hide();
-                                                            $('#AddHotel_context').hide();
-                                                        });
-                                                        $('#btn0').click(function () {
-                                                            $('#Map_context').hide();
-                                                            $('#HotelList_context').show();
-                                                            $('#UpdateHotel_context').hide();
-                                                            $('#AddRoom_context').hide();
-                                                            $('#UpdateRoom_context').hide();
-                                                            $('#DeclareUnavailability_context').hide();
-                                                            $('#Settings_context').hide();
-                                                            $('#AddHotel_context').hide();
-                                                        });
-                                                        $('#btn1').click(function () {
-                                                            $('#Map_context').hide();
-                                                            $('#HotelList_context').hide();
-                                                            $('#UpdateHotel_context').hide();
-                                                            $('#AddRoom_context').hide();
-                                                            $('#UpdateRoom_context').hide();
-                                                            $('#DeclareUnavailability_context').hide();
-                                                            $('#Settings_context').hide();
-                                                            $('#AddHotel_context').show();
-                                                        });
-                                                        $('#btn2').click(function () {
-                                                            $('#Map_context').hide();
-                                                            $('#HotelList_context').hide();
-                                                            $('#AddHotel_context').hide();
-                                                            $('#UpdateHotel_context').show();
-                                                            $('#AddRoom_context').hide();
-                                                            $('#UpdateRoom_context').hide();
-                                                            $('#DeclareUnavailability_context').hide();
-                                                            $('#Settings_context').hide();
-                                                        });
-                                                        $('#btn3').click(function () {
-                                                            $('#Map_context').hide();
-                                                            $('#HotelList_context').hide();
-                                                            $('#AddHotel_context').hide();
-                                                            $('#UpdateHotel_context').hide();
-                                                            $('#AddRoom_context').show();
-                                                            $('#UpdateRoom_context').hide();
-                                                            $('#DeclareUnavailability_context').hide();
-                                                            $('#Settings_context').hide();
-                                                        });
-                                                        $('#btn4').click(function () {
-                                                            $('#Map_context').hide();
-                                                            $('#HotelList_context').hide();
-                                                            $('#AddHotel_context').hide();
-                                                            $('#UpdateHotel_context').hide();
-                                                            $('#AddRoom_context').hide();
-                                                            $('#UpdateRoom_context').show();
-                                                            $('#DeclareUnavailability_context').hide();
-                                                            $('#Settings_context').hide();
-                                                        });
-                                                        $('#btn5').click(function () {
-                                                            $('#Map_context').hide();
-                                                            $('#HotelList_context').hide();
-                                                            $('#AddHotel_context').hide();
-                                                            $('#UpdateHotel_context').hide();
-                                                            $('#AddRoom_context').hide();
-                                                            $('#UpdateRoom_context').hide();
-                                                            $('#DeclareUnavailability_context').show();
-                                                            $('#Settings_context').hide();
-                                                        });
-                                                        $('#btn6').click(function () {
-                                                            $('#Map_context').hide();
-                                                            $('#HotelList_context').hide();
-                                                            $('#AddHotel_context').hide();
-                                                            $('#UpdateHotel_context').hide();
-                                                            $('#AddRoom_context').hide();
-                                                            $('#UpdateRoom_context').hide();
-                                                            $('#DeclareUnavailability_context').hide();
-                                                            $('#Settings_context').show();
-                                                        });
-                                                        var nameUH = document.getElementById("nameUH");
-                                                        var hotelnamesel = document.getElementById("selectUH_hotel");
-                                                        var hotelnameselid = document.getElementById("idhotel");
-                                                        var destinationUH = document.getElementById("destinationUH");
-                                                        var addressUH = document.getElementById("addressUH");
-                                                        var postcodeUH = document.getElementById("postcodeUH");
-                                                        var urlUH = document.getElementById("urlUH");
-                                                        var phoneUH = document.getElementById("phoneUH");
-                                                        var emailUH = document.getElementById("emailUH");
-                                                        var longtitudeUH = document.getElementById("longtitudeUH");
-                                                        var latitudeUH = document.getElementById("latitudeUH");
-                                                        var imagespathUH = document.getElementById("imagespathUH");
-                                                        var descriptionUH = document.getElementById("descriptionUH");
-                                                        var starsnumberUH = document.getElementById("starsnumberUH");
-//                                                        var deleteHotelUH = document.getElementById("deleteHotelUH");
+                                        </form:form> 
+                                    </div>
+                                </div>
+                            </div>
 
 
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </aside>
+</div>
+</div>
 
-                                                        var roomidsel = document.getElementById("roomidsel");
-                                                        var hotelidsel = document.getElementById("hotelidsel");
-                                                        var RoomName = document.getElementById("RoomName");
-                                                        var MaxCapacity = document.getElementById("MaxCapacity");
-                                                        var Price = document.getElementById("Price");
-                                                        var descriptionUR = document.getElementById("descriptionUR");
-                                                        var deleteRoomUR = document.getElementById("deleteRoomUR");
-                                                        var roomidselDU = document.getElementById("roomidselDU");
-                                                        var hotelidselDU = document.getElementById("hotelidselDU");
-                                                        document.querySelector("#selectUH_hotel").addEventListener("click", function () {
-                                                            updatehotel();
-                                                        });
-                                                        function updatehotel() {
-                                                        <c:forEach items = "${hotels}" var = "hotel">
+<script>
+    window.onload = function () {
+        myMap();
+        $('#Map_context').show();
+    };
+    $('#btnmap').click(function () {
+        $('#Map_context').show();
+        $('#HotelList_context').hide();
+        $('#UpdateHotel_context').hide();
+        $('#AddRoom_context').hide();
+        $('#UpdateRoom_context').hide();
+        $('#DeclareUnavailability_context').hide();
+        $('#Settings_context').hide();
+        $('#AddHotel_context').hide();
+    });
+    $('#btn0').click(function () {
+        $('#Map_context').hide();
+        $('#HotelList_context').show();
+        $('#UpdateHotel_context').hide();
+        $('#AddRoom_context').hide();
+        $('#UpdateRoom_context').hide();
+        $('#DeclareUnavailability_context').hide();
+        $('#Settings_context').hide();
+        $('#AddHotel_context').hide();
+    });
+    $('#btn1').click(function () {
+        $('#Map_context').hide();
+        $('#HotelList_context').hide();
+        $('#UpdateHotel_context').hide();
+        $('#AddRoom_context').hide();
+        $('#UpdateRoom_context').hide();
+        $('#DeclareUnavailability_context').hide();
+        $('#Settings_context').hide();
+        $('#AddHotel_context').show();
+    });
+    $('#btn2').click(function () {
+        $('#Map_context').hide();
+        $('#HotelList_context').hide();
+        $('#AddHotel_context').hide();
+        $('#UpdateHotel_context').show();
+        $('#AddRoom_context').hide();
+        $('#UpdateRoom_context').hide();
+        $('#DeclareUnavailability_context').hide();
+        $('#Settings_context').hide();
+    });
+    $('#btn3').click(function () {
+        $('#Map_context').hide();
+        $('#HotelList_context').hide();
+        $('#AddHotel_context').hide();
+        $('#UpdateHotel_context').hide();
+        $('#AddRoom_context').show();
+        $('#UpdateRoom_context').hide();
+        $('#DeclareUnavailability_context').hide();
+        $('#Settings_context').hide();
+    });
+    $('#btn4').click(function () {
+        $('#Map_context').hide();
+        $('#HotelList_context').hide();
+        $('#AddHotel_context').hide();
+        $('#UpdateHotel_context').hide();
+        $('#AddRoom_context').hide();
+        $('#UpdateRoom_context').show();
+        $('#DeclareUnavailability_context').hide();
+        $('#Settings_context').hide();
+    });
+    $('#btn5').click(function () {
+        $('#Map_context').hide();
+        $('#HotelList_context').hide();
+        $('#AddHotel_context').hide();
+        $('#UpdateHotel_context').hide();
+        $('#AddRoom_context').hide();
+        $('#UpdateRoom_context').hide();
+        $('#DeclareUnavailability_context').show();
+        $('#Settings_context').hide();
+    });
+    $('#btn6').click(function () {
+        $('#Map_context').hide();
+        $('#HotelList_context').hide();
+        $('#AddHotel_context').hide();
+        $('#UpdateHotel_context').hide();
+        $('#AddRoom_context').hide();
+        $('#UpdateRoom_context').hide();
+        $('#DeclareUnavailability_context').hide();
+        $('#Settings_context').show();
+    });
+    var nameUH = document.getElementById("nameUH");
+    var hotelnamesel = document.getElementById("selectUH_hotel");
+    var hotelnameselid = document.getElementById("idhotel");
+    var destinationUH = document.getElementById("destinationUH");
+    var addressUH = document.getElementById("addressUH");
+    var postcodeUH = document.getElementById("postcodeUH");
+    var urlUH = document.getElementById("urlUH");
+    var phoneUH = document.getElementById("phoneUH");
+    var emailUH = document.getElementById("emailUH");
+    var longtitudeUH = document.getElementById("longtitudeUH");
+    var latitudeUH = document.getElementById("latitudeUH");
+    var descriptionUH = document.getElementById("descriptionUH");
+    var starsnumberUH = document.getElementById("starsnumberUH");
+//                                    
+    var roomidsel = document.getElementById("roomidsel");
+    var hotelidsel = document.getElementById("hotelidsel");
+    var RoomName = document.getElementById("RoomName");
+    var MaxCapacity = document.getElementById("MaxCapacity");
+    var Price = document.getElementById("Price");
+    var descriptionUR = document.getElementById("descriptionUR");
 
-                                                            if (hotelnamesel.value == "${hotel.id}") {
-                                                                nameUH.value = "${hotel.name}";
-                                                                destinationUH.value = "${hotel.destinationid.id}";
-                                                                console.log("${hotel.destinationid}");
-                                                                addressUH.value = "${hotel.address}";
-                                                                postcodeUH.value = "${hotel.postcode}";
-                                                                urlUH.value = "${hotel.siteurl}";
-                                                                phoneUH.value = "${hotel.phone}";
-                                                                emailUH.value = "${hotel.email}";
-                                                                longtitudeUH.value = "${hotel.longtitude}";
-                                                                latitudeUH.value = "${hotel.latitude}";
-                                                                imagespathUH.value = "${hotel.imagespath}";
-                                                                descriptionUH.value = "${hotel.description}";
-                                                                starsnumberUH.value = "${hotel.starsnumber}";
-                                                                deleteHotelUH.href = "${pageContext.request.contextPath}/owner/deletehotel/" + hotelnamesel.value;
-                                                                document.getElementById("FreeWifiUH").checked = false;
-                                                                document.getElementById("Non-smokingroomUH").checked = false;
-                                                                document.getElementById("FamilyRoomsUH").checked = false;
-                                                                document.getElementById("ParkingUH").checked = false;
-                                                                document.getElementById("PetsallowedUH").checked = false;
-                                                                document.getElementById("SwimmingpoolUH").checked = false;
-                                                                document.getElementById("SpaandwellnesscenterUH").checked = false;
-                                                                document.getElementById("BarUH").checked = false;
-                                                            <c:forEach items = "${hotelFacilities}" var = "hotelFacilities">
-                                                                if ("${hotelFacilities.hotel.id}" == hotelnamesel.value) {
-                                                                    if ("${hotelFacilities.facilities.id}" == 1) {
-                                                                        document.getElementById("FreeWifiUH").checked = true;
-                                                                    }
-                                                                    if ("${hotelFacilities.facilities.id}" == 2) {
-                                                                        document.getElementById("Non-smokingroomUH").checked = true;
-                                                                    }
-                                                                    if ("${hotelFacilities.facilities.id}" == 3) {
-                                                                        document.getElementById("FamilyRoomsUH").checked = true;
-                                                                    }
-                                                                    if ("${hotelFacilities.facilities.id}" == 5) {
-                                                                        document.getElementById("ParkingUH").checked = true;
-                                                                    }
-                                                                    if ("${hotelFacilities.facilities.id}" == 6) {
-                                                                        document.getElementById("PetsallowedUH").checked = true;
-                                                                    }
-                                                                    if ("${hotelFacilities.facilities.id}" == 8) {
-                                                                        document.getElementById("SwimmingpoolUH").checked = true;
-                                                                    }
-                                                                    if ("${hotelFacilities.facilities.id}" == 9) {
-                                                                        document.getElementById("SpaandwellnesscenterUH").checked = true;
-                                                                    }
-                                                                    if ("${hotelFacilities.facilities.id}" == 10) {
-                                                                        document.getElementById("BarUH").checked = true;
-                                                                    }
-                                                                }
-                                                            </c:forEach>
-                                                            }
-                                                        </c:forEach>
-                                                        }
-                                                        ;
-                                                        document.querySelector("#roomidsel").addEventListener("change", function () {
-                                                            updateroom();
-                                                        });
-                                                        document.querySelector("#hotelidsel").addEventListener("change", function () {
-                                                            updateroomnames();
-                                                        });
-                                                        document.querySelector("#hotelidselDU").addEventListener("change", function () {
-                                                            updateroomnamesunavailability();
-                                                        });
-                                                        function updateroomnamesunavailability() {
+    var roomidselDU = document.getElementById("roomidselDU");
+    var hotelidselDU = document.getElementById("hotelidselDU");
+    document.querySelector("#selectUH_hotel").addEventListener("click", function () {
+        updatehotel();
+    });
+    function updatehotel() {
+    <c:forEach items = "${hotels}" var = "hotel">
+        if (hotelnamesel.value == "${hotel.id}") {
+            nameUH.value = "${hotel.name}";
+            destinationUH.value = "${hotel.destinationid.id}";
+            console.log("${hotel.destinationid}");
+            addressUH.value = "${hotel.address}";
+            postcodeUH.value = "${hotel.postcode}";
+            urlUH.value = "${hotel.siteurl}";
+            phoneUH.value = "${hotel.phone}";
+            emailUH.value = "${hotel.email}";
+            longtitudeUH.value = "${hotel.longtitude}";
+            latitudeUH.value = "${hotel.latitude}";
+            descriptionUH.value = "${hotel.description}";
+            starsnumberUH.value = "${hotel.starsnumber}";
 
-                                                            for (var i = 0; i < roomidselDU.length; i++) {
+            document.getElementById("FreeWifiUH").checked = false;
+            document.getElementById("Non-smokingroomUH").checked = false;
+            document.getElementById("FamilyRoomsUH").checked = false;
+            document.getElementById("ParkingUH").checked = false;
+            document.getElementById("PetsallowedUH").checked = false;
+            document.getElementById("SwimmingpoolUH").checked = false;
+            document.getElementById("SpaandwellnesscenterUH").checked = false;
+            document.getElementById("BarUH").checked = false;
+        <c:forEach items = "${hotelFacilities}" var = "hotelFacilities">
+            if ("${hotelFacilities.hotel.id}" == hotelnamesel.value) {
+                if ("${hotelFacilities.facilities.id}" == 1) {
+                    document.getElementById("FreeWifiUH").checked = true;
+                }
+                if ("${hotelFacilities.facilities.id}" == 2) {
+                    document.getElementById("Non-smokingroomUH").checked = true;
+                }
+                if ("${hotelFacilities.facilities.id}" == 3) {
+                    document.getElementById("FamilyRoomsUH").checked = true;
+                }
+                if ("${hotelFacilities.facilities.id}" == 5) {
+                    document.getElementById("ParkingUH").checked = true;
+                }
+                if ("${hotelFacilities.facilities.id}" == 6) {
+                    document.getElementById("PetsallowedUH").checked = true;
+                }
+                if ("${hotelFacilities.facilities.id}" == 8) {
+                    document.getElementById("SwimmingpoolUH").checked = true;
+                }
+                if ("${hotelFacilities.facilities.id}" == 9) {
+                    document.getElementById("SpaandwellnesscenterUH").checked = true;
+                }
+                if ("${hotelFacilities.facilities.id}" == 10) {
+                    document.getElementById("BarUH").checked = true;
+                }
+            }
+        </c:forEach>
+        }
+    </c:forEach>
+    }
+    ;
+    document.querySelector("#roomidsel").addEventListener("change", function () {
+        updateroom();
+    });
+    document.querySelector("#hotelidsel").addEventListener("change", function () {
+        updateroomnames();
+    });
+    document.querySelector("#hotelidselDU").addEventListener("change", function () {
+        updateroomnamesunavailability();
+    });
+    function updateroomnamesunavailability() {
+        for (var i = 0; i < roomidselDU.length; i++) {
+            roomidselDU.options[i].style.display = "block";
+        }
+    <c:forEach items = "${rooms}" var = "room">
+        if (("${room.hotelid.id}") != hotelidselDU.value) {
+            for (var i = 0; i < roomidsel.length; i++) {
+                if (roomidselDU.options[i].value == "${room.id}") {
+                    roomidselDU.options[i].style.display = "none";
+                }
+            }
+        }
+    </c:forEach>
+    }
+    ;
+    function updateroomnames() {
+        for (var i = 0; i < roomidsel.length; i++) {
+            roomidsel.options[i].style.display = "block";
+        }
+        RoomName.value = " ";
+        MaxCapacity.value = " ";
+        Price.value = " ";
+        descriptionUR.value = " ";
+        roomidsel.value = " ";
+        document.getElementById("KitchenUR").checked = false;
+        document.getElementById("PrivatebathroomUR").checked = false;
+        document.getElementById("AirconditioningUR").checked = false;
+        document.getElementById("BathUR").checked = false;
+        document.getElementById("FlatscreenTVUR").checked = false;
+        document.getElementById("WashingMachineUR").checked = false;
+        document.getElementById("ViewUR").checked = false;
+        document.getElementById("CoffeeteamakerUR").checked = false;
+        document.getElementById("CoffeemachineUR").checked = false;
+        document.getElementById("ElectrickettleUR").checked = false;
+        document.getElementById("DoublebedUR").checked = false;
+        document.getElementById("SingleBedUR").checked = false;
+    <c:forEach items = "${rooms}" var = "room">
+        if (("${room.hotelid.id}") != hotelidsel.value) {
+            for (var i = 0; i < roomidsel.length; i++) {
+                if (roomidsel.options[i].value == "${room.id}") {
+                    roomidsel.options[i].style.display = "none";
+                }
+            }
+        }
+    </c:forEach>
+    }
+    ;
+    function updateroom() {
+    <c:forEach items = "${rooms}" var = "room">
+        if (roomidsel.value == "${room.id}") {
+            RoomName.value = "${room.name}";
+            MaxCapacity.value = "${room.capacity}";
+            Price.value = "${room.pricepernight}";
+            descriptionUR.value = "${room.description}";
 
-                                                                roomidselDU.options[i].style.display = "block";
-                                                            }
+            document.getElementById("KitchenUR").checked = false;
+            document.getElementById("PrivatebathroomUR").checked = false;
+            document.getElementById("AirconditioningUR").checked = false;
+            document.getElementById("BathUR").checked = false;
+            document.getElementById("FlatscreenTVUR").checked = false;
+            document.getElementById("WashingMachineUR").checked = false;
+            document.getElementById("ViewUR").checked = false;
+            document.getElementById("CoffeeteamakerUR").checked = false;
+            document.getElementById("CoffeemachineUR").checked = false;
+            document.getElementById("ElectrickettleUR").checked = false;
+            document.getElementById("DoublebedUR").checked = false;
+            document.getElementById("SingleBedUR").checked = false;
+        <c:forEach items = "${roomEquipments}" var = "roomEquipments">
+            if ("${roomEquipments.room.id}" == roomidsel.value) {
+                if ("${roomEquipments.equipment.id}" == 1) {
+                    document.getElementById("KitchenUR").checked = true;
+                }
+                if ("${roomEquipments.equipment.id}" == 2) {
+                    document.getElementById("PrivatebathroomUR").checked = true;
+                }
+                if ("${roomEquipments.equipment.id}" == 3) {
+                    document.getElementById("AirconditioningUR").checked = true;
+                }
+                if ("${roomEquipments.equipment.id}" == 4) {
+                    document.getElementById("BathUR").checked = true;
+                }
+                if ("${roomEquipments.equipment.id}" == 5) {
+                    document.getElementById("FlatscreenTVUR").checked = true;
+                }
+                if ("${roomEquipments.equipment.id}" == 6) {
+                    document.getElementById("WashingMachineUR").checked = true;
+                }
+                if ("${roomEquipments.equipment.id}" == 7) {
+                    document.getElementById("ViewUR").checked = true;
+                }
+                if ("${roomEquipments.equipment.id}" == 8) {
+                    document.getElementById("CoffeeteamakerUR").checked = true;
+                }
+                if ("${roomEquipments.equipment.id}" == 9) {
+                    document.getElementById("CoffeemachineUR").checked = true;
+                }
+                if ("${roomEquipments.equipment.id}" == 10) {
+                    document.getElementById("ElectrickettleUR").checked = true;
+                }
+                if ("${roomEquipments.equipment.id}" == 11) {
+                    document.getElementById("DoublebedUR").checked = true;
+                }
+                if ("${roomEquipments.equipment.id}" == 12) {
+                    document.getElementById("SingleBedUR").checked = true;
+                }
+            }
+        </c:forEach>
+        }
+    </c:forEach>
+    }
+    ;
+    document.querySelector("#btnmap").addEventListener("click", function () {
+        myMap();
+    });
+    function myMap() {
+        var options = {zoom: 6, center: {lat: 37.9838, lng: 23.7275}
+        }
+        var map = new google.maps.Map(document.getElementById('map'), options);
+    <c:forEach items = "${hotels}" var = "hotel">
+        addMarker({coords: {lat:${hotel.longtitude}, lng:${hotel.latitude}},
+            content: '<h1>${hotel.name}</h1>'
+        });
+    </c:forEach>
+        function addMarker(props) {
+            var marker = new google.maps.Marker({
+                position: props.coords,
+                map: map
+            });
+            if (props.content) {
+                var infoWindow = new google.maps.InfoWindow({
+                    content: props.content
+                });
+                marker.addListener('click', function () {
+                    infoWindow.open(map, marker);
+                });
+            }
+        }
+    }
+    ;
 
+</script>
 
-                                                        <c:forEach items = "${rooms}" var = "room">
-                                                            if (("${room.hotelid.id}") != hotelidselDU.value) {
+</body>
 
-                                                                for (var i = 0; i < roomidsel.length; i++) {
-                                                                    if (roomidselDU.options[i].value == "${room.id}") {
-
-                                                                        roomidselDU.options[i].style.display = "none";
-                                                                    }
-                                                                }
-                                                            }
-                                                        </c:forEach>
-
-
-                                                        }
-                                                        ;
-                                                        function updateroomnames() {
-
-                                                            for (var i = 0; i < roomidsel.length; i++) {
-
-                                                                roomidsel.options[i].style.display = "block";
-                                                            }
-
-                                                            RoomName.value = " ";
-                                                            MaxCapacity.value = " ";
-                                                            Price.value = " ";
-                                                            descriptionUR.value = " ";
-                                                            roomidsel.value = " ";
-                                                            document.getElementById("KitchenUR").checked = false;
-                                                            document.getElementById("PrivatebathroomUR").checked = false;
-                                                            document.getElementById("AirconditioningUR").checked = false;
-                                                            document.getElementById("BathUR").checked = false;
-                                                            document.getElementById("FlatscreenTVUR").checked = false;
-                                                            document.getElementById("WashingMachineUR").checked = false;
-                                                            document.getElementById("ViewUR").checked = false;
-                                                            document.getElementById("CoffeeteamakerUR").checked = false;
-                                                            document.getElementById("CoffeemachineUR").checked = false;
-                                                            document.getElementById("ElectrickettleUR").checked = false;
-                                                            document.getElementById("DoublebedUR").checked = false;
-                                                            document.getElementById("SingleBedUR").checked = false;
-                                                        <c:forEach items = "${rooms}" var = "room">
-                                                            if (("${room.hotelid.id}") != hotelidsel.value) {
-
-                                                                for (var i = 0; i < roomidsel.length; i++) {
-                                                                    if (roomidsel.options[i].value == "${room.id}") {
-
-                                                                        roomidsel.options[i].style.display = "none";
-                                                                    }
-                                                                }
-                                                            }
-                                                        </c:forEach>
-
-
-                                                        }
-                                                        ;
-                                                        function updateroom() {
-
-
-
-                                                        <c:forEach items = "${rooms}" var = "room">
-                                                            if (roomidsel.value == "${room.id}") {
-                                                                RoomName.value = "${room.name}";
-                                                                MaxCapacity.value = "${room.capacity}";
-                                                                Price.value = "${room.pricepernight}";
-                                                                descriptionUR.value = "${room.description}";
-                                                                deleteRoomUR.href = "/owner/deleteroom/" + roomidsel.value;
-                                                                document.getElementById("KitchenUR").checked = false;
-                                                                document.getElementById("PrivatebathroomUR").checked = false;
-                                                                document.getElementById("AirconditioningUR").checked = false;
-                                                                document.getElementById("BathUR").checked = false;
-                                                                document.getElementById("FlatscreenTVUR").checked = false;
-                                                                document.getElementById("WashingMachineUR").checked = false;
-                                                                document.getElementById("ViewUR").checked = false;
-                                                                document.getElementById("CoffeeteamakerUR").checked = false;
-                                                                document.getElementById("CoffeemachineUR").checked = false;
-                                                                document.getElementById("ElectrickettleUR").checked = false;
-                                                                document.getElementById("DoublebedUR").checked = false;
-                                                                document.getElementById("SingleBedUR").checked = false;
-                                                            <c:forEach items = "${roomEquipments}" var = "roomEquipments">
-                                                                if ("${roomEquipments.room.id}" == roomidsel.value) {
-                                                                    if ("${roomEquipments.equipment.id}" == 1) {
-                                                                        document.getElementById("KitchenUR").checked = true;
-                                                                    }
-                                                                    if ("${roomEquipments.equipment.id}" == 2) {
-                                                                        document.getElementById("PrivatebathroomUR").checked = true;
-                                                                    }
-                                                                    if ("${roomEquipments.equipment.id}" == 3) {
-                                                                        document.getElementById("AirconditioningUR").checked = true;
-                                                                    }
-                                                                    if ("${roomEquipments.equipment.id}" == 4) {
-                                                                        document.getElementById("BathUR").checked = true;
-                                                                    }
-                                                                    if ("${roomEquipments.equipment.id}" == 5) {
-                                                                        document.getElementById("FlatscreenTVUR").checked = true;
-                                                                    }
-                                                                    if ("${roomEquipments.equipment.id}" == 6) {
-                                                                        document.getElementById("WashingMachineUR").checked = true;
-                                                                    }
-                                                                    if ("${roomEquipments.equipment.id}" == 7) {
-                                                                        document.getElementById("ViewUR").checked = true;
-                                                                    }
-                                                                    if ("${roomEquipments.equipment.id}" == 8) {
-                                                                        document.getElementById("CoffeeteamakerUR").checked = true;
-                                                                    }
-                                                                    if ("${roomEquipments.equipment.id}" == 9) {
-                                                                        document.getElementById("CoffeemachineUR").checked = true;
-                                                                    }
-                                                                    if ("${roomEquipments.equipment.id}" == 10) {
-                                                                        document.getElementById("ElectrickettleUR").checked = true;
-                                                                    }
-                                                                    if ("${roomEquipments.equipment.id}" == 11) {
-                                                                        document.getElementById("DoublebedUR").checked = true;
-                                                                    }
-                                                                    if ("${roomEquipments.equipment.id}" == 12) {
-                                                                        document.getElementById("SingleBedUR").checked = true;
-                                                                    }
-
-                                                                }
-                                                            </c:forEach>
-                                                            }
-                                                        </c:forEach>
-                                                        }
-                                                        ;
-                                                        document.querySelector("#btnmap").addEventListener("click", function () {
-                                                            myMap();
-                                                        });
-                                                        function myMap() {
-                                                            var options = {zoom: 6, center: {lat: 37.9838, lng: 23.7275}
-                                                            }
-
-                                                            var map = new google.maps.Map(document.getElementById('map'), options);
-                                                        <c:forEach items = "${hotels}" var = "hotel">
-                                                            addMarker({coords: {lat:${hotel.longtitude}, lng:${hotel.latitude}},
-                                                                content: '<h1>${hotel.name}</h1>'
-                                                            });
-                                                        </c:forEach>
-
-                                                            function addMarker(props) {
-                                                                var marker = new google.maps.Marker({
-                                                                    position: props.coords,
-                                                                    map: map
-                                                                });
-                                                                if (props.content) {
-                                                                    var infoWindow = new google.maps.InfoWindow({
-                                                                        content: props.content
-
-                                                                    });
-                                                                    marker.addListener('click', function () {
-                                                                        infoWindow.open(map, marker);
-                                                                    });
-                                                                }
-                                                            }
-                                                        }
-                                                        ;
-
-                                                        
-                                                    </script>
-
-                                                    </body>
-
-                                                    </html>
+</html>
